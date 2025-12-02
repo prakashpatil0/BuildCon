@@ -4,7 +4,10 @@
 
 @layer base {
   body {
-    @apply m-0 bg-slate-50 font-sans text-slate-900 antialiased;
+    /* Global base styles */
+    @apply m-0 bg-slate-50 text-slate-900 antialiased font-cormorant;
+    /* Semibold weight for "Cormorant Garamond Semibold" feel */
+    font-weight: 600;
   }
 
   ::selection {
