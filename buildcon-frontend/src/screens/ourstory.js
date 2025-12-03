@@ -222,8 +222,8 @@ const Ourstory = () => {
                   PRESENCE IN
                 </p>
                 <p className="text-sm leading-relaxed text-gray-200">
-                  Mumbai, Thane, Pune,<br />
-                  Bengaluru and London
+                  Pune<br />
+                  Maharashtra<br />
                 </p>
               </motion.div>
 

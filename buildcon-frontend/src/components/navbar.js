@@ -65,12 +65,12 @@ const Navbar = () => {
       About Us
     </Link>
 
-    <Link
+    {/* <Link
       to="/leadership"
       className="block px-4 py-3 rounded-lg text-sm text-gray-100 hover:bg-white/10 transition"
     >
       Leadership
-    </Link>
+    </Link> */}
 
     <Link
       to="/ourstory"

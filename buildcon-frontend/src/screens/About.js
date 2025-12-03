@@ -226,13 +226,13 @@ const About = () => {
         <div className="grid md:grid-cols-2 gap-14">
           <motion.div variants={fadeUp} initial="hidden" whileInView="visible" className="text-center">
             <img src={leader1} className="w-full h-[420px] object-cover rounded-xl shadow-xl" alt="" />
-            <h3 className="text-2xl mt-4 text-[#f7e3b2]">Mr. Arjun Desai</h3>
+            <h3 className="text-2xl mt-4 text-[#f7e3b2]">Mr. Vishal Pawar</h3>
             <p className="text-gray-400">Founder & Chairman</p>
           </motion.div>
 
           <motion.div variants={fadeUp} initial="hidden" whileInView="visible" className="text-center">
             <img src={leader2} className="w-full h-[420px] object-cover rounded-xl shadow-xl" alt="" />
-            <h3 className="text-2xl mt-4 text-[#f7e3b2]">Ms. Riya Malhotra</h3>
+            <h3 className="text-2xl mt-4 text-[#f7e3b2]"></h3>
             <p className="text-gray-400">Chief Executive Officer</p>
           </motion.div>
         </div>
