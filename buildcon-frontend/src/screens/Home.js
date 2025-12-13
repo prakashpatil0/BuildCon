@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { motion } from "framer-motion";
 
 // ===== HERO SLIDER IMAGES =====
 import picture1 from "../assets/picture1.jpg";
@@ -14,6 +15,11 @@ import picture6 from "../assets/picture6.jpg";
 import residentialImg from "../assets/logo1.png";
 import officeImg from "../assets/logo2.png";
 import hospitalityImg from "../assets/logo3.png";
+
+// ===== SAI DWARIKA ASSETS =====
+import saiDwarikaPhoto1 from "../assets/Sai Dwarika/Saidwarika Photo 1.jpg";
+import saiDwarikaPhoto2 from "../assets/Sai Dwarika/Saidwarika Photo 2.jpg";
+import saiDwarikaVideo from "../assets/Sai Dwarika/Saidwarika Video.mp4";
 
 // ===== SECTION 5 — SERVICES IMAGES =====
 const services = [
@@ -43,22 +49,34 @@ const services = [
 const projectData = {
   Residential: [
     {
-      title: "Omnia Residences",
-      location: "Almeida Park, Bandra West, Mumbai",
+      title: "Shree Shrushti",
+      location: "Kondhwa Budruk, Yewalewadi, Pune",
       image:
         "https://images.unsplash.com/photo-1501183638710-841dd1904471?w=1000",
     },
     {
-      title: "Trump Towers",
+      title: "Sai Dwarika",
       location: "Kalyani Nagar, Pune",
-      image:
-        "https://images.unsplash.com/photo-1502673530728-f79b4cab31b1?w=1000",
+      image: saiDwarikaPhoto1,
+      video: saiDwarikaVideo,
     },
     {
-      title: "YOO Villas",
+      title: "Sadguru Krupa",
       location: "Near EON Free Zone, Kharadi, Pune",
       image:
         "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?w=1000",
+    },
+    {
+      title: "Vrindavan Regency",
+      location: "Saswad - Bopdev - Pune Rd, Yewalewadi, Pune",
+      image:
+        "https://images.unsplash.com/photo-1501183638710-841dd1904471?w=1000",
+    },
+    {
+      title: "Sai Shraddha",
+      location: "pune",
+      image:
+        "https://images.unsplash.com/photo-1501183638710-841dd1904471?w=1000",
     },
   ],
 
@@ -109,6 +127,48 @@ const tabs = ["Residential", "Office Parks", "Hospitality"];
 
 // SECTION 2 images
 const sectionImages = [picture4, picture5, picture6];
+
+// Animation variants
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.9, ease: "easeOut" },
+  },
+};
+
+const fadeIn = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 1.2 } },
+};
+
+const slideInLeft = {
+  hidden: { opacity: 0, x: -100 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 1.1, ease: "easeOut" },
+  },
+};
+
+const slideInRight = {
+  hidden: { opacity: 0, x: 100 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 1.1, ease: "easeOut" },
+  },
+};
+
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.8, ease: "easeOut" },
+  },
+};
 
 // HERO SLIDES
 const slides = [
@@ -170,8 +230,10 @@ const Home = () => {
   const [activeTabAccordion, setActiveTabAccordion] = useState(3);
   const [tabAnimate, setTabAnimate] = useState(false);
   const [activeProjectTab, setActiveProjectTab] = useState("Residential");
+  const [hoveredProject, setHoveredProject] = useState(null);
 
   const sectionRef = useRef(null);
+  const videoRefs = useRef({});
 
   // === SERVICES AUTOSCROLL ===
   const scrollRef = useRef(null);
@@ -237,46 +299,81 @@ const Home = () => {
   }, [activeTabAccordion]);
 
   return (
-    <div className="w-full bg-white">
+    <div className="w-full bg-black">
 
       {/* ================= HERO SECTION ================= */}
       <section className="relative w-full h-screen overflow-hidden">
         {slides.map((slide, index) => (
-          <img
+          <motion.img
             key={index}
             src={slide.image}
-            className={`absolute inset-0 w-full h-full object-cover transition duration-[1500ms] ${
-              current === index ? "opacity-100" : "opacity-0"
-            }`}
+            initial={{ opacity: 0, scale: 1.1 }}
+            animate={{
+              opacity: current === index ? 1 : 0,
+              scale: current === index ? 1 : 1.1,
+            }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
+            className="absolute inset-0 w-full h-full object-cover"
           />
         ))}
 
-        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="absolute inset-0 bg-black/50"></div>
 
-        <div className="absolute top-1/3 left-10 md:left-20">
-          <h1 className="text-white text-5xl md:text-6xl font-bold max-w-4xl">
-            {slides[current].title}
-          </h1>
-          <p className="mt-3 max-w-xl text-white text-xl opacity-90">
+        <motion.div
+          key={current}
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.2 }}
+          className="absolute top-1/3 left-10 md:left-20"
+        >
+          <motion.h1
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.4 }}
+            className="text-5xl md:text-6xl font-bold max-w-4xl"
+          >
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f9d891] to-[#d1a74f]">
+              {slides[current].title}
+            </span>
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+            className="mt-3 max-w-xl text-[#f0d3a3] text-xl"
+          >
             {slides[current].subtitle}
-          </p>
-          <a href={slides[current].link}>
-            <button
-              className="mt-6 px-7 py-3 text-white text-lg rounded"
-              style={{ background: "#E1272D" }}
+          </motion.p>
+          <motion.a
+            href={slides[current].link}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8 }}
+          >
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="mt-6 px-7 py-3 text-white text-lg rounded font-semibold"
+              style={{
+                background: "linear-gradient(135deg, #d1a74f 0%, #b8924b 100%)",
+              }}
             >
               ↗ {slides[current].button}
-            </button>
-          </a>
-        </div>
+            </motion.button>
+          </motion.a>
+        </motion.div>
 
         <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-3">
           {slides.map((slide, i) => (
-            <img
+            <motion.img
               key={i}
               src={slide.image}
-              className={`h-16 w-24 rounded object-cover cursor-pointer border ${
-                current === i ? "border-white" : "border-transparent"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              className={`h-16 w-24 rounded object-cover cursor-pointer border-2 transition-all ${
+                current === i
+                  ? "border-[#d1a75e] shadow-lg shadow-[#d1a75e]/50"
+                  : "border-transparent opacity-60 hover:opacity-100"
               }`}
               onClick={() => setCurrent(i)}
             />
@@ -285,27 +382,53 @@ const Home = () => {
       </section>
 
       {/* ================= SECTION 2 ================= */}
-      <section className="w-full bg-white" ref={sectionRef}>
-        <div className="py-12 text-center text-3xl font-semibold">
+      <section className="w-full bg-black" ref={sectionRef}>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeUp}
+          className="py-12 text-center"
+        >
           <div className="max-w-6xl mx-auto flex justify-center gap-24">
-            <p>55 projects</p>
-            <p>23 years of legacy</p>
-            <p>35M sq. ft. delivered</p>
+            {[
+              { text: "55 projects", delay: 0 },
+              { text: "23 years of legacy", delay: 0.1 },
+              { text: "35M sq. ft. delivered", delay: 0.2 },
+            ].map((item, i) => (
+              <motion.p
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: item.delay }}
+                className="text-3xl font-semibold text-[#f8d99c]"
+              >
+                {item.text}
+              </motion.p>
+            ))}
           </div>
-        </div>
+        </motion.div>
 
-        <div className="bg-[#222222] text-white py-16">
+        <div className="bg-black text-white py-16">
           <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-12 px-6">
-            <div className="relative w-full md:w-1/2 h-[430px]">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={slideInLeft}
+              className="relative w-full md:w-1/2 h-[430px]"
+            >
               {sectionImages.map((src, i) => (
-                <img
+                <motion.img
                   key={i}
                   src={src}
-                  className={`absolute w-[50%] rounded shadow-xl transition duration-[1200ms] ${
-                    imagesAnimated
-                      ? "opacity-100 translate-y-0"
-                      : "opacity-0 translate-y-16"
-                  }`}
+                  initial={{ opacity: 0, y: 50, scale: 0.9 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.2, duration: 0.8 }}
+                  whileHover={{ scale: 1.05, zIndex: 10 }}
+                  className="absolute w-[50%] rounded shadow-xl shadow-[#d1a75e]/20"
                   style={{
                     left: `${i * 12}%`,
                     bottom: `${i * 12}%`,
@@ -313,137 +436,320 @@ const Home = () => {
                   }}
                 />
               ))}
-            </div>
+            </motion.div>
 
-            <div className="md:w-1/2">
-              <h2 className="text-5xl font-semibold mb-6 leading-snug">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={slideInRight}
+              className="md:w-1/2"
+            >
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="text-5xl font-semibold mb-6 leading-snug text-[#f7d69a]"
+              >
                 Established in 2002, <br /> India's finest luxury developer
-              </h2>
-              <p className="text-gray-300 text-lg leading-relaxed">
+              </motion.h2>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 }}
+                className="text-[#d1a75e] text-lg leading-relaxed"
+              >
                 Delivering 35M+ sq. ft. with 43M+ sq. ft. under development,
                 known for quality, innovation & craftsmanship.
-              </p>
-            </div>
+              </motion.p>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* ================= SECTION 3 — ACCORDION ================= */}
-      <div className="w-full bg-white py-12 px-6 md:px-20">
+      <div className="w-full bg-black py-12 px-6 md:px-20">
         {dynamicSections.map((s) => (
-          <div key={s.id} className="border-b">
-            <div
+          <motion.div
+            key={s.id}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="border-b border-[#d1a75e]/30"
+          >
+            <motion.div
               onClick={() => setActiveTabAccordion(s.id)}
-              className="flex justify-between py-6 cursor-pointer text-xl"
+              whileHover={{ x: 10 }}
+              className="flex justify-between py-6 cursor-pointer text-xl text-[#f0d3a3]"
             >
-              <span>{`0${s.id}`}</span>
+              <span className="text-[#d1a75e]">{`0${s.id}`}</span>
               <span>{s.title}</span>
-              <span>{activeTabAccordion === s.id ? "–" : "+"}</span>
-            </div>
+              <motion.span
+                animate={{ rotate: activeTabAccordion === s.id ? 0 : 90 }}
+                transition={{ duration: 0.3 }}
+                className="text-[#d1a75e]"
+              >
+                {activeTabAccordion === s.id ? "–" : "+"}
+              </motion.span>
+            </motion.div>
 
             {activeTabAccordion === s.id && (
-              <div
-                className="relative w-full h-[650px] flex items-center justify-center text-white"
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.5 }}
+                className="relative w-full h-[650px] flex items-center justify-center text-white overflow-hidden"
                 style={{
                   backgroundImage: `url(${s.image})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}
               >
-                <div className="absolute inset-0 bg-black/40"></div>
+                <div className="absolute inset-0 bg-black/60"></div>
 
-                <div
-                  className={`relative max-w-3xl text-center transition duration-[1200ms] ${
-                    tabAnimate
-                      ? "opacity-100 translate-y-0"
-                      : "opacity-0 translate-y-10"
-                  }`}
+                <motion.div
+                  initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="relative max-w-3xl text-center"
                 >
-                  <h2 className="text-5xl font-semibold mb-6">{s.heading}</h2>
-                  <p className="text-lg mb-8 opacity-90">{s.text}</p>
+                  <motion.h2
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4 }}
+                    className="text-5xl font-semibold mb-6 text-[#f7d69a]"
+                  >
+                    {s.heading}
+                  </motion.h2>
+                  <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5 }}
+                    className="text-lg mb-8 text-[#f0d3a3]"
+                  >
+                    {s.text}
+                  </motion.p>
 
-                  <div className="flex justify-center gap-12 mb-10 text-lg">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6 }}
+                    className="flex justify-center gap-12 mb-10 text-lg text-[#d1a75e]"
+                  >
                     {s.stats.map((t, i) => (
-                      <p key={i}>• {t}</p>
+                      <motion.p
+                        key={i}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.7 + i * 0.1 }}
+                      >
+                        • {t}
+                      </motion.p>
                     ))}
-                  </div>
+                  </motion.div>
 
-                  <button className="px-8 py-3 bg-white/30 text-white rounded">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.8 }}
+                    className="px-8 py-3 bg-gradient-to-r from-[#d1a74f] to-[#b8924b] text-white rounded font-semibold"
+                  >
                     Learn More
-                  </button>
-                </div>
-              </div>
+                  </motion.button>
+                </motion.div>
+              </motion.div>
             )}
-          </div>
+          </motion.div>
         ))}
       </div>
 
       {/* ================= SECTION 4 — PROJECTS ================= */}
-      <div className="w-full bg-white py-20">
-        <h3 className="text-center text-sm tracking-[6px] text-gray-500">
+      <div className="w-full bg-black py-20">
+        <motion.h3
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center text-sm tracking-[6px] text-[#d1a75e] mb-4"
+        >
           WE ARE NOW
-        </h3>
-        <h2 className="text-center text-4xl font-semibold mb-10">
+        </motion.h3>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="text-center text-4xl font-semibold mb-10 text-[#f7d69a]"
+        >
           SHAPING SKYLINES BEYOND BORDERS
-        </h2>
+        </motion.h2>
 
-        <div className="flex justify-center gap-12 text-lg mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
+          className="flex justify-center gap-12 text-lg mb-12"
+        >
           {tabs.map((tab) => (
-            <button
+            <motion.button
               key={tab}
               onClick={() => setActiveProjectTab(tab)}
-              className={`pb-2 ${
+              whileHover={{ scale: 1.1, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              className={`pb-2 transition-colors duration-300 ${
                 activeProjectTab === tab
-                  ? "text-black border-b-2 border-black"
-                  : "text-gray-500 hover:text-black"
+                  ? "text-[#f8d99c] border-b-2 border-[#d1a75e]"
+                  : "text-[#d1a75e] hover:text-[#f0d3a3]"
               }`}
             >
               {tab}
-            </button>
+            </motion.button>
           ))}
-        </div>
+        </motion.div>
 
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 px-6">
-          {projectData[activeProjectTab].map((p, i) => (
-            <div key={i} className="relative group rounded overflow-hidden">
-              <img
-                src={p.image}
-                className="w-full h-[420px] object-cover group-hover:scale-105 transition duration-700"
-              />
-              <div className="absolute bottom-0 p-5 w-full bg-gradient-to-t from-black/80 text-white">
-                <h3 className="text-xl font-semibold">{p.title}</h3>
-                <p className="text-sm opacity-90">{p.location}</p>
+        <motion.div
+          key={activeProjectTab}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 px-6"
+        >
+          {projectData[activeProjectTab].map((p, i) => {
+            const projectKey = `${activeProjectTab}-${i}`;
+            const hasVideo = p.video;
+            
+            return (
+              <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.2, duration: 0.6 }}
+              className="relative group rounded overflow-hidden"
+              onMouseEnter={() => {
+                if (hasVideo) {
+                  setHoveredProject(projectKey);
+                  const video = videoRefs.current[projectKey];
+                  if (video) {
+                    video.play().catch(console.error);
+                  }
+                }
+              }}
+              onMouseLeave={() => {
+                if (hasVideo) {
+                  setHoveredProject(null);
+                  const video = videoRefs.current[projectKey];
+                  if (video) {
+                    video.pause();
+                    video.currentTime = 0;
+                  }
+                }
+              }}
+            >
+              <div className="relative w-full h-[420px] overflow-hidden">
+                {hasVideo ? (
+                  <>
+                    <motion.img
+                      src={p.image}
+                      animate={{ opacity: hoveredProject === projectKey ? 0 : 1 }}
+                      transition={{ duration: 0.3 }}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                    <motion.video
+                      ref={(el) => (videoRefs.current[projectKey] = el)}
+                      src={p.video}
+                      loop
+                      muted
+                      playsInline
+                      animate={{ opacity: hoveredProject === projectKey ? 1 : 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  </>
+                ) : (
+                  <motion.img
+                    src={p.image}
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.4 }}
+                    className="w-full h-full object-cover"
+                  />
+                )}
               </div>
-            </div>
-          ))}
-        </div>
+              <div className="absolute bottom-0 p-5 w-full bg-gradient-to-t from-black/90 to-transparent">
+                <motion.h3
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="text-xl font-semibold text-[#f7d69a]"
+                >
+                  {p.title}
+                </motion.h3>
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.1 }}
+                  className="text-sm text-[#d1a75e] mt-1"
+                >
+                  {p.location}
+                </motion.p>
+              </div>
+            </motion.div>
+            );
+          })}
+        </motion.div>
       </div>
 
       {/* ================= SECTION 5 — SERVICES (PREMIUM AUTO SLIDER) ================= */}
-      <div className="w-full bg-white py-20 relative">
+      <div className="w-full bg-black py-20 relative">
 
-        <h4 className="text-center text-sm tracking-[6px] text-gray-500">
+        <motion.h4
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center text-sm tracking-[6px] text-[#d1a75e] mb-4"
+        >
           EXPLORE
-        </h4>
-        <h2 className="text-center text-4xl font-semibold mb-12">
+        </motion.h4>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="text-center text-4xl font-semibold mb-12 text-[#f7d69a]"
+        >
           OUR SERVICES
-        </h2>
+        </motion.h2>
 
         {/* LEFT ARROW */}
-        <button
+        <motion.button
           onClick={scrollLeft}
-          className="absolute left-4 top-1/2 -translate-y-1/2 bg-white shadow p-4 rounded-full z-10"
+          whileHover={{ scale: 1.1, x: -5 }}
+          whileTap={{ scale: 0.9 }}
+          className="absolute left-4 top-1/2 -translate-y-1/2 bg-[#d1a75e]/20 backdrop-blur-sm border border-[#d1a75e]/50 text-[#f8d99c] p-4 rounded-full z-10 hover:bg-[#d1a75e]/30 transition-colors"
         >
-          {/* ← */}
-        </button>
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </motion.button>
 
         {/* RIGHT ARROW */}
-        <button
+        <motion.button
           onClick={scrollRight}
-          className="absolute right-4 top-1/2 -translate-y-1/2 bg-white shadow p-4 rounded-full z-10"
+          whileHover={{ scale: 1.1, x: 5 }}
+          whileTap={{ scale: 0.9 }}
+          className="absolute right-4 top-1/2 -translate-y-1/2 bg-[#d1a75e]/20 backdrop-blur-sm border border-[#d1a75e]/50 text-[#f8d99c] p-4 rounded-full z-10 hover:bg-[#d1a75e]/30 transition-colors"
         >
-          {/* → */}
-        </button>
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </motion.button>
 
         {/* INFINITE LOOP SCROLLER */}
         <div
@@ -452,15 +758,30 @@ const Home = () => {
           className="flex gap-10 overflow-x-scroll scrollbar-hide px-10"
         >
           {[...services, ...services].map((srv, i) => (
-            <div key={i} className="min-w-[360px] cursor-pointer">
-              <img
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: (i % services.length) * 0.1 }}
+              whileHover={{ scale: 1.05, y: -5 }}
+              className="min-w-[360px] cursor-pointer"
+            >
+              <motion.img
                 src={srv.image}
-                className="w-full h-[380px] object-cover rounded-lg shadow-lg"
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.4 }}
+                className="w-full h-[380px] object-cover rounded-lg shadow-lg shadow-[#d1a75e]/20"
               />
-              <p className="text-center mt-4 text-lg font-medium">
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                className="text-center mt-4 text-lg font-medium text-[#f0d3a3]"
+              >
                 {srv.title}
-              </p>
-            </div>
+              </motion.p>
+            </motion.div>
           ))}
         </div>
       </div>

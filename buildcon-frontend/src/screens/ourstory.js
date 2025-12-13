@@ -149,16 +149,17 @@ const Ourstory = () => {
           <motion.div variants={fadeLeft} initial="hidden" whileInView="visible">
             <h3 className="text-3xl mb-4 text-[#f3dfb4]">Our Mission</h3>
             <p className="text-gray-300 leading-relaxed text-lg">
-              To craft world-class spaces that elevate lifestyles and blend
-              modern design with timeless values.
+            To deliver budget-friendly, high-quality, and thoughtfully planned real estate projects built on the principles of honesty, professionalism, and a customer-first approach.
+            We strive to contribute to community growth by developing value-driven residential and commercial spaces rooted in transparency, ethical practices, and long-term trust.
             </p>
           </motion.div>
 
           <motion.div variants={fadeRight} initial="hidden" whileInView="visible">
             <h3 className="text-3xl mb-4 text-[#f3dfb4]">Our Vision</h3>
             <p className="text-gray-300 leading-relaxed text-lg">
-              To be the most trusted and admired brand in real estate —
-              where every customer finds unmatched quality and belonging.
+            To transform lives by creating over 25,000 affordable, high-quality, and sustainable homes that nurture comfort, dignity, and a true sense of community.
+We envision empowering families, fostering inclusive growth, and contributing meaningfully to India’s mission of sustainable urban development.
+Our goal is to build spaces that inspire better living — today, tomorrow, and for generations to come.
             </p>
           </motion.div>
 

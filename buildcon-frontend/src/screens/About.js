@@ -15,6 +15,18 @@ import logo3 from "../assets/logo3.png";
 
 const clients = [logo1, logo2, logo3, logo1, logo2];
 
+// Golden color palette
+const goldenColors = {
+  light: "#f9d891",
+  medium: "#d1a74f",
+  dark: "#b8924b",
+  gradient: "from-[#f9d891] to-[#d1a74f]",
+  text: "#f8d99c",
+  textLight: "#f3dfb4",
+  textMedium: "#f0d3a3",
+  border: "#d1a75e",
+};
+
 // Animation variants
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -28,6 +40,38 @@ const fadeUp = {
 const fadeIn = {
   hidden: { opacity: 0 },
   visible: { opacity: 1, transition: { duration: 1.2 } },
+};
+
+const slideInLeft = {
+  hidden: { opacity: 0, x: -100 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 1.1, ease: "easeOut" },
+  },
+};
+
+const slideInRight = {
+  hidden: { opacity: 0, x: 100 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 1.1, ease: "easeOut" },
+  },
+};
+
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.8, ease: "easeOut" },
+  },
+};
+
+const imageHover = {
+  rest: { scale: 1 },
+  hover: { scale: 1.05, transition: { duration: 0.3 } },
 };
 
 const About = () => {
@@ -74,14 +118,24 @@ const About = () => {
           transition={{ duration: 1.4, ease: "easeOut" }}
           className="absolute bottom-36 left-1/2 -translate-x-1/2 text-center"
         >
-          <h1 className="text-6xl tracking-wide font-semibold mb-4">
+          <motion.h1
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2, delay: 0.2 }}
+            className="text-6xl tracking-wide font-semibold mb-4"
+          >
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f9d891] to-[#d1a74f]">
               Building Legacies
             </span>
-          </h1>
-          <p className="text-gray-200 text-lg tracking-wide">
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, delay: 0.4 }}
+            className="text-[#f0d3a3] text-lg tracking-wide"
+          >
             Shaping Skylines. Crafting Experiences.
-          </p>
+          </motion.p>
         </motion.div>
 
         {/* MENU — ON CLICK SCROLL */}
@@ -94,27 +148,24 @@ const About = () => {
           <div className="w-full border-t border-[#c8a86a]/50 mb-6"></div>
 
           <div className="flex justify-center gap-12 font-medium text-[#f0d9a3] tracking-wider text-lg">
-            <button onClick={() => scrollToSection(profileRef)} className="hover:text-white">
-              Profile
-            </button>
-
-            <span>|</span>
-
-            <button onClick={() => scrollToSection(growthRef)} className="hover:text-white">
-              Growth Chronicles
-            </button>
-
-            <span>|</span>
-
-            <button onClick={() => scrollToSection(clientsRef)} className="hover:text-white">
-              Clients
-            </button>
-
-            <span>|</span>
-
-            <button onClick={() => scrollToSection(partnersRef)} className="hover:text-white">
-              Partnerships
-            </button>
+            {[
+              { label: "Profile", ref: profileRef },
+              { label: "Growth Chronicles", ref: growthRef },
+              { label: "Clients", ref: clientsRef },
+              { label: "Partnerships", ref: partnersRef },
+            ].map((item, index) => (
+              <React.Fragment key={item.label}>
+                {index > 0 && <span className="text-[#d1a75e]">|</span>}
+                <motion.button
+                  onClick={() => scrollToSection(item.ref)}
+                  whileHover={{ scale: 1.1, color: "#f9d891" }}
+                  whileTap={{ scale: 0.95 }}
+                  className="transition-colors duration-300"
+                >
+                  {item.label}
+                </motion.button>
+              </React.Fragment>
+            ))}
           </div>
         </motion.div>
       </section>
@@ -124,7 +175,7 @@ const About = () => {
       ============================================================ */}
       <section
         ref={profileRef}
-        className="max-w-6xl mx-auto px-6 py-24 overflow-hidden"
+        className="max-w-6xl mx-auto px-6 py-24 overflow-hidden bg-black"
       >
         <motion.h2
           initial="hidden"
@@ -138,39 +189,62 @@ const About = () => {
 
         <div className="grid md:grid-cols-2 gap-14 items-center">
 
-          {/* IMAGE — SLIDE LEFT TO RIGHT */}
-          <motion.img
-            src={profileImg}
-            alt=""
+          {/* IMAGE — SLIDE LEFT TO RIGHT WITH ANIMATION */}
+          <motion.div
             style={{ y: parallaxY }}
-            className="rounded-xl shadow-[0_10px_40px_rgba(0,0,0,0.45)]"
-            initial={{ x: -200, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
+            initial={{ x: -200, opacity: 0, scale: 0.9 }}
+            whileInView={{ x: 0, opacity: 1, scale: 1 }}
             viewport={{ once: false }}
             transition={{ duration: 1.1, ease: "easeOut" }}
-          />
+            whileHover={{ scale: 1.05 }}
+            className="overflow-hidden rounded-xl"
+          >
+            <motion.img
+              src={profileImg}
+              alt="Company Profile"
+              className="w-full h-auto rounded-xl shadow-[0_10px_40px_rgba(217,167,79,0.3)]"
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.4 }}
+            />
+          </motion.div>
 
           {/* TEXT */}
           <motion.div
-            variants={fadeUp}
+            variants={slideInRight}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: false }}
           >
-            <h3 className="text-3xl font-semibold text-[#f3dfb4] mb-6">
+            <motion.h3
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false }}
+              transition={{ delay: 0.2 }}
+              className="text-3xl font-semibold text-[#f3dfb4] mb-6"
+            >
               Who We Are
-            </h3>
+            </motion.h3>
 
-            <p className="text-gray-300 leading-relaxed mb-6 text-lg">
-              A pioneering developer redefining luxury, innovation and global
-              architecture. We craft futuristic environments that stand as
-              timeless icons in modern India.
-            </p>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false }}
+              transition={{ delay: 0.3 }}
+              className="text-[#f0d3a3] leading-relaxed mb-6 text-lg"
+            >
+              At MAA PRANAAM GROUP, we don’t just build homes and offices — we create entire worlds that redefine the way people live, work, and play. Every project we undertake is shaped by thoughtful, modern design that captures the true essence of contemporary living.
+Driven by a passion to elevate real estate standards in the region, we are committed to delivering excellence across every development. Over the coming years, MAA PRANAAM GROUP aims to develop 1M+ sq. ft. of residential and commercial spaces in and around Pune, setting new benchmarks for quality, innovation, and customer satisfaction.
+            </motion.p>
 
-            <p className="text-gray-300 leading-relaxed text-lg">
-              Sustainability, design intelligence, and unmatched craftsmanship
-              remain the foundation of our legacy.
-            </p>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false }}
+              transition={{ delay: 0.4 }}
+              className="text-[#f0d3a3] leading-relaxed text-lg"
+            >
+              We believe in building more than structures — we build experiences, lifestyles, and lasting value.
+            </motion.p>
           </motion.div>
         </div>
       </section>
@@ -178,7 +252,7 @@ const About = () => {
       {/* ============================================================
           GROWTH CHRONICLES
       ============================================================ */}
-      <section ref={growthRef} className="bg-[#151515] py-24 px-6">
+      <section ref={growthRef} className="bg-black py-24 px-6">
         <motion.h2
           variants={fadeUp}
           initial="hidden"
@@ -190,85 +264,154 @@ const About = () => {
         </motion.h2>
 
         <div className="max-w-5xl mx-auto relative border-l-2 border-[#d1a75e]/50 pl-10">
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" className="mb-16">
-            <div className="absolute -left-4 w-7 h-7 rounded-full bg-gradient-to-br from-[#f3d59e] to-[#b8924b]"></div>
-            <h3 className="text-xl font-semibold mb-2 text-[#f0d3a3]">2002 — Foundation</h3>
-            <p className="text-gray-400">The beginning of a premium real-estate journey.</p>
-          </motion.div>
-
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" className="mb-16">
-            <div className="absolute -left-4 w-7 h-7 rounded-full bg-gradient-to-br from-[#f3d59e] to-[#b8924b]"></div>
-            <h3 className="text-xl font-semibold mb-2 text-[#f0d3a3]">2010 — National Expansion</h3>
-            <p className="text-gray-400">Expanded into major metros & commercial hubs across India.</p>
-          </motion.div>
-
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible">
-            <div className="absolute -left-4 w-7 h-7 rounded-full bg-gradient-to-br from-[#f3d59e] to-[#b8924b]"></div>
-            <h3 className="text-xl font-semibold mb-2 text-[#f0d3a3]">2020 — Global Recognition</h3>
-            <p className="text-gray-400">Achieved global excellence in engineering & design.</p>
-          </motion.div>
+          {[
+            { year: "2002", title: "Foundation", desc: "The beginning of a premium real-estate journey." },
+            { year: "2010", title: "National Expansion", desc: "Expanded into major metros & commercial hubs across India." },
+            { year: "2020", title: "Global Recognition", desc: "Achieved global excellence in engineering & design." },
+          ].map((item, index) => (
+            <motion.div
+              key={item.year}
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.2 }}
+              className="mb-16"
+            >
+              <motion.div
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.2 + 0.1, type: "spring" }}
+                className="absolute -left-4 w-7 h-7 rounded-full bg-gradient-to-br from-[#f3d59e] to-[#b8924b] shadow-lg shadow-[#d1a75e]/50"
+              />
+              <motion.h3
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.2 + 0.2 }}
+                className="text-xl font-semibold mb-2 text-[#f0d3a3]"
+              >
+                {item.year} — {item.title}
+              </motion.h3>
+              <motion.p
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.2 + 0.3 }}
+                className="text-[#d1a75e]"
+              >
+                {item.desc}
+              </motion.p>
+            </motion.div>
+          ))}
         </div>
       </section>
 
       {/* ============================================================
           LEADERSHIP
       ============================================================ */}
-      <section className="max-w-6xl mx-auto px-6 py-24">
+      <section className="max-w-6xl mx-auto px-6 py-24 bg-black">
         <motion.h2
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
+          viewport={{ once: true }}
           className="text-center text-5xl font-semibold mb-20 text-[#f7d69a]"
         >
           LEADERSHIP
         </motion.h2>
 
         <div className="grid md:grid-cols-2 gap-14">
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" className="text-center">
-            <img src={leader1} className="w-full h-[420px] object-cover rounded-xl shadow-xl" alt="" />
-            <h3 className="text-2xl mt-4 text-[#f7e3b2]">Mr. Vishal Pawar</h3>
-            <p className="text-gray-400">Founder & Chairman</p>
-          </motion.div>
-
-          <motion.div variants={fadeUp} initial="hidden" whileInView="visible" className="text-center">
-            <img src={leader2} className="w-full h-[420px] object-cover rounded-xl shadow-xl" alt="" />
-            <h3 className="text-2xl mt-4 text-[#f7e3b2]"></h3>
-            <p className="text-gray-400">Chief Executive Officer</p>
-          </motion.div>
+          {[
+            { img: leader1, name: "Mr. Vishal Pawar", role: "Founder & Chairman" },
+            { img: leader2, name: "Chief Executive", role: "Chief Executive Officer" },
+          ].map((leader, index) => (
+            <motion.div
+              key={index}
+              variants={scaleIn}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.2 }}
+              className="text-center group"
+            >
+              <motion.div
+                className="overflow-hidden rounded-xl shadow-xl shadow-[#d1a75e]/20"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+              >
+                <motion.img
+                  src={leader.img}
+                  className="w-full h-[420px] object-cover"
+                  alt={leader.name}
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.4 }}
+                />
+              </motion.div>
+              <motion.h3
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.2 + 0.3 }}
+                className="text-2xl mt-4 text-[#f7e3b2]"
+              >
+                {leader.name}
+              </motion.h3>
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.2 + 0.4 }}
+                className="text-[#d1a75e] mt-2"
+              >
+                {leader.role}
+              </motion.p>
+            </motion.div>
+          ))}
         </div>
       </section>
 
       {/* ============================================================
           GLOBAL PRESENCE
       ============================================================ */}
-      <section className="bg-[#151515] py-24 px-6">
+      <section className="bg-black py-24 px-6">
         <motion.h2
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
+          viewport={{ once: true }}
           className="text-center text-5xl font-semibold text-[#f3dca5] mb-14"
         >
           GLOBAL PRESENCE
         </motion.h2>
 
-        <motion.img
-          src={worldMap}
-          variants={fadeIn}
-          initial="hidden"
-          whileInView="visible"
-          className="max-w-5xl mx-auto rounded-xl shadow-lg"
-          alt=""
-        />
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.2 }}
+          className="max-w-5xl mx-auto"
+        >
+          <motion.img
+            src={worldMap}
+            className="w-full h-auto rounded-xl shadow-lg shadow-[#d1a75e]/20"
+            alt="Global Presence Map"
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.4 }}
+          />
+        </motion.div>
       </section>
 
       {/* ============================================================
           CLIENTS GRID
       ============================================================ */}
-      <section ref={clientsRef} className="max-w-6xl mx-auto px-6 py-24">
+      <section ref={clientsRef} className="max-w-6xl mx-auto px-6 py-24 bg-black">
         <motion.h2
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
+          viewport={{ once: true }}
           className="text-center text-5xl mb-16 text-[#f7d79f]"
         >
           OUR CLIENTS
@@ -276,15 +419,21 @@ const About = () => {
 
         <div className="grid grid-cols-2 md:grid-cols-5 gap-10 place-items-center">
           {clients.map((logo, idx) => (
-            <motion.img
+            <motion.div
               key={idx}
-              src={logo}
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="visible"
-              className="h-20 opacity-70 hover:opacity-100 transition"
-              alt=""
-            />
+              initial={{ opacity: 0, scale: 0.5, y: 30 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1, duration: 0.6 }}
+              whileHover={{ scale: 1.2, y: -5 }}
+              className="filter brightness-0 invert opacity-70 hover:opacity-100 transition-all duration-300"
+            >
+              <motion.img
+                src={logo}
+                className="h-20 w-auto"
+                alt={`Client Logo ${idx + 1}`}
+              />
+            </motion.div>
           ))}
         </div>
       </section>
@@ -297,6 +446,7 @@ const About = () => {
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
+          viewport={{ once: true }}
           className="text-4xl font-semibold text-[#f5dba8] mb-6"
         >
           STRATEGIC PARTNERSHIPS
@@ -306,7 +456,8 @@ const About = () => {
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
-          className="max-w-3xl mx-auto text-gray-300 text-lg leading-relaxed"
+          viewport={{ once: true }}
+          className="max-w-3xl mx-auto text-[#d1a75e] text-lg leading-relaxed"
         >
           We collaborate with world-class architects, engineering firms, and
           global design leaders to deliver unmatched quality & innovation.
