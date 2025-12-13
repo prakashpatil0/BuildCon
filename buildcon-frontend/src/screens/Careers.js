@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 
 // Job openings data
@@ -107,12 +107,77 @@ const fadeUp = {
 const Careers = () => {
   const [selectedJob, setSelectedJob] = useState(null);
   const [filter, setFilter] = useState("all");
+  const [showApplicationModal, setShowApplicationModal] = useState(false);
+  const [applicationJob, setApplicationJob] = useState(null);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    experience: "",
+    coverLetter: "",
+    resume: null,
+  });
 
   const departments = ["all", ...new Set(jobOpenings.map((job) => job.department))];
 
   const filteredJobs = filter === "all" 
     ? jobOpenings 
     : jobOpenings.filter((job) => job.department === filter);
+
+  const handleApplyClick = (job) => {
+    setApplicationJob(job);
+    setShowApplicationModal(true);
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      experience: "",
+      coverLetter: "",
+      resume: null,
+    });
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleFileChange = (e) => {
+    setFormData((prev) => ({
+      ...prev,
+      resume: e.target.files[0],
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Here you would typically send the form data to your backend
+    console.log("Application submitted:", {
+      job: applicationJob,
+      ...formData,
+    });
+    
+    // Show success message and close modal
+    alert("Application submitted successfully! We'll get back to you soon.");
+    setShowApplicationModal(false);
+    setApplicationJob(null);
+  };
+
+  const closeModal = () => {
+    setShowApplicationModal(false);
+    setApplicationJob(null);
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      experience: "",
+      coverLetter: "",
+      resume: null,
+    });
+  };
 
   return (
     <div className="w-full bg-black min-h-screen">
@@ -283,6 +348,10 @@ const Careers = () => {
               </div>
               <p className="text-[#f0d3a3] text-sm line-clamp-2 mb-4">{job.description}</p>
               <motion.button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleApplyClick(job);
+                }}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="w-full py-2 bg-gradient-to-r from-[#d1a74f] to-[#b8924b] text-white rounded-lg font-medium"
@@ -348,6 +417,197 @@ const Careers = () => {
           </motion.div>
         </motion.div>
       </section>
+
+      {/* ================= APPLICATION MODAL ================= */}
+      <AnimatePresence>
+        {showApplicationModal && applicationJob && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={closeModal}
+            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-[#1a1a1a] rounded-2xl border border-[#d1a75e]/30 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+            >
+              {/* Modal Header */}
+              <div className="sticky top-0 bg-[#1a1a1a] border-b border-[#d1a75e]/30 p-6 flex justify-between items-center">
+                <div>
+                  <h2 className="text-2xl font-semibold text-[#f7d69a] mb-1">
+                    Apply for {applicationJob.title}
+                  </h2>
+                  <p className="text-[#d1a75e] text-sm">{applicationJob.department}</p>
+                </div>
+                <button
+                  onClick={closeModal}
+                  className="text-[#d1a75e] hover:text-[#f9d891] text-3xl transition-colors"
+                >
+                  ×
+                </button>
+              </div>
+
+              {/* Modal Body - Form */}
+              <form onSubmit={handleSubmit} className="p-6">
+                <div className="space-y-6">
+                  {/* Name */}
+                  <div>
+                    <label className="block text-[#f0d3a3] font-medium mb-2">
+                      Full Name <span className="text-[#d1a74f]">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full px-4 py-3 bg-[#0f0f0f] border border-[#d1a75e]/30 rounded-lg text-[#f0d3a3] focus:outline-none focus:border-[#d1a74f] transition-colors"
+                      placeholder="Enter your full name"
+                    />
+                  </div>
+
+                  {/* Email */}
+                  <div>
+                    <label className="block text-[#f0d3a3] font-medium mb-2">
+                      Email Address <span className="text-[#d1a74f]">*</span>
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full px-4 py-3 bg-[#0f0f0f] border border-[#d1a75e]/30 rounded-lg text-[#f0d3a3] focus:outline-none focus:border-[#d1a74f] transition-colors"
+                      placeholder="your.email@example.com"
+                    />
+                  </div>
+
+                  {/* Phone */}
+                  <div>
+                    <label className="block text-[#f0d3a3] font-medium mb-2">
+                      Phone Number <span className="text-[#d1a74f]">*</span>
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full px-4 py-3 bg-[#0f0f0f] border border-[#d1a75e]/30 rounded-lg text-[#f0d3a3] focus:outline-none focus:border-[#d1a74f] transition-colors"
+                      placeholder="+91 1234567890"
+                    />
+                  </div>
+
+                  {/* Experience */}
+                  <div>
+                    <label className="block text-[#f0d3a3] font-medium mb-2">
+                      Years of Experience <span className="text-[#d1a74f]">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="experience"
+                      value={formData.experience}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full px-4 py-3 bg-[#0f0f0f] border border-[#d1a75e]/30 rounded-lg text-[#f0d3a3] focus:outline-none focus:border-[#d1a74f] transition-colors"
+                      placeholder="e.g., 5 years"
+                    />
+                  </div>
+
+                  {/* Cover Letter */}
+                  <div>
+                    <label className="block text-[#f0d3a3] font-medium mb-2">
+                      Cover Letter
+                    </label>
+                    <textarea
+                      name="coverLetter"
+                      value={formData.coverLetter}
+                      onChange={handleInputChange}
+                      rows={5}
+                      className="w-full px-4 py-3 bg-[#0f0f0f] border border-[#d1a75e]/30 rounded-lg text-[#f0d3a3] focus:outline-none focus:border-[#d1a74f] transition-colors resize-none"
+                      placeholder="Tell us why you're interested in this position..."
+                    />
+                  </div>
+
+                  {/* Resume Upload */}
+                  <div>
+                    <label className="block text-[#f0d3a3] font-medium mb-2">
+                      Upload Resume <span className="text-[#d1a74f]">*</span>
+                    </label>
+                    <div className="border-2 border-dashed border-[#d1a75e]/30 rounded-lg p-6 text-center hover:border-[#d1a74f] transition-colors">
+                      <input
+                        type="file"
+                        name="resume"
+                        onChange={handleFileChange}
+                        accept=".pdf,.doc,.docx"
+                        required
+                        className="hidden"
+                        id="resume-upload"
+                      />
+                      <label
+                        htmlFor="resume-upload"
+                        className="cursor-pointer flex flex-col items-center"
+                      >
+                        <svg
+                          className="w-12 h-12 text-[#d1a75e] mb-3"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                          />
+                        </svg>
+                        <p className="text-[#f0d3a3] font-medium mb-1">
+                          {formData.resume
+                            ? formData.resume.name
+                            : "Click to upload or drag and drop"}
+                        </p>
+                        <p className="text-[#d1a75e] text-sm">
+                          PDF, DOC, or DOCX (Max 5MB)
+                        </p>
+                      </label>
+                    </div>
+                    {formData.resume && (
+                      <p className="mt-2 text-[#d1a74f] text-sm">
+                        ✓ {formData.resume.name} selected
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                {/* Modal Footer */}
+                <div className="flex gap-4 mt-8">
+                  <motion.button
+                    type="button"
+                    onClick={closeModal}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="flex-1 px-6 py-3 bg-[#0f0f0f] border border-[#d1a75e]/50 text-[#f9d891] rounded-lg font-semibold hover:border-[#d1a75e] transition-colors"
+                  >
+                    Cancel
+                  </motion.button>
+                  <motion.button
+                    type="submit"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="flex-1 px-6 py-3 bg-gradient-to-r from-[#d1a74f] to-[#b8924b] text-white rounded-lg font-semibold"
+                  >
+                    Submit Application
+                  </motion.button>
+                </div>
+              </form>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

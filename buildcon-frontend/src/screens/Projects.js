@@ -6,43 +6,52 @@ import { useNavigate } from "react-router-dom";
 import picture1 from "../assets/picture1.jpg";
 import picture2 from "../assets/picture2.jpg";
 import picture3 from "../assets/picture3.jpg";
-import picture4 from "../assets/Sai Nagari/Sai Nagari 6.jpg";
+import picture4 from "../assets/picture4.jpg";  
 import picture5 from "../assets/picture5.jpg";
 import picture6 from "../assets/picture6.jpg";
 
+// Import project images from assets folders
+import shreeShrushtiImage from "../assets/Sai Shrushti/shree shrushti image.jpeg";
+import shreeShrushtiSummary from "../assets/Sai Shrushti/Summary of Shree Shrushti.png";
+import shreeShrushtiLayout1BHK from "../assets/Sai Shrushti/Flat Layout of Shree Shrushti (1 BHK).jpg";
+import shreeShrushtiLayout2BHK from "../assets/Sai Shrushti/Flat Layout Of Shree Shrushti (2 BHK).png";
+import saiDwarikaPhoto1 from "../assets/Sai Dwarika/Saidwarika Photo 1.jpg";
+import sadguruKrupaImage from "../assets/Shree Sadguru/Shree Sadguru Krupa.jpg";
+import vrindavanRegency1 from "../assets/Vrindavan/Vrindavan Regency 1.jpg";
+import saiNagari1 from "../assets/Sai Nagari/Sai Nagari 1.jpg";
 const projectData = {
   completed: [
     {
-      name: "Shree Shrushti Pune",
-      location: "Kalyani Nagar, Pune",
-      mix: "4 & 5 BHK Residences",
-      details: "India's first ready-to-move Trump branded residences.",
-      image: picture1,
+      name: "Shree Shrushti",
+      location: "Yewalewadi, Pune",
+      mix: "1 & 2 BHK Residences",
+      details: "Well-connected, peaceful community setting with essential amenities for daily life. Spread over 2 acres with 60+ units.",
+      image: shreeShrushtiImage,
     },
     {
-      name: "Sai Dwarika Pune",
-      location: "Hadapsar, Pune",
-      mix: "YOO branded residences",
-      details: "Design-forward living curated with Philippe Starck.",
-      image: picture2,
+      name: "Sai Dwarika",
+      location: "Yewalewadi / Kondhwa Budruk, Pune",
+      mix: "1 & 2 BHK Residences",
+      details: "Ready-to-move residential project with modern amenities. Well-connected option for homeowners in South Pune with easy access to key roads and daily conveniences.",
+      image: saiDwarikaPhoto1,
     },
     {
       name: "Sadguru Krupa",
-      location: "Koregaon Park, Pune",
+      location: "Katraj, Pune",
       mix: "3 & 4 BHK Premium Residences",
       details: "Ultra-luxury living in Pune's most prestigious neighborhood.",
-      image: picture3,
+      image: sadguruKrupaImage,
     },
     {
-      name: " Vrindavan Regency",
-      location: "pune",
-      mix: "3 & 4 BHK Residences",
-      details: "Affordable and high-quality living in a vibrant neighborhood.",
-      image: picture4,  
+      name: "Vrindavan Regency",
+      location: "Katraj - Kondhwa Road, Yewalewadi, Pune",
+      mix: "1, 2 & 3 BHK Residences",
+      details: "Ready-to-move complex with 2 towers, 100+ units spread over 3 acres. A convenient choice for comfortable housing in South Pune.",
+      image: vrindavanRegency1,  
     },
     {
       name: "Sai Shraddha Pune",
-      location: "pune",
+      location: "Kondhwa Budruk, Yewalewadi, Pune",
       mix: "3 & 4 BHK Residences",
       details: "Affordable and high-quality living in a vibrant neighborhood.",
       image: picture4,  
@@ -54,7 +63,7 @@ const projectData = {
       location: "Katraj, Pune",
       mix: "6.75+ Million Sq. Ft. mixed-use",
       details: "Transit-oriented district with office, retail, and residences.",
-      image: picture4,
+      image: saiNagari1,
     },
     {
       name: "Privillege Hills", 
@@ -64,7 +73,7 @@ const projectData = {
       image: picture5,
     },
     {
-      name: "Tech Park One",
+      name: "Sadguru Residency",
       location: "Yerwada, Pune",
       mix: "1.2M sq. ft. IT Park",
       details: "State-of-the-art technology hub with world-class amenities.",
@@ -202,6 +211,12 @@ function Projects() {
   const handleViewDetails = (projectName) => {
     if (projectName === "Sai Nagari") {
       navigate("/projects/sai-nagari");
+    } else if (projectName === "Shree Shrushti") {
+      navigate("/projects/shree-shrushti");
+    } else if (projectName === "Vrindavan Regency") {
+      navigate("/projects/vrindavan-regency");
+    } else if (projectName === "Sai Dwarika") {
+      navigate("/projects/sai-dwarika");
     }
   };
 
@@ -253,33 +268,32 @@ function Projects() {
               transition={{ delay: 0.6 }}
               className="text-xl text-[#f0d3a3] max-w-3xl mx-auto"
             >
-              Premium locations from Mumbai to Dubai, blending architecture,
+              Premium locations in Pune, blending architecture,
               wellness, and hospitality partnerships.
             </motion.p>
           </div>
         </motion.div>
 
-        {/* Navigation Menu */}
+        {/* Navigation Menu - Centered */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 w-full max-w-5xl px-6"
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10"
         >
-          <div className="w-full border-t border-[#d1a75e]/50 mb-6"></div>
-          <div className="flex justify-center gap-12 font-medium text-[#f0d9a3] tracking-wider text-lg">
+          <div className="flex items-center justify-center gap-8 font-medium text-[#f0d9a3] tracking-wider text-lg">
             {[
               { label: "Completed", value: "completed" },
               { label: "Ongoing", value: "ongoing" },
               { label: "Upcoming", value: "upcoming" },
             ].map((item, index) => (
               <React.Fragment key={item.value}>
-                {index > 0 && <span className="text-[#d1a75e]">|</span>}
+                {index > 0 && <span className="text-[#d1a75e] text-xl">|</span>}
                 <motion.button
                   onClick={() => scrollToSection(item.value)}
                   whileHover={{ scale: 1.1, color: "#f9d891" }}
                   whileTap={{ scale: 0.95 }}
-                  className={`transition-colors duration-300 ${
+                  className={`transition-colors duration-300 px-4 ${
                     activeSection === item.value ? "text-[#f9d891]" : ""
                   }`}
                 >
@@ -369,6 +383,7 @@ function Projects() {
                 <p className="text-[#f0d3a3] font-medium mb-2">{project.mix}</p>
                 <p className="text-[#d1a75e] text-sm mb-4">{project.details}</p>
                 <motion.button
+                  onClick={() => handleViewDetails(project.name)}
                   whileHover={{ scale: 1.05, x: 5 }}
                   whileTap={{ scale: 0.95 }}
                   className="text-[#f8d99c] font-semibold text-sm hover:text-[#f9d891] transition-colors flex items-center gap-2"

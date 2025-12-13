@@ -2,14 +2,18 @@ import React, { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 
 // ===== HERO SLIDER IMAGES =====
-import picture1 from "../assets/picture1.jpg";
-import picture2 from "../assets/picture2.jpg";
-import picture3 from "../assets/picture3.jpg";
+import saiDwarikaHero from "../assets/Sai Dwarika/Saidwarika Photo 1.jpg";
+import saiNagari2 from "../assets/Sai Nagari/Sai Nagari 2.jpg";
+import saiNagari3 from "../assets/Sai Nagari/Sai Nagari 3.jpg";
+import saiNagari4 from "../assets/Sai Nagari/Sai Nagari 4.jpg";
+import vrindavanRegency3 from "../assets/Vrindavan/Vrindavan Regency 3.jpg";
 
 // ===== SECTION 2 IMAGES =====
-import picture4 from "../assets/picture4.jpg";
-import picture5 from "../assets/picture5.jpg";
-import picture6 from "../assets/picture6.jpg";
+import saiDwarikaSection2 from "../assets/Sai Dwarika/Saidwarika Photo 1.jpg";
+import saiNagari2Section2 from "../assets/Sai Nagari/Sai Nagari 2.jpg";
+import saiNagari3Section2 from "../assets/Sai Nagari/Sai Nagari 3.jpg";
+import vrindavanRegency1 from "../assets/Vrindavan/Vrindavan Regency 1.jpg";
+import vrindavanRegency3Section2 from "../assets/Vrindavan/Vrindavan Regency 3.jpg";
 
 // ===== SECTION 3 IMAGES =====
 import residentialImg from "../assets/logo1.png";
@@ -56,25 +60,25 @@ const projectData = {
     },
     {
       title: "Sai Dwarika",
-      location: "Kalyani Nagar, Pune",
+      location: "Yewalewadi / Kondhwa Budruk, Pune",
       image: saiDwarikaPhoto1,
       video: saiDwarikaVideo,
     },
     {
       title: "Sadguru Krupa",
-      location: "Near EON Free Zone, Kharadi, Pune",
+      location: "Katraj, Pune",
       image:
         "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?w=1000",
     },
     {
       title: "Vrindavan Regency",
-      location: "Saswad - Bopdev - Pune Rd, Yewalewadi, Pune",
+      location: "Katraj - Kondhwa Road, Yewalewadi, Pune",
       image:
         "https://images.unsplash.com/photo-1501183638710-841dd1904471?w=1000",
     },
     {
       title: "Sai Shraddha",
-      location: "pune",
+      location: "Kondhwa Budruk, Yewalewadi, Pune",
       image:
         "https://images.unsplash.com/photo-1501183638710-841dd1904471?w=1000",
     },
@@ -103,22 +107,10 @@ const projectData = {
 
   Hospitality: [
     {
-      title: "The Ritz Carlton",
-      location: "Yerwada, Pune",
+      title: "Maa Pranaam Mother & Child Care",
+      location: "Chimbali Road, Alandi, Pune",
       image:
         "https://images.unsplash.com/photo-1501117716987-c8e1ecb2101b?w=1000",
-    },
-    {
-      title: "JW Marriott",
-      location: "Senapati Bapat Road, Pune",
-      image:
-        "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=1000",
-    },
-    {
-      title: "Courtyard by Marriott",
-      location: "Hinjawadi, Pune",
-      image:
-        "https://images.unsplash.com/photo-1484154218962-a197022b5858?w=1000",
     },
   ],
 };
@@ -126,7 +118,13 @@ const projectData = {
 const tabs = ["Residential", "Office Parks", "Hospitality"];
 
 // SECTION 2 images
-const sectionImages = [picture4, picture5, picture6];
+const sectionImages = [
+  saiDwarikaSection2,
+  saiNagari2Section2,
+  saiNagari3Section2,
+  vrindavanRegency1,
+  vrindavanRegency3Section2,
+];
 
 // Animation variants
 const fadeUp = {
@@ -173,25 +171,39 @@ const scaleIn = {
 // HERO SLIDES
 const slides = [
   {
-    image: picture1,
-    title: "YOO Villas: Gated Community Living",
-    subtitle: "Experience ultra-luxury lifestyle",
+    image: saiDwarikaHero,
+    title: "Sai Dwarika Pune",
+    subtitle: "YOO branded residences - Design-forward living curated with Philippe Starck",
+    button: "View Project",
+    link: "/projects",
+  },
+  {
+    image: saiNagari2,
+    title: "Sai Nagari",
+    subtitle: "6.75+ Million Sq. Ft. mixed-use transit-oriented district in Katraj, Pune",
+    button: "Explore Project",
+    link: "/projects/sai-nagari",
+  },
+  {
+    image: saiNagari3,
+    title: "Sai Nagari",
+    subtitle: "Transforming urban living with office, retail, and premium residences",
+    button: "View Details",
+    link: "/projects/sai-nagari",
+  },
+  {
+    image: saiNagari4,
+    title: "Sai Nagari",
+    subtitle: "A landmark development redefining mixed-use communities",
     button: "Learn More",
-    link: "/projects#villas",
+    link: "/projects/sai-nagari",
   },
   {
-    image: picture2,
-    title: "Premium Office Spaces for Future Leaders",
-    subtitle: "Designed for productivity & growth",
-    button: "Explore Offices",
-    link: "/projects#offices",
-  },
-  {
-    image: picture3,
-    title: "Luxury Homes Crafted With Excellence",
-    subtitle: "Live the life you deserve",
-    button: "View Residences",
-    link: "/projects#homes",
+    image: vrindavanRegency3,
+    title: "Vrindavan Regency",
+    subtitle: "Affordable and high-quality 3 & 4 BHK residences in vibrant Pune",
+    button: "Discover More",
+    link: "/projects",
   },
 ];
 
@@ -270,10 +282,15 @@ const Home = () => {
 
   // HERO AUTO SLIDER
   useEffect(() => {
-    const interval = setInterval(
-      () => setCurrent((prev) => (prev + 1) % slides.length),
-      4000
-    );
+    if (slides.length === 0) return;
+    
+    const interval = setInterval(() => {
+      setCurrent((prev) => {
+        const next = (prev + 1) % slides.length;
+        return next;
+      });
+    }, 4000);
+    
     return () => clearInterval(interval);
   }, []);
 
@@ -392,9 +409,9 @@ const Home = () => {
         >
           <div className="max-w-6xl mx-auto flex justify-center gap-24">
             {[
-              { text: "55 projects", delay: 0 },
-              { text: "23 years of legacy", delay: 0.1 },
-              { text: "35M sq. ft. delivered", delay: 0.2 },
+              { text: "15+ projects", delay: 0 },
+              { text: "18 years of legacy", delay: 0.1 },
+              { text: "2.50 lakh+ sq. ft. delivered", delay: 0.2 },
             ].map((item, i) => (
               <motion.p
                 key={i}
@@ -428,10 +445,10 @@ const Home = () => {
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.2, duration: 0.8 }}
                   whileHover={{ scale: 1.05, zIndex: 10 }}
-                  className="absolute w-[50%] rounded shadow-xl shadow-[#d1a75e]/20"
+                  className="absolute w-[45%] rounded shadow-xl shadow-[#d1a75e]/20"
                   style={{
-                    left: `${i * 12}%`,
-                    bottom: `${i * 12}%`,
+                    left: `${i * 10}%`,
+                    bottom: `${i * 8}%`,
                     zIndex: i + 1,
                   }}
                 />

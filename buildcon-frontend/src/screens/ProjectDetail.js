@@ -15,6 +15,28 @@ import saiNagariTemple from "../assets/Sai Nagari/Sai Nagari Temple.jpeg";
 import layout1BHK from "../assets/Sai Nagari/Flat Layout Of Sai Nagari (1 BHK).png";
 import layout2BHK from "../assets/Sai Nagari/Flat Layout Of Sai Nagari (2 BHK).png";
 
+// Import Shree Shrushti images
+import shreeShrushtiImage from "../assets/Sai Shrushti/shree shrushti image.jpeg";
+import shreeShrushtiSummary from "../assets/Sai Shrushti/Summary of Shree Shrushti.png";
+import shreeShrushtiLayout1BHK from "../assets/Sai Shrushti/Flat Layout of Shree Shrushti (1 BHK).jpg";
+import shreeShrushtiLayout2BHK from "../assets/Sai Shrushti/Flat Layout Of Shree Shrushti (2 BHK).png";
+
+// Import Vrindavan Regency images
+import vrindavanRegency1 from "../assets/Vrindavan/Vrindavan Regency 1.jpg";
+import vrindavanRegency2 from "../assets/Vrindavan/Vrindavan Regency 2.jpg";
+import vrindavanRegency3 from "../assets/Vrindavan/Vrindavan Regency 3.jpg";
+import vrindavanRegencySummary from "../assets/Vrindavan/Summery of Vrindavan Regency.png";
+import vrindavanLayout1_2BHK from "../assets/Vrindavan/Vrindavan Regency Layout ( 1 & 2 BHK).jpg";
+import vrindavanLayout3BHK from "../assets/Vrindavan/Vrindavan Regency Layout (3  BHK).jpg";
+
+// Import Sai Dwarika images
+import saiDwarikaPhoto1 from "../assets/Sai Dwarika/Saidwarika Photo 1.jpg";
+import saiDwarikaPhoto2 from "../assets/Sai Dwarika/Saidwarika Photo 2.jpg";
+import saiDwarikaSummary from "../assets/Sai Dwarika/Summery of Saidwarika.png";
+import saiDwarikaLayout1BHK from "../assets/Sai Dwarika/Saidwarika Flat Layout (1 BHK).png";
+import saiDwarikaLayout2BHK from "../assets/Sai Dwarika/Saidwarika Flat Layout (2 BHK).png";
+import saiDwarikaLayout3BHK from "../assets/Sai Dwarika/Saidwarika Flat Layout (3 BHK).png";
+
 const projectData = {
   "sai-nagari": {
     name: "Sai Nagari",
@@ -59,6 +81,145 @@ const projectData = {
       { src: layout1BHK, title: "1 BHK Layout", type: "1 BHK" },
       { src: layout2BHK, title: "2 BHK Layout", type: "2 BHK" },
     ],
+  },
+  "shree-shrushti": {
+    name: "Shree Shrushti",
+    location: "Yewalewadi, Pune",
+    mix: "1 & 2 BHK Residences",
+    details: "Well-connected, peaceful community setting with essential amenities for daily life.",
+    status: "Completed",
+    description: "Shree Shrushti is a residential project developed by Shree Developers, spread over approximately 2 acres in Yewalewadi, Pune. The project offers more than 60 units with practical layouts and comfortable living spaces. Designed to provide a well-connected, peaceful community setting, Shree Shrushti ensures access to essential amenities for daily life, along with good connectivity to key city points, nearby shops, schools, and transport facilities.",
+    features: [
+      "Well-connected location with easy access to key city points",
+      "Peaceful community setting",
+      "Essential amenities for daily life",
+      "Access to nearby shops, schools, and transport",
+      "Practical and comfortable living spaces",
+      "More than 60 units across 2 acres",
+      "Quality construction by Shree Developers",
+      "Affordable pricing options",
+    ],
+    amenities: [
+      "Essential daily amenities",
+      "Nearby shops and markets",
+      "Access to schools",
+      "Public transport connectivity",
+      "Community spaces",
+      "Parking facilities",
+      "Security services",
+      "Well-maintained common areas",
+    ],
+    heroImage: shreeShrushtiImage,
+    galleryImages: [
+      { src: shreeShrushtiImage, title: "Project View" },
+      { src: shreeShrushtiSummary, title: "Project Summary" },
+    ],
+    layouts: [
+      { src: shreeShrushtiLayout1BHK, title: "1 BHK Layout", type: "1 BHK (400-550 sq ft)" },
+      { src: shreeShrushtiLayout2BHK, title: "2 BHK Layout", type: "2 BHK (600-800 sq ft)" },
+    ],
+    projectArea: "2 acres",
+    totalUnits: "60+ units",
+    flatSizes: {
+      "1 BHK": "400-550 sq ft",
+      "2 BHK": "600-800 sq ft",
+    },
+    priceRange: "₹19.5 L – ₹38.5 L",
+  },
+  "vrindavan-regency": {
+    name: "Vrindavan Regency",
+    location: "Katraj - Kondhwa Road, Yewalewadi, Pune",
+    mix: "1, 2 & 3 BHK Residences",
+    details: "Ready-to-move complex with 2 towers, 100+ units spread over 3 acres. A convenient choice for comfortable housing in South Pune.",
+    status: "Completed",
+    description: "Vrindavan Regency is a ready-to-move residential complex developed by Shivam Nakoda Buildcon, spread over approximately 3 acres on Katraj - Kondhwa Road in Yewalewadi, Pune. The project features 2 towers with 100+ units, offering 1 BHK, 2 BHK, and some 3 BHK apartments designed for modern living. With excellent connectivity to key city areas via Katraj-Kondhwa Road, the project is close to schools, hospitals, markets, and everyday conveniences, making it a convenient choice for homebuyers seeking comfortable housing in South Pune.",
+    features: [
+      "Ready-to-move complex - immediate possession available",
+      "Excellent connectivity via Katraj-Kondhwa Road",
+      "Close proximity to schools, hospitals, and markets",
+      "Designed for modern living with practical layouts",
+      "2 towers with 100+ units across 3 acres",
+      "Multiple configurations: 1 BHK, 2 BHK, and 3 BHK options",
+      "RERA registered project (P52100013657)",
+      "Convenient location in South Pune",
+    ],
+    amenities: [
+      "24/7 Security",
+      "Landscaped Gardens",
+      "Kids' Play Area",
+      "Clubhouse",
+      "Power Backup",
+      "Parking Facilities",
+      "Nearby Schools",
+      "Access to Hospitals",
+    ],
+    heroImage: vrindavanRegency1,
+    galleryImages: [
+      { src: vrindavanRegency1, title: "Main Building" },
+      { src: vrindavanRegency2, title: "Exterior View" },
+      { src: vrindavanRegency3, title: "Project View" },
+      { src: vrindavanRegencySummary, title: "Project Summary" },
+    ],
+    layouts: [
+      { src: vrindavanLayout1_2BHK, title: "1 & 2 BHK Layout", type: "1 BHK & 2 BHK" },
+      { src: vrindavanLayout3BHK, title: "3 BHK Layout", type: "3 BHK" },
+    ],
+    projectArea: "3 acres",
+    totalUnits: "100+ units",
+    structure: "2 towers",
+    developer: "Shivam Nakoda Buildcon",
+    reraId: "P52100013657",
+    flatSizes: {
+      "1 BHK": "Available",
+      "2 BHK": "Available",
+      "3 BHK": "Available",
+    },
+  },
+  "sai-dwarika": {
+    name: "Sai Dwarika",
+    location: "Yewalewadi / Kondhwa Budruk, Pune",
+    mix: "1 & 2 BHK Residences",
+    details: "Ready-to-move residential project with modern amenities. Well-connected option for homeowners in South Pune with easy access to key roads and daily conveniences.",
+    status: "Completed",
+    description: "Sai Dwarika is a ready-to-move residential project developed by Maa Sankalp Buildcon, located in Yewalewadi / Kondhwa Budruk, Pune. The project spreads over several acres with plenty of units, offering 1 BHK and 2 BHK apartments along with larger configurations. Designed for modern living, Sai Dwarika features practical layouts and modern amenities designed for comfortable urban living. The project provides easy access to key roads and daily conveniences, making it a well-connected option for homeowners in South Pune.",
+    features: [
+      "Ready-to-move project - immediate possession available",
+      "Well-connected location with easy access to key roads",
+      "Modern amenities designed for comfortable urban living",
+      "Practical layouts optimized for space and functionality",
+      "Multiple configurations: 1 BHK, 2 BHK, and larger options",
+      "Spreads over several acres with plenty of units",
+      "Close proximity to daily conveniences",
+      "Ideal location in South Pune for homeowners",
+    ],
+    amenities: [
+      "Modern amenities for comfortable living",
+      "24/7 Security",
+      "Landscaped areas",
+      "Power Backup",
+      "Parking Facilities",
+      "Easy access to key roads",
+      "Nearby daily conveniences",
+      "Well-maintained common areas",
+    ],
+    heroImage: saiDwarikaPhoto1,
+    galleryImages: [
+      { src: saiDwarikaPhoto1, title: "Main Building" },
+      { src: saiDwarikaPhoto2, title: "Exterior View" },
+      { src: saiDwarikaSummary, title: "Project Summary" },
+    ],
+    layouts: [
+      { src: saiDwarikaLayout1BHK, title: "1 BHK Layout", type: "1 BHK (600-670 sq ft)" },
+      { src: saiDwarikaLayout2BHK, title: "2 BHK Layout", type: "2 BHK (800-1050 sq ft)" },
+      { src: saiDwarikaLayout3BHK, title: "3 BHK Layout", type: "3 BHK" },
+    ],
+    developer: "Maa Sankalp Buildcon",
+    flatSizes: {
+      "1 BHK": "600-670 sq ft",
+      "2 BHK": "800-1050 sq ft",
+      "3 BHK": "Available",
+    },
+    priceRange: "₹20 L – ₹40 L+",
   },
 };
 
@@ -150,7 +311,7 @@ const ProjectDetail = () => {
           transition={{ delay: 0.5 }}
           onClick={() => navigate(-1)}
           className="absolute top-8 left-8 px-6 py-3 bg-black/50 backdrop-blur-sm border border-[#d1a75e]/50 rounded-lg text-[#f9d891] font-semibold hover:bg-black/70 transition-all flex items-center gap-2"
-        >
+        > 
           <span>←</span> Back
         </motion.button>
       </section>
@@ -205,6 +366,62 @@ const ProjectDetail = () => {
                 <p className="text-[#d1a75e] text-base leading-relaxed mb-8">
                   {project.details}
                 </p>
+                
+                {/* Additional Project Information */}
+                {(project.projectArea || project.totalUnits || project.flatSizes || project.priceRange || project.structure || project.developer || project.reraId) && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.3 }}
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"
+                  >
+                    {project.projectArea && (
+                      <div className="bg-[#1a1a1a] p-6 rounded-lg border border-[#d1a75e]/20">
+                        <p className="text-[#d1a75e] text-sm mb-2">Project Area</p>
+                        <p className="text-[#f7d69a] text-xl font-semibold">{project.projectArea}</p>
+                      </div>
+                    )}
+                    {project.totalUnits && (
+                      <div className="bg-[#1a1a1a] p-6 rounded-lg border border-[#d1a75e]/20">
+                        <p className="text-[#d1a75e] text-sm mb-2">Total Units</p>
+                        <p className="text-[#f7d69a] text-xl font-semibold">{project.totalUnits}</p>
+                      </div>
+                    )}
+                    {project.structure && (
+                      <div className="bg-[#1a1a1a] p-6 rounded-lg border border-[#d1a75e]/20">
+                        <p className="text-[#d1a75e] text-sm mb-2">Structure</p>
+                        <p className="text-[#f7d69a] text-xl font-semibold">{project.structure}</p>
+                      </div>
+                    )}
+                    {project.developer && (
+                      <div className="bg-[#1a1a1a] p-6 rounded-lg border border-[#d1a75e]/20">
+                        <p className="text-[#d1a75e] text-sm mb-2">Developer</p>
+                        <p className="text-[#f7d69a] text-lg font-semibold">{project.developer}</p>
+                      </div>
+                    )}
+                    {project.reraId && (
+                      <div className="bg-[#1a1a1a] p-6 rounded-lg border border-[#d1a75e]/20">
+                        <p className="text-[#d1a75e] text-sm mb-2">RERA ID</p>
+                        <p className="text-[#f7d69a] text-base font-semibold">{project.reraId}</p>
+                      </div>
+                    )}
+                    {project.flatSizes && (
+                      <div className="bg-[#1a1a1a] p-6 rounded-lg border border-[#d1a75e]/20">
+                        <p className="text-[#d1a75e] text-sm mb-2">Flat Configurations</p>
+                        {Object.entries(project.flatSizes).map(([key, value]) => (
+                          <p key={key} className="text-[#f7d69a] text-lg">{key}: {value}</p>
+                        ))}
+                      </div>
+                    )}
+                    {project.priceRange && (
+                      <div className="bg-[#1a1a1a] p-6 rounded-lg border border-[#d1a75e]/20">
+                        <p className="text-[#d1a75e] text-sm mb-2">Price Range</p>
+                        <p className="text-[#f7d69a] text-xl font-semibold">{project.priceRange}</p>
+                      </div>
+                    )}
+                  </motion.div>
+                )}
               </motion.div>
 
               <motion.div
@@ -306,7 +523,7 @@ const ProjectDetail = () => {
               >
                 <h2 className="text-4xl font-semibold mb-6 text-[#f7d69a]">Project Gallery</h2>
                 <p className="text-[#f0d3a3] text-lg leading-relaxed mb-8">
-                  Take a visual journey through Sai Nagari and experience the beauty of our development.
+                  Take a visual journey through {project.name} and experience the beauty of our development.
                 </p>
               </motion.div>
 
