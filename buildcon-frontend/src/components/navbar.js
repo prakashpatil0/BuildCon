@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import Logo from "../assets/mainlogo.jpeg";
 
@@ -7,6 +7,9 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
+
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,6 +19,22 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // ✅ if URL has #contact-form, scroll to it (works even after route change)
+  useEffect(() => {
+    if (location.hash === "#contact-form") {
+      const el = document.getElementById("contact-form");
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+        // fallback: try after small delay
+        setTimeout(() => {
+          const el2 = document.getElementById("contact-form");
+          if (el2) el2.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 300);
+      }
+    }
+  }, [location]);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -48,6 +67,22 @@ const Navbar = () => {
         duration: 0.4,
       },
     }),
+  };
+
+  // ✅ Enquiry scroll to contact form (NO formRef)
+  const scrollToForm = () => {
+    // if already on contact page
+    if (location.pathname === "/contact") {
+      const el = document.getElementById("contact-form");
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
+    }
+
+    // navigate to contact page with hash
+    closeMobileMenu();
+    navigate("/contact#contact-form");
   };
 
   return (
@@ -310,8 +345,10 @@ const Navbar = () => {
                   : "bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm"
               }
             `}
+            onClick={scrollToForm}
+            type="button"
           >
-            Enquire
+            Enquiry
           </motion.button>
         </div>
 
@@ -324,6 +361,7 @@ const Navbar = () => {
             ${isScrolled ? "text-slate-900" : "text-white"}
           `}
           aria-label="Toggle menu"
+          type="button"
         >
           <motion.span
             className="w-6 h-0.5 bg-current"
@@ -383,6 +421,7 @@ const Navbar = () => {
                   className={`w-full flex items-center justify-between py-2 text-lg font-medium ${
                     isScrolled ? "text-slate-900" : "text-white"
                   }`}
+                  type="button"
                 >
                   Company
                   <span
@@ -436,6 +475,7 @@ const Navbar = () => {
                   className={`w-full flex items-center justify-between py-2 text-lg font-medium ${
                     isScrolled ? "text-slate-900" : "text-white"
                   }`}
+                  type="button"
                 >
                   Projects
                   <span
@@ -499,7 +539,8 @@ const Navbar = () => {
                     ? "bg-slate-900 text-white"
                     : "bg-white/20 text-white backdrop-blur-sm hover:bg-white/30"
                 }`}
-                onClick={closeMobileMenu}
+                onClick={scrollToForm}
+                type="button"
               >
                 Enquire
               </motion.button>

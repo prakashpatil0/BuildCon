@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 const offices = [
@@ -80,8 +80,113 @@ const scaleIn = {
 };
 
 function Contact() {
+  const formRef = useRef(null);
+  const topRef = useRef(null);
+
+  const API_BASE = useMemo(() => {
+    return (process.env.REACT_APP_API_URL || "http://localhost:5000").replace(/\/$/, "");
+  }, []);
+
+  const [form, setForm] = useState({
+    firstName: "",
+    lastName: "",
+    phone: "",
+    email: "",
+    property: "",
+    message: "",
+  });
+
+  const [status, setStatus] = useState({
+    loading: false,
+    ok: false,
+    error: "",
+  });
+
+  const scrollToForm = () => {
+    if (formRef.current) {
+      formRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  const scrollToTop = () => {
+    if (topRef.current) {
+      topRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
+  const onChange = (key) => (e) => {
+    const val = e?.target?.value ?? "";
+    setForm((prev) => ({ ...prev, [key]: val }));
+    setStatus((prev) => ({ ...prev, ok: false, error: "" }));
+  };
+
+  const validate = () => {
+    if (!form.firstName.trim()) return "First Name is required";
+    if (!form.lastName.trim()) return "Last Name is required";
+    if (!form.phone.trim()) return "Mobile is required";
+    if (!/^\d{10}$/.test(form.phone.replace(/\D/g, ""))) return "Enter valid 10-digit Mobile number";
+    if (!form.email.trim()) return "Email is required";
+    if (!/^\S+@\S+\.\S+$/.test(form.email.trim())) return "Enter valid Email address";
+    if (!form.property.trim()) return "Select Property";
+    return "";
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const err = validate();
+    if (err) {
+      setStatus({ loading: false, ok: false, error: err });
+      return;
+    }
+
+    try {
+      setStatus({ loading: true, ok: false, error: "" });
+
+      const payload = {
+        firstName: form.firstName.trim(),
+        lastName: form.lastName.trim(),
+        phone: form.phone.trim(),
+        email: form.email.trim(),
+        property: form.property.trim(),
+        message: form.message.trim(),
+      };
+
+      const res = await fetch(`${API_BASE}/api/contact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok || !data?.success) {
+        throw new Error(data?.message || "Something went wrong. Please try again.");
+      }
+
+      setStatus({ loading: false, ok: true, error: "" });
+      setForm({
+        firstName: "",
+        lastName: "",
+        phone: "",
+        email: "",
+        property: "",
+        message: "",
+      });
+    } catch (error) {
+      setStatus({
+        loading: false,
+        ok: false,
+        error: error?.message || "Email failed",
+      });
+    }
+  };
+
+  
+
   return (
-    <div className="bg-black">
+    <div ref={topRef} className="bg-black">
       <section className="-mt-20 bg-black px-6 pt-28 pb-16 text-white">
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 lg:flex-row lg:items-center">
           <motion.div
@@ -106,12 +211,15 @@ function Contact() {
                   whileHover={{ scale: 1.05, zIndex: 10 }}
                   className={`absolute ${img.left} ${img.top} ${img.h} ${img.w} rounded-2xl bg-cover bg-center shadow-2xl shadow-[#d1a75e]/20 overflow-hidden`}
                   style={{
-                    backgroundImage: `url('https://images.unsplash.com/photo-${index === 0 ? "1529429617124" : index === 1 ? "1502672260266" : "1479839672679"}-aee711a70412?auto=format&fit=crop&w=600&q=80')`,
+                    backgroundImage: `url('https://images.unsplash.com/photo-${
+                      index === 0 ? "1529429617124" : index === 1 ? "1502672260266" : "1479839672679"
+                    }-aee711a70412?auto=format&fit=crop&w=600&q=80')`,
                   }}
                 />
               ))}
             </div>
           </motion.div>
+
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -119,44 +227,39 @@ function Contact() {
             variants={slideInRight}
             className="flex-1 space-y-6"
           >
-            <motion.p
-              variants={fadeUp}
-              className="text-xs uppercase tracking-[0.35em] text-[#d1a75e]"
-            >
+            <motion.p variants={fadeUp} className="text-xs uppercase tracking-[0.35em] text-[#d1a75e]">
               Established in 2002
             </motion.p>
-            <motion.h1
-              variants={fadeUp}
-              className="text-4xl font-semibold leading-tight"
-            >
+
+            <motion.h1 variants={fadeUp} className="text-4xl font-semibold leading-tight">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f9d891] to-[#d1a74f]">
                 BuildCon is India&apos;s finest luxury real estate developer and operator.
               </span>
             </motion.h1>
-            <motion.p
-              variants={fadeUp}
-              className="text-base text-[#f0d3a3]"
-            >
+
+            <motion.p variants={fadeUp} className="text-base text-[#f0d3a3]">
               Renowned for its leadership and excellence in the real estate sector, BuildCon has delivered over 35
               million sq. ft. with another 43 million sq. ft. underway across multi-asset classes.
             </motion.p>
-            <motion.div
-              variants={fadeUp}
-              className="flex flex-wrap gap-4"
-            >
+
+            <motion.div variants={fadeUp} className="flex flex-wrap gap-4">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 type="button"
+                onClick={scrollToForm}
                 className="rounded-full border border-[#d1a75e]/50 bg-gradient-to-r from-[#d1a74f] to-[#b8924b] px-5 py-2 text-sm font-semibold text-white tracking-[0.3em] hover:from-[#b8924b] hover:to-[#d1a74f] transition-all"
               >
                 ENQUIRE NOW
               </motion.button>
+
               <motion.button
                 whileHover={{ scale: 1.1, y: -5 }}
                 whileTap={{ scale: 0.9 }}
                 type="button"
+                onClick={scrollToTop}
                 className="rounded-full border border-[#d1a75e]/50 bg-[#d1a75e]/20 backdrop-blur-sm px-5 py-2 text-sm font-semibold text-[#f8d99c] hover:bg-[#d1a75e]/30 transition-colors"
+                aria-label="Scroll to top"
               >
                 ↑
               </motion.button>
@@ -174,19 +277,15 @@ function Contact() {
             variants={fadeUp}
             className="text-center mb-12"
           >
-            <motion.p
-              variants={fadeUp}
-              className="text-sm tracking-[0.3em] uppercase text-[#d1a75e] mb-4"
-            >
+            <motion.p variants={fadeUp} className="text-sm tracking-[0.3em] uppercase text-[#d1a75e] mb-4">
               Our Offices
             </motion.p>
-            <motion.h2
-              variants={fadeUp}
-              className="text-4xl font-semibold text-[#f7d69a]"
-            >
+
+            <motion.h2 variants={fadeUp} className="text-4xl font-semibold text-[#f7d69a]">
               Get In Touch
             </motion.h2>
           </motion.div>
+
           <div className="grid gap-6 md:grid-cols-3">
             {offices.map((office, index) => (
               <motion.article
@@ -206,6 +305,7 @@ function Contact() {
                 >
                   {office.title}
                 </motion.h3>
+
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -215,6 +315,7 @@ function Contact() {
                 >
                   {office.address}
                 </motion.p>
+
                 <motion.p
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -224,6 +325,7 @@ function Contact() {
                 >
                   {office.phone}
                 </motion.p>
+
                 <motion.a
                   href={`mailto:${office.email}`}
                   initial={{ opacity: 0, y: 20 }}
@@ -251,26 +353,20 @@ function Contact() {
             className="space-y-6"
           >
             <motion.div variants={fadeUp}>
-              <motion.p
-                variants={fadeUp}
-                className="text-xs uppercase tracking-[0.3em] text-[#d1a75e]"
-              >
+              <motion.p variants={fadeUp} className="text-xs uppercase tracking-[0.3em] text-[#d1a75e]">
                 Send an Enquiry
               </motion.p>
-              <motion.h2
-                variants={fadeUp}
-                className="mt-3 text-3xl font-semibold text-[#f7d69a]"
-              >
+
+              <motion.h2 variants={fadeUp} className="mt-3 text-3xl font-semibold text-[#f7d69a]">
                 Connect with our concierge desk.
               </motion.h2>
-              <motion.p
-                variants={fadeUp}
-                className="mt-4 text-sm text-[#d1a75e]"
-              >
+
+              <motion.p variants={fadeUp} className="mt-4 text-sm text-[#d1a75e]">
                 Share your intent and our advisors will curate site visits, investment decks, and bespoke proposals
                 within 24 hours.
               </motion.p>
             </motion.div>
+
             <motion.div
               variants={scaleIn}
               className="space-y-4 rounded-3xl border border-[#d1a75e]/20 bg-black/90 p-6 shadow-lg shadow-[#d1a75e]/10"
@@ -284,9 +380,8 @@ function Contact() {
                   transition={{ delay: index * 0.1 }}
                   className="flex flex-col group"
                 >
-                  <span className="text-xs uppercase tracking-[0.25em] text-[#d1a75e] mb-1">
-                    {entry.label}
-                  </span>
+                  <span className="text-xs uppercase tracking-[0.25em] text-[#d1a75e] mb-1">{entry.label}</span>
+
                   <motion.a
                     href={`mailto:${entry.value}`}
                     whileHover={{ x: 5, color: "#f9d891" }}
@@ -298,74 +393,109 @@ function Contact() {
               ))}
             </motion.div>
           </motion.div>
+
           <motion.div
+            ref={formRef}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={slideInRight}
             className="rounded-3xl border border-[#d1a75e]/20 bg-black/90 p-6 shadow-lg shadow-[#d1a75e]/10"
           >
-            <form className="space-y-4">
+            <form className="space-y-4" onSubmit={handleSubmit}>
+              {status.error ? (
+                <div className="rounded-2xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200">
+                  {status.error}
+                </div>
+              ) : null}
+
+              {status.ok ? (
+                <div className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-200">
+                  Enquiry submitted successfully. We&apos;ve emailed you and our admin team.
+                </div>
+              ) : null}
+
               <div className="grid gap-4 md:grid-cols-2">
                 <motion.input
                   whileFocus={{ scale: 1.02 }}
                   type="text"
                   placeholder="First Name"
                   required
+                  value={form.firstName}
+                  onChange={onChange("firstName")}
                   className="rounded-2xl border border-[#d1a75e]/30 bg-black/50 px-4 py-3 text-sm text-[#f0d3a3] placeholder:text-[#d1a75e]/50 focus:border-[#d1a75e] focus:outline-none focus:ring-2 focus:ring-[#d1a75e]/20"
                 />
+
                 <motion.input
                   whileFocus={{ scale: 1.02 }}
                   type="text"
                   placeholder="Last Name"
                   required
+                  value={form.lastName}
+                  onChange={onChange("lastName")}
                   className="rounded-2xl border border-[#d1a75e]/30 bg-black/50 px-4 py-3 text-sm text-[#f0d3a3] placeholder:text-[#d1a75e]/50 focus:border-[#d1a75e] focus:outline-none focus:ring-2 focus:ring-[#d1a75e]/20"
                 />
               </div>
+
               <div className="grid gap-4 md:grid-cols-2">
                 <motion.input
                   whileFocus={{ scale: 1.02 }}
                   type="tel"
-                  placeholder="Mobile"
+                  placeholder="Mobile (10 digits)"
                   required
+                  value={form.phone}
+                  onChange={onChange("phone")}
                   className="rounded-2xl border border-[#d1a75e]/30 bg-black/50 px-4 py-3 text-sm text-[#f0d3a3] placeholder:text-[#d1a75e]/50 focus:border-[#d1a75e] focus:outline-none focus:ring-2 focus:ring-[#d1a75e]/20"
                 />
+
                 <motion.input
                   whileFocus={{ scale: 1.02 }}
                   type="email"
                   placeholder="Email"
                   required
+                  value={form.email}
+                  onChange={onChange("email")}
                   className="rounded-2xl border border-[#d1a75e]/30 bg-black/50 px-4 py-3 text-sm text-[#f0d3a3] placeholder:text-[#d1a75e]/50 focus:border-[#d1a75e] focus:outline-none focus:ring-2 focus:ring-[#d1a75e]/20"
                 />
               </div>
+
               <motion.select
                 whileFocus={{ scale: 1.02 }}
-                defaultValue="default"
+                value={form.property ? form.property : "default"}
+                onChange={onChange("property")}
                 required
                 className="w-full rounded-2xl border border-[#d1a75e]/30 bg-black/50 px-4 py-3 text-sm text-[#f0d3a3] focus:border-[#d1a75e] focus:outline-none focus:ring-2 focus:ring-[#d1a75e]/20"
               >
                 <option value="default" disabled className="bg-black text-[#d1a75e]">
                   Select Property
                 </option>
+
                 {propertyOptions.map((option) => (
                   <option key={option} value={option} className="bg-black text-[#f0d3a3]">
                     {option}
                   </option>
                 ))}
               </motion.select>
+
               <motion.textarea
                 whileFocus={{ scale: 1.02 }}
                 rows={4}
                 placeholder="Tell us about your requirement"
+                value={form.message}
+                onChange={onChange("message")}
                 className="w-full rounded-2xl border border-[#d1a75e]/30 bg-black/50 px-4 py-3 text-sm text-[#f0d3a3] placeholder:text-[#d1a75e]/50 focus:border-[#d1a75e] focus:outline-none focus:ring-2 focus:ring-[#d1a75e]/20 resize-none"
               />
+
               <motion.button
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: status.loading ? 1 : 1.05, y: status.loading ? 0 : -2 }}
+                whileTap={{ scale: status.loading ? 1 : 0.95 }}
                 type="submit"
-                className="w-full rounded-full bg-gradient-to-r from-[#d1a74f] to-[#b8924b] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[#d1a75e]/30 transition-all hover:from-[#b8924b] hover:to-[#d1a74f] md:w-auto"
+                disabled={status.loading}
+                className={`w-full rounded-full bg-gradient-to-r from-[#d1a74f] to-[#b8924b] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[#d1a75e]/30 transition-all hover:from-[#b8924b] hover:to-[#d1a74f] md:w-auto ${
+                  status.loading ? "opacity-70 cursor-not-allowed" : ""
+                }`}
               >
-                Submit
+                {status.loading ? "Submitting..." : "Submit"}
               </motion.button>
             </form>
           </motion.div>
@@ -398,4 +528,3 @@ function Contact() {
 }
 
 export default Contact;
-
