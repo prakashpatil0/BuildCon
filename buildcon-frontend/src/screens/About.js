@@ -2,11 +2,11 @@ import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 // ===== IMAGES =====
-import heroImg from "../assets/picture1.jpg";
-import profileImg from "../assets/picture2.jpg";
-import leader1 from "../assets/picture4.jpg";
-import leader2 from "../assets/picture5.jpg";
-import worldMap from "../assets/picture6.jpg";
+import heroImg from "../assets/picture1.webp";
+import profileImg from "../assets/picture2.webp";
+import leader1 from "../assets/picture4.webp";
+import leader2 from "../assets/picture5.webp";
+import worldMap from "../assets/picture6.webp";
 
 // ===== CLIENT LOGOS (FIXED IMPORTS) =====
 import logo1 from "../assets/logo1.png";

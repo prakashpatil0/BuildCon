@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 
@@ -11,7 +11,8 @@ const jobOpenings = [
     location: "Mumbai, Pune",
     type: "Full-time",
     experience: "8+ years",
-    description: "Lead and manage large-scale real estate development projects from conception to completion.",
+    description:
+      "Lead and manage large-scale real estate development projects from conception to completion.",
   },
   {
     id: 2,
@@ -20,7 +21,8 @@ const jobOpenings = [
     location: "Pune",
     type: "Full-time",
     experience: "10+ years",
-    description: "Design innovative and sustainable building solutions for residential and commercial projects.",
+    description:
+      "Design innovative and sustainable building solutions for residential and commercial projects.",
   },
   {
     id: 3,
@@ -29,7 +31,8 @@ const jobOpenings = [
     location: "Mumbai, Bangalore",
     type: "Full-time",
     experience: "5+ years",
-    description: "Drive business growth through strategic partnerships and client relationships.",
+    description:
+      "Drive business growth through strategic partnerships and client relationships.",
   },
   {
     id: 4,
@@ -38,7 +41,8 @@ const jobOpenings = [
     location: "Pune, Mumbai",
     type: "Full-time",
     experience: "7+ years",
-    description: "Oversee construction activities ensuring quality, safety, and timely project delivery.",
+    description:
+      "Oversee construction activities ensuring quality, safety, and timely project delivery.",
   },
   {
     id: 5,
@@ -47,7 +51,8 @@ const jobOpenings = [
     location: "Mumbai",
     type: "Full-time",
     experience: "3+ years",
-    description: "Analyze financial data and support strategic decision-making processes.",
+    description:
+      "Analyze financial data and support strategic decision-making processes.",
   },
   {
     id: 6,
@@ -56,7 +61,8 @@ const jobOpenings = [
     location: "Pune",
     type: "Full-time",
     experience: "5+ years",
-    description: "Partner with business leaders to drive people strategy and organizational development.",
+    description:
+      "Partner with business leaders to drive people strategy and organizational development.",
   },
 ];
 
@@ -109,6 +115,7 @@ const Careers = () => {
   const [filter, setFilter] = useState("all");
   const [showApplicationModal, setShowApplicationModal] = useState(false);
   const [applicationJob, setApplicationJob] = useState(null);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -118,15 +125,82 @@ const Careers = () => {
     resume: null,
   });
 
+  const [touched, setTouched] = useState({
+    name: false,
+    email: false,
+    phone: false,
+    experience: false,
+    coverLetter: false,
+    resume: false,
+  });
+
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    experience: "",
+    resume: "",
+  });
+
+  const [submitting, setSubmitting] = useState(false);
+
   const departments = ["all", ...new Set(jobOpenings.map((job) => job.department))];
 
-  const filteredJobs = filter === "all" 
-    ? jobOpenings 
-    : jobOpenings.filter((job) => job.department === filter);
+  const filteredJobs =
+    filter === "all" ? jobOpenings : jobOpenings.filter((job) => job.department === filter);
+
+  const API_BASE = useMemo(() => {
+    return (process.env.REACT_APP_API_URL || "http://localhost:5000").replace(/\/$/, "");
+  }, []);
+
+  const isEmailValid = (email) => {
+    const v = (email || "").trim();
+    return /^\S+@\S+\.\S+$/.test(v);
+  };
+
+  const isPhoneValid = (phone) => {
+    const v = (phone || "").trim();
+    return /^\d{10}$/.test(v);
+  };
+
+  const isNameValid = (name) => {
+    const v = (name || "").trim();
+    if (!v) return false;
+    // letters + spaces + dot + apostrophe (optional)
+    return /^[A-Za-z][A-Za-z\s.'-]{1,}$/.test(v);
+  };
+
+  const isExperienceValid = (experience) => {
+    const v = (experience || "").trim();
+    if (!v) return false;
+    // allow: "5", "5 years", "5+ years", "3.5 years"
+    return /^(\d+(\.\d+)?)(\+)?(\s*(years?|yrs?))?$/i.test(v);
+  };
+
+  const validateAll = (data) => {
+    const next = { name: "", email: "", phone: "", experience: "", resume: "" };
+
+    if (!isNameValid(data.name)) next.name = "Enter a valid full name (letters only).";
+    if (!data.email?.trim()) next.email = "Email is required.";
+    else if (!isEmailValid(data.email)) next.email = "Enter a valid email address.";
+    if (!data.phone?.trim()) next.phone = "Phone number is required.";
+    else if (!isPhoneValid(data.phone)) next.phone = "Enter valid 10-digit mobile number.";
+    if (!data.experience?.trim()) next.experience = "Experience is required.";
+    else if (!isExperienceValid(data.experience)) next.experience = "Enter valid experience (e.g., 5, 5+ years).";
+    if (!data.resume) next.resume = "Resume is required.";
+
+    return next;
+  };
+
+  const hasAnyError = (errs) => {
+    return Object.values(errs).some((v) => (v || "").trim().length > 0);
+  };
 
   const handleApplyClick = (job) => {
     setApplicationJob(job);
     setShowApplicationModal(true);
+    setSelectedJob(job);
+
     setFormData({
       name: "",
       email: "",
@@ -135,40 +209,32 @@ const Careers = () => {
       coverLetter: "",
       resume: null,
     });
-  };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleFileChange = (e) => {
-    setFormData((prev) => ({
-      ...prev,
-      resume: e.target.files[0],
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Here you would typically send the form data to your backend
-    console.log("Application submitted:", {
-      job: applicationJob,
-      ...formData,
+    setTouched({
+      name: false,
+      email: false,
+      phone: false,
+      experience: false,
+      coverLetter: false,
+      resume: false,
     });
-    
-    // Show success message and close modal
-    alert("Application submitted successfully! We'll get back to you soon.");
-    setShowApplicationModal(false);
-    setApplicationJob(null);
+
+    setErrors({
+      name: "",
+      email: "",
+      phone: "",
+      experience: "",
+      resume: "",
+    });
+
+    setSubmitting(false);
   };
 
   const closeModal = () => {
     setShowApplicationModal(false);
     setApplicationJob(null);
+    setSelectedJob(null);
+
     setFormData({
       name: "",
       email: "",
@@ -177,6 +243,169 @@ const Careers = () => {
       coverLetter: "",
       resume: null,
     });
+
+    setTouched({
+      name: false,
+      email: false,
+      phone: false,
+      experience: false,
+      coverLetter: false,
+      resume: false,
+    });
+
+    setErrors({
+      name: "",
+      email: "",
+      phone: "",
+      experience: "",
+      resume: "",
+    });
+
+    setSubmitting(false);
+  };
+
+  const setFieldTouched = (field) => {
+    setTouched((prev) => ({ ...prev, [field]: true }));
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+
+    // ✅ Phone: only digits + max 10
+    if (name === "phone") {
+      const onlyDigits = (value || "").replace(/\D/g, "").slice(0, 10);
+      setFormData((prev) => ({ ...prev, phone: onlyDigits }));
+      setErrors((prev) => ({
+        ...prev,
+        phone: onlyDigits.length === 0 ? "Phone number is required." : onlyDigits.length === 10 ? "" : "Enter 10 digits.",
+      }));
+      return;
+    }
+
+    setFormData((prev) => ({ ...prev, [name]: value }));
+
+    // live validation per field
+    if (name === "name") {
+      setErrors((prev) => ({ ...prev, name: value.trim() ? (isNameValid(value) ? "" : "Enter a valid full name.") : "Name is required." }));
+    }
+    if (name === "email") {
+      setErrors((prev) => ({ ...prev, email: value.trim() ? (isEmailValid(value) ? "" : "Enter a valid email.") : "Email is required." }));
+    }
+    if (name === "experience") {
+      setErrors((prev) => ({
+        ...prev,
+        experience: value.trim()
+          ? isExperienceValid(value)
+            ? ""
+            : "Enter valid experience (e.g., 5, 5+ years)."
+          : "Experience is required.",
+      }));
+    }
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files?.[0];
+
+    setFieldTouched("resume");
+
+    if (!file) {
+      setFormData((prev) => ({ ...prev, resume: null }));
+      setErrors((prev) => ({ ...prev, resume: "Resume is required." }));
+      return;
+    }
+
+    const allowedTypes = [
+      "application/pdf",
+      "application/msword",
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    ];
+
+    const maxBytes = 20 * 1024 * 1024; // 20MB
+
+    if (!allowedTypes.includes(file.type)) {
+      alert("Only PDF, DOC, DOCX allowed.");
+      e.target.value = "";
+      setFormData((prev) => ({ ...prev, resume: null }));
+      setErrors((prev) => ({ ...prev, resume: "Only PDF, DOC, DOCX allowed." }));
+      return;
+    }
+
+    if (file.size > maxBytes) {
+      alert("Resume too large. Max 20MB allowed.");
+      e.target.value = "";
+      setFormData((prev) => ({ ...prev, resume: null }));
+      setErrors((prev) => ({ ...prev, resume: "File too large (max 20MB)." }));
+      return;
+    }
+
+    setFormData((prev) => ({ ...prev, resume: file }));
+    setErrors((prev) => ({ ...prev, resume: "" }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // mark all touched
+    setTouched({
+      name: true,
+      email: true,
+      phone: true,
+      experience: true,
+      coverLetter: true,
+      resume: true,
+    });
+
+    const nextErrors = validateAll(formData);
+    setErrors(nextErrors);
+
+    if (hasAnyError(nextErrors)) {
+      return;
+    }
+
+    const fd = new FormData();
+    fd.append("name", formData.name.trim());
+    fd.append("email", formData.email.trim());
+    fd.append("phone", formData.phone.trim());
+    fd.append("experience", formData.experience.trim());
+    fd.append("coverLetter", (formData.coverLetter || "").trim());
+    fd.append("jobTitle", applicationJob?.title || "");
+    if (formData.resume) {
+      fd.append("resume", formData.resume);
+    }
+
+    try {
+      setSubmitting(true);
+
+      const res = await fetch(`${API_BASE}/api/career`, {
+        method: "POST",
+        body: fd,
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok || !data?.success) {
+        alert(data?.message || "Failed to submit application");
+        setSubmitting(false);
+        return;
+      }
+
+      alert("Application submitted successfully!");
+      setSubmitting(false);
+      closeModal();
+    } catch (error) {
+      setSubmitting(false);
+      alert("Server error");
+    }
+  };
+
+  const fieldError = (key) => {
+    if (!touched[key]) return "";
+    return errors[key] || "";
+  };
+
+  const isSubmitDisabled = () => {
+    const nextErrors = validateAll(formData);
+    return submitting || hasAnyError(nextErrors);
   };
 
   return (
@@ -242,8 +471,8 @@ const Careers = () => {
             transition={{ delay: 0.2 }}
             className="text-[#f0d3a3] text-lg leading-relaxed max-w-3xl mx-auto"
           >
-            Be part of a dynamic team that's shaping the future of real estate. We offer
-            opportunities to work on iconic projects, grow your career, and make a meaningful impact.
+            Be part of a dynamic team that's shaping the future of real estate. We offer opportunities to work on
+            iconic projects, grow your career, and make a meaningful impact.
           </motion.p>
         </motion.div>
 
@@ -397,7 +626,8 @@ const Careers = () => {
             transition={{ delay: 0.2 }}
             className="text-[#f0d3a3] text-lg mb-8"
           >
-            We're always looking for talented individuals. Send us your resume and we'll keep you in mind for future opportunities.
+            We're always looking for talented individuals. Send us your resume and we'll keep you in mind for future
+            opportunities.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -435,7 +665,6 @@ const Careers = () => {
               onClick={(e) => e.stopPropagation()}
               className="bg-[#1a1a1a] rounded-2xl border border-[#d1a75e]/30 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
             >
-              {/* Modal Header */}
               <div className="sticky top-0 bg-[#1a1a1a] border-b border-[#d1a75e]/30 p-6 flex justify-between items-center">
                 <div>
                   <h2 className="text-2xl font-semibold text-[#f7d69a] mb-1">
@@ -451,10 +680,8 @@ const Careers = () => {
                 </button>
               </div>
 
-              {/* Modal Body - Form */}
               <form onSubmit={handleSubmit} className="p-6">
                 <div className="space-y-6">
-                  {/* Name */}
                   <div>
                     <label className="block text-[#f0d3a3] font-medium mb-2">
                       Full Name <span className="text-[#d1a74f]">*</span>
@@ -464,13 +691,16 @@ const Careers = () => {
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
+                      onBlur={() => setFieldTouched("name")}
                       required
                       className="w-full px-4 py-3 bg-[#0f0f0f] border border-[#d1a75e]/30 rounded-lg text-[#f0d3a3] focus:outline-none focus:border-[#d1a74f] transition-colors"
                       placeholder="Enter your full name"
                     />
+                    {fieldError("name") ? (
+                      <p className="mt-2 text-sm text-red-300">{fieldError("name")}</p>
+                    ) : null}
                   </div>
 
-                  {/* Email */}
                   <div>
                     <label className="block text-[#f0d3a3] font-medium mb-2">
                       Email Address <span className="text-[#d1a74f]">*</span>
@@ -480,13 +710,16 @@ const Careers = () => {
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
+                      onBlur={() => setFieldTouched("email")}
                       required
                       className="w-full px-4 py-3 bg-[#0f0f0f] border border-[#d1a75e]/30 rounded-lg text-[#f0d3a3] focus:outline-none focus:border-[#d1a74f] transition-colors"
                       placeholder="your.email@example.com"
                     />
+                    {fieldError("email") ? (
+                      <p className="mt-2 text-sm text-red-300">{fieldError("email")}</p>
+                    ) : null}
                   </div>
 
-                  {/* Phone */}
                   <div>
                     <label className="block text-[#f0d3a3] font-medium mb-2">
                       Phone Number <span className="text-[#d1a74f]">*</span>
@@ -496,13 +729,19 @@ const Careers = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleInputChange}
+                      onBlur={() => setFieldTouched("phone")}
+                      inputMode="numeric"
+                      pattern="\d{10}"
+                      maxLength={10}
                       required
                       className="w-full px-4 py-3 bg-[#0f0f0f] border border-[#d1a75e]/30 rounded-lg text-[#f0d3a3] focus:outline-none focus:border-[#d1a74f] transition-colors"
-                      placeholder="+91 1234567890"
+                      placeholder="Enter 10-digit mobile number"
                     />
+                    {fieldError("phone") ? (
+                      <p className="mt-2 text-sm text-red-300">{fieldError("phone")}</p>
+                    ) : null}
                   </div>
 
-                  {/* Experience */}
                   <div>
                     <label className="block text-[#f0d3a3] font-medium mb-2">
                       Years of Experience <span className="text-[#d1a74f]">*</span>
@@ -512,17 +751,18 @@ const Careers = () => {
                       name="experience"
                       value={formData.experience}
                       onChange={handleInputChange}
+                      onBlur={() => setFieldTouched("experience")}
                       required
                       className="w-full px-4 py-3 bg-[#0f0f0f] border border-[#d1a75e]/30 rounded-lg text-[#f0d3a3] focus:outline-none focus:border-[#d1a74f] transition-colors"
-                      placeholder="e.g., 5 years"
+                      placeholder="e.g., 5 or 5+ years"
                     />
+                    {fieldError("experience") ? (
+                      <p className="mt-2 text-sm text-red-300">{fieldError("experience")}</p>
+                    ) : null}
                   </div>
 
-                  {/* Cover Letter */}
                   <div>
-                    <label className="block text-[#f0d3a3] font-medium mb-2">
-                      Cover Letter
-                    </label>
+                    <label className="block text-[#f0d3a3] font-medium mb-2">Cover Letter</label>
                     <textarea
                       name="coverLetter"
                       value={formData.coverLetter}
@@ -533,7 +773,6 @@ const Careers = () => {
                     />
                   </div>
 
-                  {/* Resume Upload */}
                   <div>
                     <label className="block text-[#f0d3a3] font-medium mb-2">
                       Upload Resume <span className="text-[#d1a74f]">*</span>
@@ -548,10 +787,7 @@ const Careers = () => {
                         className="hidden"
                         id="resume-upload"
                       />
-                      <label
-                        htmlFor="resume-upload"
-                        className="cursor-pointer flex flex-col items-center"
-                      >
+                      <label htmlFor="resume-upload" className="cursor-pointer flex flex-col items-center">
                         <svg
                           className="w-12 h-12 text-[#d1a75e] mb-3"
                           fill="none"
@@ -566,24 +802,20 @@ const Careers = () => {
                           />
                         </svg>
                         <p className="text-[#f0d3a3] font-medium mb-1">
-                          {formData.resume
-                            ? formData.resume.name
-                            : "Click to upload or drag and drop"}
+                          {formData.resume ? formData.resume.name : "Click to upload or drag and drop"}
                         </p>
-                        <p className="text-[#d1a75e] text-sm">
-                          PDF, DOC, or DOCX (Max 5MB)
-                        </p>
+                        <p className="text-[#d1a75e] text-sm">PDF, DOC, or DOCX (Max 20MB)</p>
                       </label>
                     </div>
-                    {formData.resume && (
-                      <p className="mt-2 text-[#d1a74f] text-sm">
-                        ✓ {formData.resume.name} selected
-                      </p>
-                    )}
+                    {fieldError("resume") ? (
+                      <p className="mt-2 text-sm text-red-300">{fieldError("resume")}</p>
+                    ) : null}
+                    {formData.resume && !fieldError("resume") ? (
+                      <p className="mt-2 text-[#d1a74f] text-sm">✓ {formData.resume.name} selected</p>
+                    ) : null}
                   </div>
                 </div>
 
-                {/* Modal Footer */}
                 <div className="flex gap-4 mt-8">
                   <motion.button
                     type="button"
@@ -596,11 +828,14 @@ const Careers = () => {
                   </motion.button>
                   <motion.button
                     type="submit"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="flex-1 px-6 py-3 bg-gradient-to-r from-[#d1a74f] to-[#b8924b] text-white rounded-lg font-semibold"
+                    disabled={isSubmitDisabled()}
+                    whileHover={{ scale: isSubmitDisabled() ? 1 : 1.05 }}
+                    whileTap={{ scale: isSubmitDisabled() ? 1 : 0.95 }}
+                    className={`flex-1 px-6 py-3 bg-gradient-to-r from-[#d1a74f] to-[#b8924b] text-white rounded-lg font-semibold ${
+                      isSubmitDisabled() ? "opacity-60 cursor-not-allowed" : ""
+                    }`}
                   >
-                    Submit Application
+                    {submitting ? "Submitting..." : "Submit Application"}
                   </motion.button>
                 </div>
               </form>
@@ -613,4 +848,3 @@ const Careers = () => {
 };
 
 export default Careers;
-

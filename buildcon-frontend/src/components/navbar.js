@@ -201,6 +201,7 @@ const Navbar = () => {
                     to="/company"
                     onClick={closeMobileMenu}
                     className="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 transition-colors"
+                    onClick={() => window.scrollTo(0, 0)}
                   >
                     Company
                   </Link>
@@ -208,6 +209,7 @@ const Navbar = () => {
                     to="/about"
                     onClick={closeMobileMenu}
                     className="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 transition-colors"
+                    onClick={() => window.scrollTo(0, 0)}
                   >
                     About Us
                   </Link>
@@ -215,6 +217,7 @@ const Navbar = () => {
                     to="/ourstory"
                     onClick={closeMobileMenu}
                     className="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 transition-colors"
+                    onClick={() => window.scrollTo(0, 0)}
                   >
                     Our Story
                   </Link>

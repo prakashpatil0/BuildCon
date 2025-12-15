@@ -2,10 +2,10 @@ import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 // IMAGES
-import banner from "../assets/picture1.jpg";
-import storyImg1 from "../assets/picture2.jpg";
-import storyImg2 from "../assets/picture4.jpg";
-import parallaxImg from "../assets/picture5.jpg";
+import banner from "../assets/picture1.webp";
+import storyImg1 from "../assets/picture2.webp";
+import storyImg2 from "../assets/picture4.webp";
+import parallaxImg from "../assets/picture5.webp";
 
 // Animations
 const fadeUp = {

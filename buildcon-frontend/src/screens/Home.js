@@ -2,18 +2,18 @@ import React, { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 
 // ===== HERO SLIDER IMAGES =====
-import saiDwarikaHero from "../assets/Sai Dwarika/Saidwarika Photo 1.jpg";
-import saiNagari2 from "../assets/Sai Nagari/Sai Nagari 2.jpg";
-import saiNagari3 from "../assets/Sai Nagari/Sai Nagari 3.jpg";
-import saiNagari4 from "../assets/Sai Nagari/Sai Nagari 4.jpg";
-import vrindavanRegency3 from "../assets/Vrindavan/Vrindavan Regency 3.jpg";
+import saiDwarikaHero from "../assets/Sai Dwarika/Saidwarika Photo 1.webp";
+import saiNagari2 from "../assets/Sai Nagari/Sai Nagari 2.webp";
+import saiNagari3 from "../assets/Sai Nagari/Sai Nagari 3.webp";
+import saiNagari4 from "../assets/Sai Nagari/Sai Nagari 4.webp";
+import vrindavanRegency3 from "../assets/Vrindavan/Vrindavan Regency 3.webp";
 
 // ===== SECTION 2 IMAGES =====
-import saiDwarikaSection2 from "../assets/Sai Dwarika/Saidwarika Photo 1.jpg";
-import saiNagari2Section2 from "../assets/Sai Nagari/Sai Nagari 2.jpg";
-import saiNagari3Section2 from "../assets/Sai Nagari/Sai Nagari 3.jpg";
-import vrindavanRegency1 from "../assets/Vrindavan/Vrindavan Regency 1.jpg";
-import vrindavanRegency3Section2 from "../assets/Vrindavan/Vrindavan Regency 3.jpg";
+import saiDwarikaSection2 from "../assets/Sai Dwarika/Saidwarika Photo 1.webp";
+import saiNagari2Section2 from "../assets/Sai Nagari/Sai Nagari 2.webp";
+import saiNagari3Section2 from "../assets/Sai Nagari/Sai Nagari 3.webp";
+import vrindavanRegency1 from "../assets/Vrindavan/Vrindavan Regency 1.webp";
+import vrindavanRegency3Section2 from "../assets/Vrindavan/Vrindavan Regency 3.webp";
 
 // ===== SECTION 3 IMAGES =====
 import residentialImg from "../assets/logo1.png";
@@ -21,9 +21,9 @@ import officeImg from "../assets/logo2.png";
 import hospitalityImg from "../assets/logo3.png";
 
 // ===== SAI DWARIKA ASSETS =====
-import saiDwarikaPhoto1 from "../assets/Sai Dwarika/Saidwarika Photo 1.jpg";
-import saiDwarikaPhoto2 from "../assets/Sai Dwarika/Saidwarika Photo 2.jpg";
-import saiDwarikaVideo from "../assets/Sai Dwarika/Saidwarika Video.mp4";
+import saiDwarikaPhoto1 from "../assets/Sai Dwarika/Saidwarika Photo 1.webp";
+import saiDwarikaPhoto2 from "../assets/Sai Dwarika/Saidwarika Photo 2.webp";
+import saiDwarikaVideo from "../assets/Sai Dwarika/Saidwarika Video.webm";
 
 // ===== SECTION 5 — SERVICES IMAGES =====
 const services = [
@@ -175,7 +175,7 @@ const slides = [
     title: "Sai Dwarika Pune",
     subtitle: "YOO branded residences - Design-forward living curated with Philippe Starck",
     button: "View Project",
-    link: "/projects",
+    link: "/projects/sai-dwarika",
   },
   {
     image: saiNagari2,
@@ -203,7 +203,7 @@ const slides = [
     title: "Vrindavan Regency",
     subtitle: "Affordable and high-quality 3 & 4 BHK residences in vibrant Pune",
     button: "Discover More",
-    link: "/projects",
+    link: "/projects/vrindavan-regency",
   },
 ];
 
