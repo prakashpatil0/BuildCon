@@ -1,24 +1,24 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 // Import images
-import picture1 from "../assets/picture1.jpg";
-import picture2 from "../assets/picture2.jpg";
-import picture3 from "../assets/picture3.jpg";
-import picture4 from "../assets/picture4.jpg";  
-import picture5 from "../assets/picture5.jpg";
-import picture6 from "../assets/picture6.jpg";
+import picture1 from "../assets/picture1.webp";
+import picture2 from "../assets/picture2.webp";
+import picture3 from "../assets/picture3.webp";
+import picture4 from "../assets/picture4.webp";  
+import picture5 from "../assets/picture5.webp";
+import picture6 from "../assets/picture6.webp";
 
 // Import project images from assets folders
-import shreeShrushtiImage from "../assets/Sai Shrushti/shree shrushti image.jpeg";
+import shreeShrushtiImage from "../assets/Sai Shrushti/shree shrushti image.webp";
 import shreeShrushtiSummary from "../assets/Sai Shrushti/Summary of Shree Shrushti.png";
-import shreeShrushtiLayout1BHK from "../assets/Sai Shrushti/Flat Layout of Shree Shrushti (1 BHK).jpg";
-import shreeShrushtiLayout2BHK from "../assets/Sai Shrushti/Flat Layout Of Shree Shrushti (2 BHK).png";
-import saiDwarikaPhoto1 from "../assets/Sai Dwarika/Saidwarika Photo 1.jpg";
-import sadguruKrupaImage from "../assets/Shree Sadguru/Shree Sadguru Krupa.jpg";
-import vrindavanRegency1 from "../assets/Vrindavan/Vrindavan Regency 1.jpg";
-import saiNagari1 from "../assets/Sai Nagari/Sai Nagari 1.jpg";
+import shreeShrushtiLayout1BHK from "../assets/Sai Shrushti/Flat Layout of Shree Shrushti (1 BHK).webp";
+import shreeShrushtiLayout2BHK from "../assets/Sai Shrushti/Flat Layout Of Shree Shrushti (2 BHK).webp";
+import saiDwarikaPhoto1 from "../assets/Sai Dwarika/Saidwarika Photo 1.webp";
+import sadguruKrupaImage from "../assets/Shree Sadguru/Shree Sadguru Krupa.webp";
+import vrindavanRegency1 from "../assets/Vrindavan/Vrindavan Regency 1.webp";
+import saiNagari1 from "../assets/Sai Nagari/Sai Nagari 1.webp";
 const projectData = {
   completed: [
     {
@@ -209,16 +209,23 @@ function Projects() {
 
   // Handle project detail navigation
   const handleViewDetails = (projectName) => {
-    if (projectName === "Sai Nagari") {
-      navigate("/projects/sai-nagari");
-    } else if (projectName === "Shree Shrushti") {
-      navigate("/projects/shree-shrushti");
-    } else if (projectName === "Vrindavan Regency") {
-      navigate("/projects/vrindavan-regency");
-    } else if (projectName === "Sai Dwarika") {
-      navigate("/projects/sai-dwarika");
-    }
-  };
+  if (projectName === "Sai Nagari") {
+    navigate("/projects/sai-nagari");
+  } else if (projectName === "Shree Shrushti") {
+    navigate("/projects/shree-shrushti");
+  } else if (projectName === "Vrindavan Regency") {
+    navigate("/projects/vrindavan-regency");
+  } else if (projectName === "Sai Dwarika") {
+    navigate("/projects/sai-dwarika");
+  }
+
+  // Navigate ke baad page ko top par le jaane ke liye
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+};
+
 
   return (
     <div className="w-full bg-black min-h-screen">
@@ -387,6 +394,7 @@ function Projects() {
                   whileHover={{ scale: 1.05, x: 5 }}
                   whileTap={{ scale: 0.95 }}
                   className="text-[#f8d99c] font-semibold text-sm hover:text-[#f9d891] transition-colors flex items-center gap-2"
+                  
                 >
                   View Details
                   <span>→</span>
@@ -485,6 +493,7 @@ function Projects() {
                     whileHover={{ scale: 1.05, x: 5 }}
                     whileTap={{ scale: 0.95 }}
                     className="text-[#f8d99c] font-semibold text-sm hover:text-[#f9d891] transition-colors flex items-center gap-2"
+                    
                   >
                     View Details
                     <span>→</span>
@@ -587,6 +596,7 @@ function Projects() {
                     {project.price}
                   </motion.p>
                 )}
+                <Link to="/contact" onClick={() => window.scrollTo(0, 0)}>
                 <motion.button
                   whileHover={{ scale: 1.05, x: 5 }}
                   whileTap={{ scale: 0.95 }}
@@ -594,6 +604,7 @@ function Projects() {
                 >
                   Enquire Now
                 </motion.button>
+                </Link>
               </div>
             </motion.div>
           ))}

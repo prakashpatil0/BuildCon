@@ -282,7 +282,7 @@ const Footer = () => {
       </footer>
 
       {/* SCROLL TO TOP BUTTON */}
-      <AnimatePresence>
+      {/* <AnimatePresence>
         {showScrollTop && (
           <motion.button
             initial={{ opacity: 0, scale: 0 }}

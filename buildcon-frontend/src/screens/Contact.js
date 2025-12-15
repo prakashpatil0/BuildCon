@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from "react";
+import React, { useMemo, useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 const offices = [
@@ -47,11 +47,6 @@ const fadeUp = {
   },
 };
 
-const fadeIn = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 1.2 } },
-};
-
 const slideInLeft = {
   hidden: { opacity: 0, x: -100 },
   visible: {
@@ -96,6 +91,23 @@ function Contact() {
     message: "",
   });
 
+  const [touched, setTouched] = useState({
+    firstName: false,
+    lastName: false,
+    phone: false,
+    email: false,
+    property: false,
+    message: false,
+  });
+
+  const [errors, setErrors] = useState({
+    firstName: "",
+    lastName: "",
+    phone: "",
+    email: "",
+    property: "",
+  });
+
   const [status, setStatus] = useState({
     loading: false,
     ok: false,
@@ -116,28 +128,127 @@ function Contact() {
     }
   };
 
-  const onChange = (key) => (e) => {
-    const val = e?.target?.value ?? "";
-    setForm((prev) => ({ ...prev, [key]: val }));
-    setStatus((prev) => ({ ...prev, ok: false, error: "" }));
+  const setFieldTouched = (key) => {
+    setTouched((prev) => ({ ...prev, [key]: true }));
   };
 
-  const validate = () => {
-    if (!form.firstName.trim()) return "First Name is required";
-    if (!form.lastName.trim()) return "Last Name is required";
-    if (!form.phone.trim()) return "Mobile is required";
-    if (!/^\d{10}$/.test(form.phone.replace(/\D/g, ""))) return "Enter valid 10-digit Mobile number";
-    if (!form.email.trim()) return "Email is required";
-    if (!/^\S+@\S+\.\S+$/.test(form.email.trim())) return "Enter valid Email address";
-    if (!form.property.trim()) return "Select Property";
-    return "";
+  const isNameValid = (val) => {
+    const v = (val || "").trim();
+    if (!v) return false;
+    // allow letters + spaces + dot + apostrophe + hyphen (no digits)
+    return /^[A-Za-z][A-Za-z\s.'-]{1,}$/.test(v);
   };
+
+  const isEmailValid = (val) => {
+    const v = (val || "").trim();
+    return /^\S+@\S+\.\S+$/.test(v);
+  };
+
+  const isPhoneValid = (val) => {
+    const v = (val || "").trim();
+    return /^\d{10}$/.test(v);
+  };
+
+  const validateAll = (data) => {
+    const next = {
+      firstName: "",
+      lastName: "",
+      phone: "",
+      email: "",
+      property: "",
+    };
+
+    if (!data.firstName.trim()) next.firstName = "First Name is required";
+    else if (!isNameValid(data.firstName)) next.firstName = "Enter valid First Name (letters only)";
+
+    if (!data.lastName.trim()) next.lastName = "Last Name is required";
+    else if (!isNameValid(data.lastName)) next.lastName = "Enter valid Last Name (letters only)";
+
+    if (!data.phone.trim()) next.phone = "Mobile is required";
+    else if (!isPhoneValid(data.phone)) next.phone = "Enter valid 10-digit Mobile number";
+
+    if (!data.email.trim()) next.email = "Email is required";
+    else if (!isEmailValid(data.email)) next.email = "Enter valid Email address";
+
+    if (!data.property.trim()) next.property = "Select Property";
+
+    return next;
+  };
+
+  const hasAnyError = (errs) => Object.values(errs).some((v) => (v || "").trim().length > 0);
+
+  const fieldError = (key) => (touched[key] ? errors[key] : "");
+
+  const onChange = (key) => (e) => {
+    const raw = e?.target?.value ?? "";
+
+    // ✅ Phone: only digits, max 10, no letters allowed
+    if (key === "phone") {
+      const onlyDigits = String(raw).replace(/\D/g, "").slice(0, 10);
+      setForm((prev) => ({ ...prev, phone: onlyDigits }));
+      setStatus((prev) => ({ ...prev, ok: false, error: "" }));
+
+      setErrors((prev) => ({
+        ...prev,
+        phone: onlyDigits.length === 0 ? "Mobile is required" : onlyDigits.length === 10 ? "" : "Enter 10 digits",
+      }));
+      return;
+    }
+
+    setForm((prev) => ({ ...prev, [key]: raw }));
+    setStatus((prev) => ({ ...prev, ok: false, error: "" }));
+
+    // live validation for other fields
+    if (key === "firstName") {
+      setErrors((prev) => ({
+        ...prev,
+        firstName: raw.trim() ? (isNameValid(raw) ? "" : "Enter valid First Name (letters only)") : "First Name is required",
+      }));
+    }
+    if (key === "lastName") {
+      setErrors((prev) => ({
+        ...prev,
+        lastName: raw.trim() ? (isNameValid(raw) ? "" : "Enter valid Last Name (letters only)") : "Last Name is required",
+      }));
+    }
+    if (key === "email") {
+      setErrors((prev) => ({
+        ...prev,
+        email: raw.trim() ? (isEmailValid(raw) ? "" : "Enter valid Email address") : "Email is required",
+      }));
+    }
+    if (key === "property") {
+      setErrors((prev) => ({
+        ...prev,
+        property: raw.trim() ? "" : "Select Property",
+      }));
+    }
+  };
+
+  // keep errors in sync (optional safety)
+  useEffect(() => {
+    setErrors((prev) => ({ ...prev, ...validateAll(form) }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [form.property]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const err = validate();
-    if (err) {
-      setStatus({ loading: false, ok: false, error: err });
+
+    // mark all as touched
+    setTouched({
+      firstName: true,
+      lastName: true,
+      phone: true,
+      email: true,
+      property: true,
+      message: true,
+    });
+
+    const nextErrors = validateAll(form);
+    setErrors(nextErrors);
+
+    if (hasAnyError(nextErrors)) {
+      setStatus({ loading: false, ok: false, error: "Please fix the highlighted fields." });
       return;
     }
 
@@ -174,6 +285,21 @@ function Contact() {
         property: "",
         message: "",
       });
+      setTouched({
+        firstName: false,
+        lastName: false,
+        phone: false,
+        email: false,
+        property: false,
+        message: false,
+      });
+      setErrors({
+        firstName: "",
+        lastName: "",
+        phone: "",
+        email: "",
+        property: "",
+      });
     } catch (error) {
       setStatus({
         loading: false,
@@ -183,7 +309,10 @@ function Contact() {
     }
   };
 
-  
+  const isSubmitDisabled = () => {
+    const nextErrors = validateAll(form);
+    return status.loading || hasAnyError(nextErrors);
+  };
 
   return (
     <div ref={topRef} className="bg-black">
@@ -402,7 +531,7 @@ function Contact() {
             variants={slideInRight}
             className="rounded-3xl border border-[#d1a75e]/20 bg-black/90 p-6 shadow-lg shadow-[#d1a75e]/10"
           >
-            <form className="space-y-4" onSubmit={handleSubmit}>
+            <form className="space-y-4" onSubmit={handleSubmit} noValidate>
               {status.error ? (
                 <div className="rounded-2xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200">
                   {status.error}
@@ -416,66 +545,94 @@ function Contact() {
               ) : null}
 
               <div className="grid gap-4 md:grid-cols-2">
-                <motion.input
-                  whileFocus={{ scale: 1.02 }}
-                  type="text"
-                  placeholder="First Name"
-                  required
-                  value={form.firstName}
-                  onChange={onChange("firstName")}
-                  className="rounded-2xl border border-[#d1a75e]/30 bg-black/50 px-4 py-3 text-sm text-[#f0d3a3] placeholder:text-[#d1a75e]/50 focus:border-[#d1a75e] focus:outline-none focus:ring-2 focus:ring-[#d1a75e]/20"
-                />
+                <div>
+                  <motion.input
+                    whileFocus={{ scale: 1.02 }}
+                    type="text"
+                    placeholder="First Name"
+                    value={form.firstName}
+                    onChange={onChange("firstName")}
+                    onBlur={() => setFieldTouched("firstName")}
+                    className="w-full rounded-2xl border border-[#d1a75e]/30 bg-black/50 px-4 py-3 text-sm text-[#f0d3a3] placeholder:text-[#d1a75e]/50 focus:border-[#d1a75e] focus:outline-none focus:ring-2 focus:ring-[#d1a75e]/20"
+                  />
+                  {fieldError("firstName") ? (
+                    <p className="mt-2 text-xs text-red-300">{fieldError("firstName")}</p>
+                  ) : null}
+                </div>
 
-                <motion.input
-                  whileFocus={{ scale: 1.02 }}
-                  type="text"
-                  placeholder="Last Name"
-                  required
-                  value={form.lastName}
-                  onChange={onChange("lastName")}
-                  className="rounded-2xl border border-[#d1a75e]/30 bg-black/50 px-4 py-3 text-sm text-[#f0d3a3] placeholder:text-[#d1a75e]/50 focus:border-[#d1a75e] focus:outline-none focus:ring-2 focus:ring-[#d1a75e]/20"
-                />
+                <div>
+                  <motion.input
+                    whileFocus={{ scale: 1.02 }}
+                    type="text"
+                    placeholder="Last Name"
+                    value={form.lastName}
+                    onChange={onChange("lastName")}
+                    onBlur={() => setFieldTouched("lastName")}
+                    className="w-full rounded-2xl border border-[#d1a75e]/30 bg-black/50 px-4 py-3 text-sm text-[#f0d3a3] placeholder:text-[#d1a75e]/50 focus:border-[#d1a75e] focus:outline-none focus:ring-2 focus:ring-[#d1a75e]/20"
+                  />
+                  {fieldError("lastName") ? (
+                    <p className="mt-2 text-xs text-red-300">{fieldError("lastName")}</p>
+                  ) : null}
+                </div>
               </div>
 
               <div className="grid gap-4 md:grid-cols-2">
-                <motion.input
-                  whileFocus={{ scale: 1.02 }}
-                  type="tel"
-                  placeholder="Mobile (10 digits)"
-                  required
-                  value={form.phone}
-                  onChange={onChange("phone")}
-                  className="rounded-2xl border border-[#d1a75e]/30 bg-black/50 px-4 py-3 text-sm text-[#f0d3a3] placeholder:text-[#d1a75e]/50 focus:border-[#d1a75e] focus:outline-none focus:ring-2 focus:ring-[#d1a75e]/20"
-                />
+                <div>
+                  <motion.input
+                    whileFocus={{ scale: 1.02 }}
+                    type="tel"
+                    placeholder="Mobile (10 digits)"
+                    value={form.phone}
+                    onChange={onChange("phone")}
+                    onBlur={() => setFieldTouched("phone")}
+                    inputMode="numeric"
+                    maxLength={10}
+                    pattern="\d{10}"
+                    className="w-full rounded-2xl border border-[#d1a75e]/30 bg-black/50 px-4 py-3 text-sm text-[#f0d3a3] placeholder:text-[#d1a75e]/50 focus:border-[#d1a75e] focus:outline-none focus:ring-2 focus:ring-[#d1a75e]/20"
+                  />
+                  {fieldError("phone") ? (
+                    <p className="mt-2 text-xs text-red-300">{fieldError("phone")}</p>
+                  ) : null}
+                </div>
 
-                <motion.input
-                  whileFocus={{ scale: 1.02 }}
-                  type="email"
-                  placeholder="Email"
-                  required
-                  value={form.email}
-                  onChange={onChange("email")}
-                  className="rounded-2xl border border-[#d1a75e]/30 bg-black/50 px-4 py-3 text-sm text-[#f0d3a3] placeholder:text-[#d1a75e]/50 focus:border-[#d1a75e] focus:outline-none focus:ring-2 focus:ring-[#d1a75e]/20"
-                />
+                <div>
+                  <motion.input
+                    whileFocus={{ scale: 1.02 }}
+                    type="email"
+                    placeholder="Email"
+                    value={form.email}
+                    onChange={onChange("email")}
+                    onBlur={() => setFieldTouched("email")}
+                    className="w-full rounded-2xl border border-[#d1a75e]/30 bg-black/50 px-4 py-3 text-sm text-[#f0d3a3] placeholder:text-[#d1a75e]/50 focus:border-[#d1a75e] focus:outline-none focus:ring-2 focus:ring-[#d1a75e]/20"
+                  />
+                  {fieldError("email") ? (
+                    <p className="mt-2 text-xs text-red-300">{fieldError("email")}</p>
+                  ) : null}
+                </div>
               </div>
 
-              <motion.select
-                whileFocus={{ scale: 1.02 }}
-                value={form.property ? form.property : "default"}
-                onChange={onChange("property")}
-                required
-                className="w-full rounded-2xl border border-[#d1a75e]/30 bg-black/50 px-4 py-3 text-sm text-[#f0d3a3] focus:border-[#d1a75e] focus:outline-none focus:ring-2 focus:ring-[#d1a75e]/20"
-              >
-                <option value="default" disabled className="bg-black text-[#d1a75e]">
-                  Select Property
-                </option>
-
-                {propertyOptions.map((option) => (
-                  <option key={option} value={option} className="bg-black text-[#f0d3a3]">
-                    {option}
+              <div>
+                <motion.select
+                  whileFocus={{ scale: 1.02 }}
+                  value={form.property ? form.property : "default"}
+                  onChange={onChange("property")}
+                  onBlur={() => setFieldTouched("property")}
+                  className="w-full rounded-2xl border border-[#d1a75e]/30 bg-black/50 px-4 py-3 text-sm text-[#f0d3a3] focus:border-[#d1a75e] focus:outline-none focus:ring-2 focus:ring-[#d1a75e]/20"
+                >
+                  <option value="default" disabled className="bg-black text-[#d1a75e]">
+                    Select Property
                   </option>
-                ))}
-              </motion.select>
+
+                  {propertyOptions.map((option) => (
+                    <option key={option} value={option} className="bg-black text-[#f0d3a3]">
+                      {option}
+                    </option>
+                  ))}
+                </motion.select>
+                {fieldError("property") ? (
+                  <p className="mt-2 text-xs text-red-300">{fieldError("property")}</p>
+                ) : null}
+              </div>
 
               <motion.textarea
                 whileFocus={{ scale: 1.02 }}
@@ -483,6 +640,7 @@ function Contact() {
                 placeholder="Tell us about your requirement"
                 value={form.message}
                 onChange={onChange("message")}
+                onBlur={() => setFieldTouched("message")}
                 className="w-full rounded-2xl border border-[#d1a75e]/30 bg-black/50 px-4 py-3 text-sm text-[#f0d3a3] placeholder:text-[#d1a75e]/50 focus:border-[#d1a75e] focus:outline-none focus:ring-2 focus:ring-[#d1a75e]/20 resize-none"
               />
 
@@ -490,9 +648,9 @@ function Contact() {
                 whileHover={{ scale: status.loading ? 1 : 1.05, y: status.loading ? 0 : -2 }}
                 whileTap={{ scale: status.loading ? 1 : 0.95 }}
                 type="submit"
-                disabled={status.loading}
+                disabled={isSubmitDisabled()}
                 className={`w-full rounded-full bg-gradient-to-r from-[#d1a74f] to-[#b8924b] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[#d1a75e]/30 transition-all hover:from-[#b8924b] hover:to-[#d1a74f] md:w-auto ${
-                  status.loading ? "opacity-70 cursor-not-allowed" : ""
+                  isSubmitDisabled() ? "opacity-70 cursor-not-allowed" : ""
                 }`}
               >
                 {status.loading ? "Submitting..." : "Submit"}

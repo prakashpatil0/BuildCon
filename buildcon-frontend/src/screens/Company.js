@@ -3,9 +3,9 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Link } from "react-router-dom";
 
 // Images
-import heroImg from "../assets/picture1.jpg";
-import teamImg from "../assets/picture2.jpg";
-import cultureImg from "../assets/picture4.jpg";
+import heroImg from "../assets/picture1.webp";
+import teamImg from "../assets/picture2.webp";
+import cultureImg from "../assets/picture4.webp";
 
 // Animation variants
 const fadeUp = {

@@ -3,39 +3,39 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
 // Import Sai Nagari images
-import saiNagari1 from "../assets/Sai Nagari/Sai Nagari 1.jpg";
-import saiNagari2 from "../assets/Sai Nagari/Sai Nagari 2.jpg";
-import saiNagari3 from "../assets/Sai Nagari/Sai Nagari 3.jpg";
-import saiNagari4 from "../assets/Sai Nagari/Sai Nagari 4.jpg";
-import saiNagari5 from "../assets/Sai Nagari/Sai Nagari 5.jpg";
-import saiNagari6 from "../assets/Sai Nagari/Sai Nagari 6.jpg";
-import saiNagariClubhouse from "../assets/Sai Nagari/Sai Nagari Clubhouse.jpeg";
-import saiNagariGarden from "../assets/Sai Nagari/Sai Nagari Garden.jpeg";
-import saiNagariTemple from "../assets/Sai Nagari/Sai Nagari Temple.jpeg";
-import layout1BHK from "../assets/Sai Nagari/Flat Layout Of Sai Nagari (1 BHK).png";
-import layout2BHK from "../assets/Sai Nagari/Flat Layout Of Sai Nagari (2 BHK).png";
+import saiNagari1 from "../assets/Sai Nagari/Sai Nagari 1.webp";
+import saiNagari2 from "../assets/Sai Nagari/Sai Nagari 2.webp";
+import saiNagari3 from "../assets/Sai Nagari/Sai Nagari 3.webp";
+import saiNagari4 from "../assets/Sai Nagari/Sai Nagari 4.webp";
+import saiNagari5 from "../assets/Sai Nagari/Sai Nagari 5.webp";
+import saiNagari6 from "../assets/Sai Nagari/Sai Nagari 6.webp";
+import saiNagariClubhouse from "../assets/Sai Nagari/Sai Nagari Clubhouse.webp";
+import saiNagariGarden from "../assets/Sai Nagari/Sai Nagari Garden.webp";
+import saiNagariTemple from "../assets/Sai Nagari/Sai Nagari Temple.webp";
+import layout1BHK from "../assets/Sai Nagari/Flat Layout Of Sai Nagari (1 BHK).webp";
+import layout2BHK from "../assets/Sai Nagari/Flat Layout Of Sai Nagari (2 BHK).webp";
 
 // Import Shree Shrushti images
-import shreeShrushtiImage from "../assets/Sai Shrushti/shree shrushti image.jpeg";
+import shreeShrushtiImage from "../assets/Sai Shrushti/shree shrushti image.webp";
 import shreeShrushtiSummary from "../assets/Sai Shrushti/Summary of Shree Shrushti.png";
-import shreeShrushtiLayout1BHK from "../assets/Sai Shrushti/Flat Layout of Shree Shrushti (1 BHK).jpg";
-import shreeShrushtiLayout2BHK from "../assets/Sai Shrushti/Flat Layout Of Shree Shrushti (2 BHK).png";
+import shreeShrushtiLayout1BHK from "../assets/Sai Shrushti/Flat Layout of Shree Shrushti (1 BHK).webp";
+import shreeShrushtiLayout2BHK from "../assets/Sai Shrushti/Flat Layout Of Shree Shrushti (2 BHK).webp";
 
 // Import Vrindavan Regency images
-import vrindavanRegency1 from "../assets/Vrindavan/Vrindavan Regency 1.jpg";
-import vrindavanRegency2 from "../assets/Vrindavan/Vrindavan Regency 2.jpg";
-import vrindavanRegency3 from "../assets/Vrindavan/Vrindavan Regency 3.jpg";
+import vrindavanRegency1 from "../assets/Vrindavan/Vrindavan Regency 1.webp";
+import vrindavanRegency2 from "../assets/Vrindavan/Vrindavan Regency 2.webp";
+import vrindavanRegency3 from "../assets/Vrindavan/Vrindavan Regency 3.webp";
 import vrindavanRegencySummary from "../assets/Vrindavan/Summery of Vrindavan Regency.png";
-import vrindavanLayout1_2BHK from "../assets/Vrindavan/Vrindavan Regency Layout ( 1 & 2 BHK).jpg";
-import vrindavanLayout3BHK from "../assets/Vrindavan/Vrindavan Regency Layout (3  BHK).jpg";
+import vrindavanLayout1_2BHK from "../assets/Vrindavan/Vrindavan Regency Layout ( 1 & 2 BHK).webp";
+import vrindavanLayout3BHK from "../assets/Vrindavan/Vrindavan Regency Layout (3  BHK).webp";
 
 // Import Sai Dwarika images
-import saiDwarikaPhoto1 from "../assets/Sai Dwarika/Saidwarika Photo 1.jpg";
-import saiDwarikaPhoto2 from "../assets/Sai Dwarika/Saidwarika Photo 2.jpg";
+import saiDwarikaPhoto1 from "../assets/Sai Dwarika/Saidwarika Photo 1.webp";
+import saiDwarikaPhoto2 from "../assets/Sai Dwarika/Saidwarika Photo 2.webp";
 import saiDwarikaSummary from "../assets/Sai Dwarika/Summery of Saidwarika.png";
-import saiDwarikaLayout1BHK from "../assets/Sai Dwarika/Saidwarika Flat Layout (1 BHK).png";
-import saiDwarikaLayout2BHK from "../assets/Sai Dwarika/Saidwarika Flat Layout (2 BHK).png";
-import saiDwarikaLayout3BHK from "../assets/Sai Dwarika/Saidwarika Flat Layout (3 BHK).png";
+import saiDwarikaLayout1BHK from "../assets/Sai Dwarika/Saidwarika Flat Layout (1 BHK).webp";
+import saiDwarikaLayout2BHK from "../assets/Sai Dwarika/Saidwarika Flat Layout (2 BHK).webp";
+import saiDwarikaLayout3BHK from "../assets/Sai Dwarika/Saidwarika Flat Layout (3 BHK).webp";
 
 const projectData = {
   "sai-nagari": {
@@ -622,7 +622,7 @@ const ProjectDetail = () => {
             Interested in {project.name}?
           </motion.h3>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/contact">
+            <Link to="/contact" onClick={() => window.scrollTo(0, 0)}>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -631,7 +631,7 @@ const ProjectDetail = () => {
                 Enquire Now
               </motion.button>
             </Link>
-            <Link to="/projects">
+            <Link to="/projects" onClick={() => window.scrollTo(0, 0)}>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
