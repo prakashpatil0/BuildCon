@@ -14,6 +14,7 @@ import Careers from "./screens/Careers";
 import Navbar from "./components/navbar";
 import Footer from "./components/Footer";
 import Ourstory from "./screens/ourstory";
+import Team from "./screens/Team";
 
 function App() {
   return (
@@ -41,7 +42,7 @@ function App() {
 
             {/* Extra pages for dropdown */}
             <Route path="/leadership" element={<div>Leadership Page</div>} />
-            <Route path="/team" element={<div>Team Page</div>} />
+            <Route path="/team" element={<Team />} />
           </Routes>
         </main>
 

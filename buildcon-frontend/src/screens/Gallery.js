@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import VishaPawar from "../assets/OurTeam/VishaPawarManagingDirector.jpg";
+import UmeshTapal from "../assets/OurTeam/UmeshTapalDirector.jpg";
+import ParagSalunkhe from "../assets/OurTeam/ParagSalunkhe-SalesExecutiveDirector.jpg";
 
 // Sample press/news data
 const pressNews = [
@@ -53,55 +56,31 @@ const pressNews = [
   },
 ];
 
-// Sample team members data
+// Team members data - in hierarchy order
 const teamMembers = [
   {
     id: 1,
-    name: "Rajesh Kumar",
-    role: "Chief Executive Officer",
+    name: "Visha Pawar",
+    role: "Managing Director",
     department: "Executive Leadership",
-    bio: "With over 25 years of experience in real estate development, Rajesh leads BuildCon's strategic vision and growth initiatives.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500",
+    bio: "Leading MaaPranaam Buildcon with strategic vision and extensive experience in real estate development. Driving innovation and excellence across all projects.",
+    image: VishaPawar,
   },
   {
     id: 2,
-    name: "Priya Sharma",
-    role: "Chief Operating Officer",
-    department: "Operations",
-    bio: "Priya brings expertise in project management and operations, ensuring seamless execution of all development projects.",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500",
+    name: "Umesh Tapal",
+    role: "Director",
+    department: "Executive Leadership",
+    bio: "Bringing years of expertise in construction and project management. Overseeing key strategic initiatives and ensuring operational excellence.",
+    image: UmeshTapal,
   },
   {
     id: 3,
-    name: "Amit Patel",
-    role: "Head of Design",
-    department: "Architecture & Design",
-    bio: "Amit is an award-winning architect with a passion for creating sustainable and innovative building designs.",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500",
-  },
-  {
-    id: 4,
-    name: "Sneha Reddy",
-    role: "Head of Sales & Marketing",
-    department: "Sales",
-    bio: "Sneha drives customer engagement and brand positioning, with a track record of successful project launches.",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=500",
-  },
-  {
-    id: 5,
-    name: "Vikram Singh",
-    role: "Head of Construction",
-    department: "Construction",
-    bio: "Vikram oversees all construction activities, ensuring quality, safety, and timely project delivery.",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500",
-  },
-  {
-    id: 6,
-    name: "Anjali Mehta",
-    role: "Head of Finance",
-    department: "Finance",
-    bio: "Anjali manages financial strategy and operations, ensuring sustainable growth and financial stability.",
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500",
+    name: "Parag Salunkhe",
+    role: "Sales Executive Director",
+    department: "Sales & Marketing",
+    bio: "Driving sales growth and customer relationships with a proven track record in real estate sales. Leading the sales team to achieve exceptional results.",
+    image: ParagSalunkhe,
   },
 ];
 
@@ -289,7 +268,7 @@ const Gallery = () => {
                         alt={member.name}
                         whileHover={{ scale: 1.1 }}
                         transition={{ duration: 0.4 }}
-                        className="w-full h-[320px] object-cover"
+                        className="w-full h-[300px] object-cover"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
                       

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import Logo from "../assets/mainlogo.jpeg";
+import Logo from "../assets/logo10.png";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
