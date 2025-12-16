@@ -4,8 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 // ===== HERO SLIDER IMAGES =====
 import saiDwarikaHero from "../assets/Sai Dwarika/Saidwarika Photo 1.webp";
 import saiNagari2 from "../assets/Sai Nagari/Sai Nagari 2.webp";
-import saiNagari3 from "../assets/Sai Nagari/Sai Nagari 3.webp";
-import saiNagari4 from "../assets/Sai Nagari/Sai Nagari 4.webp";
+// import saiNagari3 from "../assets/Sai Nagari/Sai Nagari 3.webp";
+// import saiNagari4 from "../assets/Sai Nagari/Sai Nagari 4.webp";
 import vrindavanRegency3 from "../assets/Vrindavan/Vrindavan Regency 3.webp";
 
 // ===== SECTION 2 IMAGES =====
@@ -112,8 +112,8 @@ const tabs = ["Residential", "Office Parks", "Hospitality"];
 // SECTION 2 images
 const sectionImages = [
   saiDwarikaSection2,
-  saiNagari2Section2,
-  saiNagari3Section2,
+  // saiNagari2Section2,
+  // saiNagari3Section2,
   vrindavanRegency1,
   vrindavanRegency3Section2,
 ];
@@ -164,8 +164,8 @@ const scaleIn = {
 const slides = [
   {
     image: saiDwarikaHero,
-    title: "Sai Dwarika Pune",
-    subtitle: "YOO branded residences - Design-forward living curated with Philippe Starck",
+    title: "Sai Dwarika",
+    subtitle: "Ready-to-move 1 & 2 BHK residences in the heart of South Pune",
     button: "View Project",
     link: "/projects/sai-dwarika",
   },
@@ -176,24 +176,24 @@ const slides = [
     button: "Explore Project",
     link: "/projects/sai-nagari",
   },
-  {
-    image: saiNagari3,
-    title: "Sai Nagari",
-    subtitle: "Transforming urban living with office, retail, and premium residences",
-    button: "View Details",
-    link: "/projects/sai-nagari",
-  },
-  {
-    image: saiNagari4,
-    title: "Sai Nagari",
-    subtitle: "A landmark development redefining mixed-use communities",
-    button: "Learn More",
-    link: "/projects/sai-nagari",
-  },
+  // {
+  //   image: saiNagari3,
+  //   title: "Sai Nagari",
+  //   subtitle: "Transforming urban living with office, retail, and premium residences",
+  //   button: "View Details",
+  //   link: "/projects/sai-nagari",
+  // },
+  // {
+  //   image: saiNagari4,
+  //   title: "Sai Nagari",
+  //   subtitle: "A landmark development redefining mixed-use communities",
+  //   button: "Learn More",
+  //   link: "/projects/sai-nagari",
+  // },
   {
     image: vrindavanRegency3,
     title: "Vrindavan Regency",
-    subtitle: "Affordable and high-quality 3 & 4 BHK residences in vibrant Pune",
+    subtitle: "A thoughtfully developed residential address for modern Pune living",
     button: "Discover More",
     link: "/projects/vrindavan-regency",
   },
