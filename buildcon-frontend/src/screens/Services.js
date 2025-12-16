@@ -248,22 +248,30 @@ const Services = () => {
                     transition={{ delay: 0.2 }}
                     className="mt-4 flex items-center text-[#f9d891] group-hover:text-[#f9d891]"
                   >
-                    <span className="text-sm font-medium">Learn More</span>
-                    <motion.svg
-                      className="w-5 h-5 ml-2"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      animate={{ x: [0, 5, 0] }}
-                      transition={{ duration: 1.5, repeat: Infinity }}
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </motion.svg>
+                   <button
+  type="button"
+  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+  className="inline-flex items-center text-sm font-medium cursor-pointer"
+>
+  <span>Learn More</span>
+
+  <motion.svg
+    className="w-5 h-5 ml-2"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+    animate={{ x: [0, 5, 0] }}
+    transition={{ duration: 1.5, repeat: Infinity }}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M9 5l7 7-7 7"
+    />
+  </motion.svg>
+</button>
+
                   </motion.div>
                 </div>
               </div>

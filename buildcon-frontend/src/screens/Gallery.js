@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import VishaPawar from "../assets/OurTeam/VishaPawarManagingDirector.jpg";
 import UmeshTapal from "../assets/OurTeam/UmeshTapalDirector.jpg";
@@ -108,6 +109,8 @@ const Gallery = () => {
   const [selectedNews, setSelectedNews] = useState(null);
   const [selectedMember, setSelectedMember] = useState(null);
 
+  const navigate = useNavigate();
+
   return (
     <div className="w-full bg-black min-h-screen">
       {/* ================= HERO SECTION ================= */}
@@ -148,165 +151,96 @@ const Gallery = () => {
       </section>
 
       {/* ================= TABS SECTION ================= */}
-      <section className="max-w-7xl mx-auto px-6 py-12">
-        <div className="flex justify-center gap-8 mb-12">
-          {[
-            { id: "media", label: "Media & Press" },
-            { id: "team", label: "Our Team" },
-          ].map((tab) => (
-            <motion.button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              className={`px-8 py-3 text-lg font-medium rounded-lg transition-all duration-300 ${
-                activeTab === tab.id
-                  ? "bg-gradient-to-r from-[#d1a74f] to-[#b8924b] text-white"
-                  : "bg-[#1a1a1a] text-[#d1a75e] hover:bg-[#2a2a2a] border border-[#d1a75e]/30"
-              }`}
+      <section className="bg-black py-24 px-6">
+        <div className="max-w-6xl mx-auto text-center">
+
+          <motion.h1
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.4 }}
+            className="text-3xl md:text-4xl font-semibold mb-3"
+          >
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f9d891] to-[#d1a74f]">
+              WHO WE ARE
+            </span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6 }}
+            className="text-[#f0d3a3] text-2xl sm:text-3xl max-w-2xl mx-auto mb-9 text-center"
+          >
+            Guided by visionary leadership
+          </motion.p>
+
+
+          <div className="grid md:grid-cols-2 gap-12">
+            
+
+           {/* Card 1 */}
+<motion.div
+  initial={{ opacity: 0, y: 30 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.9 }}
+  className="bg-[#111111] shadow-[0_18px_45px_rgba(0,0,0,0.8)] p-14 border border-white/10 rounded-xl text-center hover:border-[#e3c472] hover:shadow-[0_24px_60px_rgba(0,0,0,0.9)] transition"
+>
+  <h3 className="text-2xl  text-[#f8e9bf] mb-3">Board of Directors</h3>
+
+  <p className="text-gray-300 leading-relaxed mb-8">
+    Experienced industry leaders ensuring we grow our positive impact.
+  </p>
+
+  <button
+    onClick={() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      navigate("/boardofdirectors");
+    }}
+    className="
+      px-10 py-2
+      text-[#fefaf0]
+      border border-[#e3c472]
+      rounded-md
+      hover:bg-[#e3c472] hover:text-black
+      transition-all duration-300
+    "
+  >
+    View
+  </button>
+</motion.div>
+
+
+            {/* Card 2 */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9 }}
+              className="bg-[#111111] shadow-[0_18px_45px_rgba(0,0,0,0.8)] p-14 border border-white/10 rounded-xl text-center hover:border-[#e3c472] hover:shadow-[0_24px_60px_rgba(0,0,0,0.9)] transition"
             >
-              {tab.label}
-            </motion.button>
-          ))}
+              <h3 className="text-2xl  text-[#f8e9bf] mb-3">
+                Leadership Team
+              </h3>
+              <p className="text-gray-300 leading-relaxed mb-8">
+                A motivated and passionate team with a commitment to excellence.
+              </p>
+
+              <button
+                className="
+                       px-10 py-2 
+                       text-[#fefaf0] 
+                       border border-[#e3c472] 
+                       rounded-md 
+                       hover:bg-[#e3c472] hover:text-black 
+                       transition-all duration-300
+                     "
+              >
+                View
+              </button>
+            </motion.div>
+
+          </div>
+
         </div>
-
-        {/* ================= MEDIA SECTION ================= */}
-        <AnimatePresence mode="wait">
-          {activeTab === "media" && (
-            <motion.div
-              key="media"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-center text-3xl font-semibold mb-12 text-[#f7d69a]"
-              >
-                Press & Media Coverage
-              </motion.h2>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {pressNews.map((news, index) => (
-                  <motion.div
-                    key={news.id}
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1, duration: 0.6 }}
-                    whileHover={{ scale: 1.02, y: -5 }}
-                    onClick={() => setSelectedNews(news)}
-                    className="relative group cursor-pointer"
-                  >
-                    <div className="relative overflow-hidden rounded-lg shadow-xl shadow-[#d1a75e]/20">
-                      <motion.img
-                        src={news.image}
-                        alt={news.title}
-                        whileHover={{ scale: 1.1 }}
-                        transition={{ duration: 0.4 }}
-                        className="w-full h-[250px] object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
-                      
-                      <div className="absolute bottom-0 left-0 right-0 p-6">
-                        <motion.p
-                          initial={{ opacity: 0, y: 10 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true }}
-                          className="text-xs text-[#d1a75e] mb-2"
-                        >
-                          {news.source} • {news.date}
-                        </motion.p>
-                        <motion.h3
-                          initial={{ opacity: 0, y: 10 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true }}
-                          className="text-lg font-semibold text-[#f7d69a] line-clamp-2"
-                        >
-                          {news.title}
-                        </motion.h3>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          )}
-
-          {/* ================= TEAM SECTION ================= */}
-          {activeTab === "team" && (
-            <motion.div
-              key="team"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-center text-3xl font-semibold mb-12 text-[#f7d69a]"
-              >
-                Meet Our Team
-              </motion.h2>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {teamMembers.map((member, index) => (
-                  <motion.div
-                    key={member.id}
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1, duration: 0.6 }}
-                    whileHover={{ scale: 1.02, y: -5 }}
-                    onClick={() => setSelectedMember(member)}
-                    className="relative group cursor-pointer"
-                  >
-                    <div className="relative overflow-hidden rounded-lg shadow-xl shadow-[#d1a75e]/20 bg-[#1a1a1a] border border-[#d1a75e]/20">
-                      <motion.img
-                        src={member.image}
-                        alt={member.name}
-                        whileHover={{ scale: 1.1 }}
-                        transition={{ duration: 0.4 }}
-                        className="w-full h-[300px] object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
-                      
-                      <div className="absolute bottom-0 left-0 right-0 p-6">
-                        <motion.h3
-                          initial={{ opacity: 0, y: 10 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true }}
-                          className="text-xl font-semibold text-[#f7d69a] mb-1"
-                        >
-                          {member.name}
-                        </motion.h3>
-                        <motion.p
-                          initial={{ opacity: 0, y: 10 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: 0.1 }}
-                          className="text-sm text-[#d1a74f] font-medium mb-1"
-                        >
-                          {member.role}
-                        </motion.p>
-                        <motion.p
-                          initial={{ opacity: 0, y: 10 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: 0.2 }}
-                          className="text-xs text-[#d1a75e]"
-                        >
-                          {member.department}
-                        </motion.p>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </section>
 
       {/* ================= NEWS DETAIL MODAL ================= */}

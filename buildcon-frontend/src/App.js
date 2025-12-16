@@ -15,6 +15,7 @@ import Navbar from "./components/navbar";
 import Footer from "./components/Footer";
 import Ourstory from "./screens/ourstory";
 import Team from "./screens/Team";
+import BoardOfDirectors from "./screens/BoardOfDirectors";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
             <Route path="/services/:serviceId" element={<ServiceDetail />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/careers" element={<Careers />} />
+            <Route path="/boardofdirectors" element={<BoardOfDirectors />} />
 
             {/* Extra pages for dropdown */}
             <Route path="/leadership" element={<div>Leadership Page</div>} />

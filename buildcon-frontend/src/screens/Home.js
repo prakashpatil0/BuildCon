@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 // ===== HERO SLIDER IMAGES =====
 import saiDwarikaHero from "../assets/Sai Dwarika/Saidwarika Photo 1.webp";
@@ -55,8 +55,7 @@ const projectData = {
     {
       title: "Shree Shrushti",
       location: "Kondhwa Budruk, Yewalewadi, Pune",
-      image:
-        "https://images.unsplash.com/photo-1501183638710-841dd1904471?w=1000",
+      image: "https://images.unsplash.com/photo-1501183638710-841dd1904471?w=1000",
     },
     {
       title: "Sai Dwarika",
@@ -67,20 +66,17 @@ const projectData = {
     {
       title: "Sadguru Krupa",
       location: "Katraj, Pune",
-      image:
-        "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?w=1000",
+      image: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?w=1000",
     },
     {
       title: "Vrindavan Regency",
       location: "Katraj - Kondhwa Road, Yewalewadi, Pune",
-      image:
-        "https://images.unsplash.com/photo-1501183638710-841dd1904471?w=1000",
+      image: "https://images.unsplash.com/photo-1501183638710-841dd1904471?w=1000",
     },
     {
       title: "Sai Shraddha",
       location: "Kondhwa Budruk, Yewalewadi, Pune",
-      image:
-        "https://images.unsplash.com/photo-1501183638710-841dd1904471?w=1000",
+      image: "https://images.unsplash.com/photo-1501183638710-841dd1904471?w=1000",
     },
   ],
 
@@ -88,20 +84,17 @@ const projectData = {
     {
       title: "Panchshil Business Park",
       location: "Viman Nagar, Pune",
-      image:
-        "https://images.unsplash.com/photo-1526402469434-c1c28a6f1574?w=1000",
+      image: "https://images.unsplash.com/photo-1526402469434-c1c28a6f1574?w=1000",
     },
     {
       title: "Tech Park One",
       location: "Yerwada, Pune",
-      image:
-        "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1000",
+      image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1000",
     },
     {
       title: "World Trade Center",
       location: "Kharadi, Pune",
-      image:
-        "https://images.unsplash.com/photo-1479839684238-9280d0663c58?w=1000",
+      image: "https://images.unsplash.com/photo-1479839684238-9280d0663c58?w=1000",
     },
   ],
 
@@ -109,8 +102,7 @@ const projectData = {
     {
       title: "Maa Pranaam Mother & Child Care",
       location: "Chimbali Road, Alandi, Pune",
-      image:
-        "https://images.unsplash.com/photo-1501117716987-c8e1ecb2101b?w=1000",
+      image: "https://images.unsplash.com/photo-1501117716987-c8e1ecb2101b?w=1000",
     },
   ],
 };
@@ -283,14 +275,14 @@ const Home = () => {
   // HERO AUTO SLIDER
   useEffect(() => {
     if (slides.length === 0) return;
-    
+
     const interval = setInterval(() => {
       setCurrent((prev) => {
         const next = (prev + 1) % slides.length;
         return next;
       });
     }, 4000);
-    
+
     return () => clearInterval(interval);
   }, []);
 
@@ -300,8 +292,7 @@ const Home = () => {
     if (!el) return;
 
     const observer = new IntersectionObserver(
-      (entries) =>
-        entries.forEach((e) => setImagesAnimated(e.isIntersecting)),
+      (entries) => entries.forEach((e) => setImagesAnimated(e.isIntersecting)),
       { threshold: 0.3 }
     );
     observer.observe(el);
@@ -315,9 +306,12 @@ const Home = () => {
     return () => clearTimeout(t);
   }, [activeTabAccordion]);
 
+  const handleAccordionClick = (id) => {
+    setActiveTabAccordion((prev) => (prev === id ? null : id));
+  };
+
   return (
     <div className="w-full bg-black">
-
       {/* ================= HERO SECTION ================= */}
       <section className="relative w-full h-screen overflow-hidden">
         {slides.map((slide, index) => (
@@ -498,7 +492,7 @@ const Home = () => {
             className="border-b border-[#d1a75e]/30"
           >
             <motion.div
-              onClick={() => setActiveTabAccordion(s.id)}
+              onClick={() => handleAccordionClick(s.id)}
               whileHover={{ x: 10 }}
               className="flex justify-between py-6 cursor-pointer text-xl text-[#f0d3a3]"
             >
@@ -513,75 +507,80 @@ const Home = () => {
               </motion.span>
             </motion.div>
 
-            {activeTabAccordion === s.id && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.5 }}
-                className="relative w-full h-[650px] flex items-center justify-center text-white overflow-hidden"
-                style={{
-                  backgroundImage: `url(${s.image})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}
-              >
-                <div className="absolute inset-0 bg-black/60"></div>
-
+            <AnimatePresence>
+              {activeTabAccordion === s.id && (
                 <motion.div
-                  initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  className="relative max-w-3xl text-center"
+                  key={`panel-${s.id}`}
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="relative w-full h-[650px] flex items-center justify-center text-white overflow-hidden"
+                  style={{
+                    backgroundImage: `url(${s.image})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
                 >
-                  <motion.h2
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4 }}
-                    className="text-5xl font-semibold mb-6 text-[#f7d69a]"
-                  >
-                    {s.heading}
-                  </motion.h2>
-                  <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5 }}
-                    className="text-lg mb-8 text-[#f0d3a3]"
-                  >
-                    {s.text}
-                  </motion.p>
+                  <div className="absolute inset-0 bg-black/60"></div>
 
                   <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.6 }}
-                    className="flex justify-center gap-12 mb-10 text-lg text-[#d1a75e]"
+                    initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 20, scale: 0.98 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    className="relative max-w-3xl text-center"
                   >
-                    {s.stats.map((t, i) => (
-                      <motion.p
-                        key={i}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.7 + i * 0.1 }}
-                      >
-                        • {t}
-                      </motion.p>
-                    ))}
-                  </motion.div>
+                    <motion.h2
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.4 }}
+                      className="text-5xl font-semibold mb-6 text-[#f7d69a]"
+                    >
+                      {s.heading}
+                    </motion.h2>
+                    <motion.p
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.5 }}
+                      className="text-lg mb-8 text-[#f0d3a3]"
+                    >
+                      {s.text}
+                    </motion.p>
 
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.8 }}
-                    className="px-8 py-3 bg-gradient-to-r from-[#d1a74f] to-[#b8924b] text-white rounded font-semibold"
-                  >
-                    Learn More
-                  </motion.button>
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.6 }}
+                      className="flex justify-center gap-12 mb-10 text-lg text-[#d1a75e]"
+                    >
+                      {s.stats.map((t, i) => (
+                        <motion.p
+                          key={i}
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.7 + i * 0.1 }}
+                        >
+                          • {t}
+                        </motion.p>
+                      ))}
+                    </motion.div>
+
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.8 }}
+                      className="px-8 py-3 bg-gradient-to-r from-[#d1a74f] to-[#b8924b] text-white rounded font-semibold"
+                      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                    >
+                      Learn More
+                    </motion.button>
+                  </motion.div>
                 </motion.div>
-              </motion.div>
-            )}
+              )}
+            </AnimatePresence>
           </motion.div>
         ))}
       </div>
@@ -640,84 +639,84 @@ const Home = () => {
           {projectData[activeProjectTab].map((p, i) => {
             const projectKey = `${activeProjectTab}-${i}`;
             const hasVideo = p.video;
-            
+
             return (
               <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.2, duration: 0.6 }}
-              className="relative group rounded overflow-hidden"
-              onMouseEnter={() => {
-                if (hasVideo) {
-                  setHoveredProject(projectKey);
-                  const video = videoRefs.current[projectKey];
-                  if (video) {
-                    video.play().catch(console.error);
+                key={i}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.2, duration: 0.6 }}
+                className="relative group rounded overflow-hidden"
+                onMouseEnter={() => {
+                  if (hasVideo) {
+                    setHoveredProject(projectKey);
+                    const video = videoRefs.current[projectKey];
+                    if (video) {
+                      video.play().catch(console.error);
+                    }
                   }
-                }
-              }}
-              onMouseLeave={() => {
-                if (hasVideo) {
-                  setHoveredProject(null);
-                  const video = videoRefs.current[projectKey];
-                  if (video) {
-                    video.pause();
-                    video.currentTime = 0;
+                }}
+                onMouseLeave={() => {
+                  if (hasVideo) {
+                    setHoveredProject(null);
+                    const video = videoRefs.current[projectKey];
+                    if (video) {
+                      video.pause();
+                      video.currentTime = 0;
+                    }
                   }
-                }
-              }}
-            >
-              <div className="relative w-full h-[420px] overflow-hidden">
-                {hasVideo ? (
-                  <>
+                }}
+              >
+                <div className="relative w-full h-[420px] overflow-hidden">
+                  {hasVideo ? (
+                    <>
+                      <motion.img
+                        src={p.image}
+                        animate={{ opacity: hoveredProject === projectKey ? 0 : 1 }}
+                        transition={{ duration: 0.3 }}
+                        className="absolute inset-0 w-full h-full object-cover"
+                      />
+                      <motion.video
+                        ref={(el) => (videoRefs.current[projectKey] = el)}
+                        src={p.video}
+                        loop
+                        muted
+                        playsInline
+                        animate={{ opacity: hoveredProject === projectKey ? 1 : 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="absolute inset-0 w-full h-full object-cover"
+                      />
+                    </>
+                  ) : (
                     <motion.img
                       src={p.image}
-                      animate={{ opacity: hoveredProject === projectKey ? 0 : 1 }}
-                      transition={{ duration: 0.3 }}
-                      className="absolute inset-0 w-full h-full object-cover"
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ duration: 0.4 }}
+                      className="w-full h-full object-cover"
                     />
-                    <motion.video
-                      ref={(el) => (videoRefs.current[projectKey] = el)}
-                      src={p.video}
-                      loop
-                      muted
-                      playsInline
-                      animate={{ opacity: hoveredProject === projectKey ? 1 : 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="absolute inset-0 w-full h-full object-cover"
-                    />
-                  </>
-                ) : (
-                  <motion.img
-                    src={p.image}
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.4 }}
-                    className="w-full h-full object-cover"
-                  />
-                )}
-              </div>
-              <div className="absolute bottom-0 p-5 w-full bg-gradient-to-t from-black/90 to-transparent">
-                <motion.h3
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  className="text-xl font-semibold text-[#f7d69a]"
-                >
-                  {p.title}
-                </motion.h3>
-                <motion.p
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.1 }}
-                  className="text-sm text-[#d1a75e] mt-1"
-                >
-                  {p.location}
-                </motion.p>
-              </div>
-            </motion.div>
+                  )}
+                </div>
+                <div className="absolute bottom-0 p-5 w-full bg-gradient-to-t from-black/90 to-transparent">
+                  <motion.h3
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="text-xl font-semibold text-[#f7d69a]"
+                  >
+                    {p.title}
+                  </motion.h3>
+                  <motion.p
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.1 }}
+                    className="text-sm text-[#d1a75e] mt-1"
+                  >
+                    {p.location}
+                  </motion.p>
+                </div>
+              </motion.div>
             );
           })}
         </motion.div>
@@ -725,7 +724,6 @@ const Home = () => {
 
       {/* ================= SECTION 5 — SERVICES (PREMIUM AUTO SLIDER) ================= */}
       <div className="w-full bg-black py-20 relative">
-
         <motion.h4
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
