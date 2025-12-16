@@ -205,7 +205,7 @@ Our goal is to build spaces that inspire better living — today, tomorrow, and 
                 className="flex flex-col md:flex-row items-center md:items-start gap-3 mb-16"
               >
                 <h3 className="text-4xl md:text-5xl font-serif text-[#e0c474]">
-                  65,000+
+                  2,000+
                 </h3>
                 <p className="text-sm text-[#d6b86a] leading-tight">
                   Homes<br />delivered^
@@ -246,7 +246,7 @@ Our goal is to build spaces that inspire better living — today, tomorrow, and 
                 className="flex flex-col md:flex-row items-center md:items-start gap-3 mb-16"
               >
                 <h3 className="text-4xl md:text-5xl font-serif text-[#e0c474]">
-                  44
+                  18
                 </h3>
                 <p className="text-sm leading-tight text-gray-200">
                   Year legacy of<br />shaping real estate
@@ -261,7 +261,7 @@ Our goal is to build spaces that inspire better living — today, tomorrow, and 
                 className="flex flex-col md:flex-row items-center md:items-start gap-3 mb-16"
               >
                 <h3 className="text-4xl md:text-5xl font-serif text-[#e0c474]">
-                  40
+                  15+
                 </h3>
                 <p className="text-sm leading-tight text-gray-200">
                   operating<br />projects*
@@ -276,10 +276,10 @@ Our goal is to build spaces that inspire better living — today, tomorrow, and 
                 className="flex flex-col md:flex-row items-center md:items-start gap-3"
               >
                 <h3 className="text-4xl md:text-5xl font-serif text-[#e0c474]">
-                  100
+                  2.50 lakh+
                 </h3>
                 <p className="text-sm leading-tight text-gray-200">
-                  mn. Sq. ft. area<br />delivered
+                  sq. ft. area<br />delivered
                 </p>
               </motion.div>
 

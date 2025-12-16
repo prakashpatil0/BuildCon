@@ -2,6 +2,12 @@ import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
+// Import service images from assets
+import BuildingRemodulingImg from "../assets/Building-Remoduling.png";
+import InteriorDesignImg from "../assets/Interior-Design.png";
+import ExteriorDesignImg from "../assets/Exterior-Design.png";
+import SafetyManagementImg from "../assets/Safety-Management.png";
+import RenovationImg from "../assets/Renovations.png";
 // Service data (same as in Services.js) - Based on Maa Pranaam website
 const servicesData = {
   "home-construction": {
@@ -19,7 +25,23 @@ const servicesData = {
       "Post-construction support",
     ],
     image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1000",
-  },  
+  },
+  "building-remodels": {
+    id: 2,
+    title: "Building Remodels",
+    shortDesc: "Helping in Building Remodels very easily",
+    description: "Transform your existing building with our professional remodeling services. We help you renovate and upgrade your property to meet modern standards and your specific requirements. Our team handles everything from design conceptualization to execution, making the remodeling process smooth and hassle-free. Whether it's structural changes, layout modifications, or aesthetic upgrades, we ensure quality workmanship and minimal disruption to your daily life.",
+    features: [
+      "Complete building remodeling solutions",
+      "Structural modifications and upgrades",
+      "Layout redesign and optimization",
+      "Modern amenities integration",
+      "Minimal disruption during work",
+      "Quality materials and finishes",
+      "Professional project management",
+    ],
+    image: BuildingRemodulingImg,
+  },
   "interior-design": {
     id: 3,
     title: "Interior Design",
@@ -34,7 +56,7 @@ const servicesData = {
       "3D visualization and design concepts",
       "End-to-end design execution",
     ],
-    image: "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=1000",
+    image: InteriorDesignImg,
   },
   "exterior-design": {
     id: 4,
@@ -50,7 +72,7 @@ const servicesData = {
       "Curb appeal enhancement",
       "Professional design execution",
     ],
-    image: "https://images.unsplash.com/photo-1523217582562-09a368dd313d?w=1000",
+    image: ExteriorDesignImg,
   },
   "renovation": {
     id: 5,
@@ -66,7 +88,7 @@ const servicesData = {
       "Budget-friendly solutions",
       "Minimal disruption to daily life",
     ],
-    image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1000",
+    image: RenovationImg,
   },
   "safety-management": {
     id: 6,
@@ -82,7 +104,7 @@ const servicesData = {
       "Worker safety awareness",
       "Emergency response procedures",
     ],
-    image: "https://images.unsplash.com/photo-1581091012184-5c1d34b37dac?w=1000",
+    image: SafetyManagementImg,
   },
 };
 

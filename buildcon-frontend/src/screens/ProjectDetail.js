@@ -17,7 +17,7 @@ import layout2BHK from "../assets/Sai Nagari/Flat Layout Of Sai Nagari (2 BHK).w
 
 // Import Shree Shrushti images
 import shreeShrushtiImage from "../assets/Sai Shrushti/shree shrushti image.webp";
-import shreeShrushtiSummary from "../assets/Sai Shrushti/Summary of Shree Shrushti.png";
+// import shreeShrushtiSummary from "../assets/Sai Shrushti/Summary of Shree Shrushti.png";
 import shreeShrushtiLayout1BHK from "../assets/Sai Shrushti/Flat Layout of Shree Shrushti (1 BHK).webp";
 import shreeShrushtiLayout2BHK from "../assets/Sai Shrushti/Flat Layout Of Shree Shrushti (2 BHK).webp";
 
@@ -25,17 +25,24 @@ import shreeShrushtiLayout2BHK from "../assets/Sai Shrushti/Flat Layout Of Shree
 import vrindavanRegency1 from "../assets/Vrindavan/Vrindavan Regency 1.webp";
 import vrindavanRegency2 from "../assets/Vrindavan/Vrindavan Regency 2.webp";
 import vrindavanRegency3 from "../assets/Vrindavan/Vrindavan Regency 3.webp";
-import vrindavanRegencySummary from "../assets/Vrindavan/Summery of Vrindavan Regency.png";
+// import vrindavanRegencySummary from "../assets/Vrindavan/Summery of Vrindavan Regency.png";
 import vrindavanLayout1_2BHK from "../assets/Vrindavan/Vrindavan Regency Layout ( 1 & 2 BHK).webp";
 import vrindavanLayout3BHK from "../assets/Vrindavan/Vrindavan Regency Layout (3  BHK).webp";
 
 // Import Sai Dwarika images
 import saiDwarikaPhoto1 from "../assets/Sai Dwarika/Saidwarika Photo 1.webp";
 import saiDwarikaPhoto2 from "../assets/Sai Dwarika/Saidwarika Photo 2.webp";
-import saiDwarikaSummary from "../assets/Sai Dwarika/Summery of Saidwarika.png";
+// import saiDwarikaSummary from "../assets/Sai Dwarika/Summery of Saidwarika.png";
 import saiDwarikaLayout1BHK from "../assets/Sai Dwarika/Saidwarika Flat Layout (1 BHK).webp";
 import saiDwarikaLayout2BHK from "../assets/Sai Dwarika/Saidwarika Flat Layout (2 BHK).webp";
 import saiDwarikaLayout3BHK from "../assets/Sai Dwarika/Saidwarika Flat Layout (3 BHK).webp";
+
+// Import Maa Pranaam Hospital images
+import maaPranaamHospitalImage from "../assets/Maa Pranaam Hospital/Mauli Regency Hospital Image.webp";
+import maaPranaamHospitalImages from "../assets/Maa Pranaam Hospital/Mauli Regency Hospital Images.webp";
+import maaPranaamHospitalLayout from "../assets/Maa Pranaam Hospital/Mauli Regency Hospital Layout.webp";
+import maaPranaamHospitalLayout2 from "../assets/Maa Pranaam Hospital/Mauli Regency Hospital Layout (2).webp";
+import maaPranaamHospitalLayout4 from "../assets/Maa Pranaam Hospital/Mauli Regency Hospital Layout (4).webp";
 
 const projectData = {
   "sai-nagari": {
@@ -112,7 +119,7 @@ const projectData = {
     heroImage: shreeShrushtiImage,
     galleryImages: [
       { src: shreeShrushtiImage, title: "Project View" },
-      { src: shreeShrushtiSummary, title: "Project Summary" },
+      // { src: shreeShrushtiSummary, title: "Project Summary" },
     ],
     layouts: [
       { src: shreeShrushtiLayout1BHK, title: "1 BHK Layout", type: "1 BHK (400-550 sq ft)" },
@@ -158,7 +165,7 @@ const projectData = {
       { src: vrindavanRegency1, title: "Main Building" },
       { src: vrindavanRegency2, title: "Exterior View" },
       { src: vrindavanRegency3, title: "Project View" },
-      { src: vrindavanRegencySummary, title: "Project Summary" },
+      // { src: vrindavanRegencySummary, title: "Project Summary" },
     ],
     layouts: [
       { src: vrindavanLayout1_2BHK, title: "1 & 2 BHK Layout", type: "1 BHK & 2 BHK" },
@@ -206,7 +213,7 @@ const projectData = {
     galleryImages: [
       { src: saiDwarikaPhoto1, title: "Main Building" },
       { src: saiDwarikaPhoto2, title: "Exterior View" },
-      { src: saiDwarikaSummary, title: "Project Summary" },
+      // { src: saiDwarikaSummary, title: "Project Summary" },
     ],
     layouts: [
       { src: saiDwarikaLayout1BHK, title: "1 BHK Layout", type: "1 BHK (600-670 sq ft)" },
@@ -220,6 +227,51 @@ const projectData = {
       "3 BHK": "Available",
     },
     priceRange: "₹20 L – ₹40 L+",
+  },
+  "maa-pranaam-hospitality": {
+    name: "Maa Pranaam Hospitality",
+    location: "Pune",
+    mix: "Hospitality & Healthcare",
+    details: "Premium hospitality and healthcare facility with world-class amenities and services. Mauli Regency Hospital represents excellence in healthcare infrastructure combined with hospitality services.",
+    status: "Ongoing",
+    description: "Maa Pranaam Hospitality presents Mauli Regency Hospital, a state-of-the-art healthcare and hospitality facility in Pune. This project combines advanced medical infrastructure with premium hospitality services, creating a unique healthcare experience. The facility is designed to provide comprehensive medical care while ensuring patient comfort and convenience through integrated hospitality services. With modern architecture, cutting-edge medical technology, and world-class amenities, Mauli Regency Hospital sets a new standard in healthcare delivery.",
+    features: [
+      "Advanced healthcare infrastructure with modern medical facilities",
+      "Integrated hospitality services for patient comfort",
+      "State-of-the-art medical technology and equipment",
+      "Premium patient care and accommodation facilities",
+      "Comprehensive healthcare services under one roof",
+      "Modern architecture designed for healthcare excellence",
+      "Well-equipped medical departments and specialized units",
+      "24/7 emergency and critical care services",
+    ],
+    amenities: [
+      "Advanced Medical Equipment",
+      "Premium Patient Rooms",
+      "Emergency Services",
+      "Specialized Medical Departments",
+      "Diagnostic Facilities",
+      "Pharmacy Services",
+      "Cafeteria & Dining",
+      "Parking Facilities",
+      "Reception & Concierge",
+      "Waiting Areas",
+      "Medical Consultation Rooms",
+      "Surgical Facilities",
+    ],
+    heroImage: maaPranaamHospitalImage,
+    galleryImages: [
+      { src: maaPranaamHospitalImage, title: "Main Building" },
+      { src: maaPranaamHospitalImages, title: "Hospital View" },  
+    ],
+    layouts: [
+      { src: maaPranaamHospitalLayout, title: "Hospital Layout", type: "Main Layout" },
+      { src: maaPranaamHospitalLayout2, title: "Hospital Layout 2", type: "Layout Plan 2" },
+      { src: maaPranaamHospitalLayout4, title: "Hospital Layout 4", type: "Layout Plan 4" },
+    ],
+    projectArea: "Hospital Facility",
+    totalUnits: "Multi-specialty Hospital",
+    developer: "Maa Pranaam Buildcon",
   },
 };
 

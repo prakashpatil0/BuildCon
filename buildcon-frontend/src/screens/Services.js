@@ -2,6 +2,12 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
+// Import service images from assets
+import BuildingRemodulingImg from "../assets/Building-Remoduling.png";
+import InteriorDesignImg from "../assets/Interior-Design.png";
+import ExteriorDesignImg from "../assets/Exterior-Design.png";
+import SafetyManagementImg from "../assets/Safety-Management.png";
+import RenovationImg from "../assets/Renovations.png";
 // Service data based on Maa Pranaam website (http://maapranaam.co.in/services.html#)
 const services = [
   {
@@ -34,7 +40,7 @@ const services = [
       "Quality materials and finishes",
       "Professional project management",
     ],
-    image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1000",
+    image: BuildingRemodulingImg,
   },
   {
     id: 3,
@@ -50,7 +56,7 @@ const services = [
       "3D visualization and design concepts",
       "End-to-end design execution",
     ],
-    image: "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=1000",
+    image: InteriorDesignImg,
   },
   {
     id: 4,
@@ -66,7 +72,7 @@ const services = [
       "Curb appeal enhancement",
       "Professional design execution",
     ],
-    image: "https://images.unsplash.com/photo-1523217582562-09a368dd313d?w=1000",
+    image: ExteriorDesignImg,
   },
   {
     id: 5,
@@ -82,7 +88,7 @@ const services = [
       "Budget-friendly solutions",
       "Minimal disruption to daily life",
     ],
-    image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1000",
+    image: RenovationImg,
   },
   {
     id: 6,
@@ -98,7 +104,7 @@ const services = [
       "Worker safety awareness",
       "Emergency response procedures",
     ],
-    image: "https://images.unsplash.com/photo-1581091012184-5c1d34b37dac?w=1000",
+    image: SafetyManagementImg,
   },
 ];
 

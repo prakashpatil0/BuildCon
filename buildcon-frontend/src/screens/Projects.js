@@ -19,6 +19,7 @@ import saiDwarikaPhoto1 from "../assets/Sai Dwarika/Saidwarika Photo 1.webp";
 import sadguruKrupaImage from "../assets/Shree Sadguru/Shree Sadguru Krupa.webp";
 import vrindavanRegency1 from "../assets/Vrindavan/Vrindavan Regency 1.webp";
 import saiNagari1 from "../assets/Sai Nagari/Sai Nagari 1.webp";
+import maaPranaamHospitalImage from "../assets/Maa Pranaam Hospital/Mauli Regency Hospital Image.webp";
 const projectData = {
   completed: [
     {
@@ -64,6 +65,13 @@ const projectData = {
       mix: "6.75+ Million Sq. Ft. mixed-use",
       details: "Transit-oriented district with office, retail, and residences.",
       image: saiNagari1,
+    },
+    {
+      name: "Maa Pranaam Hospitality",
+      location: "Pune",
+      mix: "Hospitality & Healthcare",
+      details: "Premium hospitality and healthcare facility with world-class amenities and services.",
+      image: maaPranaamHospitalImage,
     },
     {
       name: "Privillege Hills", 
@@ -217,6 +225,8 @@ function Projects() {
     navigate("/projects/vrindavan-regency");
   } else if (projectName === "Sai Dwarika") {
     navigate("/projects/sai-dwarika");
+  } else if (projectName === "Maa Pranaam Hospitality") {
+    navigate("/projects/maa-pranaam-hospitality");
   }
 
   // Navigate ke baad page ko top par le jaane ke liye
