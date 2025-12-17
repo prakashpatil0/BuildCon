@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import VishaPawar from "../assets/OurTeam/VishaPawarManagingDirector.jpg";
-import UmeshTapal from "../assets/OurTeam/UmeshTapalDirector.jpg";
-import ParagSalunkhe from "../assets/OurTeam/ParagSalunkhe-SalesExecutiveDirector.jpg";
+
 
 // Sample press/news data
 const pressNews = [
@@ -57,33 +55,6 @@ const pressNews = [
   },
 ];
 
-// Team members data - in hierarchy order
-const teamMembers = [
-  {
-    id: 1,
-    name: "Visha Pawar",
-    role: "Managing Director",
-    department: "Executive Leadership",
-    bio: "Leading MaaPranaam Buildcon with strategic vision and extensive experience in real estate development. Driving innovation and excellence across all projects.",
-    image: VishaPawar,
-  },
-  {
-    id: 2,
-    name: "Umesh Tapal",
-    role: "Director",
-    department: "Executive Leadership",
-    bio: "Bringing years of expertise in construction and project management. Overseeing key strategic initiatives and ensuring operational excellence.",
-    image: UmeshTapal,
-  },
-  {
-    id: 3,
-    name: "Parag Salunkhe",
-    role: "Sales Executive Director",
-    department: "Sales & Marketing",
-    bio: "Driving sales growth and customer relationships with a proven track record in real estate sales. Leading the sales team to achieve exceptional results.",
-    image: ParagSalunkhe,
-  },
-];
 
 // Animation variants
 const fadeUp = {
@@ -225,6 +196,10 @@ const Gallery = () => {
               </p>
 
               <button
+                onClick={() => {
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                  navigate("/team");
+                }}
                 className="
                        px-10 py-2 
                        text-[#fefaf0] 
@@ -287,53 +262,6 @@ const Gallery = () => {
         )}
       </AnimatePresence>
 
-      {/* ================= TEAM MEMBER DETAIL MODAL ================= */}
-      <AnimatePresence>
-        {selectedMember && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setSelectedMember(null)}
-              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50"
-            />
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 50 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 50 }}
-              className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div className="relative bg-black border border-[#d1a75e]/30 rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
-                <motion.button
-                  whileHover={{ scale: 1.1, rotate: 90 }}
-                  whileTap={{ scale: 0.9 }}
-                  onClick={() => setSelectedMember(null)}
-                  className="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center bg-[#d1a75e]/20 hover:bg-[#d1a75e]/30 rounded-full text-[#f9d891]"
-                >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </motion.button>
-                <div className="relative h-[400px] overflow-hidden">
-                  <img src={selectedMember.image} alt={selectedMember.name} className="w-full h-full object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <h2 className="text-3xl font-semibold text-[#f7d69a] mb-2">{selectedMember.name}</h2>
-                    <p className="text-[#d1a74f] font-medium mb-1">{selectedMember.role}</p>
-                    <p className="text-[#d1a75e] text-sm">{selectedMember.department}</p>
-                  </div>
-                </div>
-                <div className="p-8">
-                  <h3 className="text-xl font-semibold text-[#f7d69a] mb-4">About</h3>
-                  <p className="text-[#f0d3a3] text-lg leading-relaxed">{selectedMember.bio}</p>
-                </div>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
     </div>
   );
 };

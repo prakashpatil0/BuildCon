@@ -24,7 +24,7 @@ const projectData = {
   completed: [
     {
       name: "Shree Shrushti",
-      location: "Yewalewadi, Pune",
+      location: "Yewalewadi/Kondhwa Budruk, Pune",
       mix: "1 & 2 BHK Residences",
       details: "Well-connected, peaceful community setting with essential amenities for daily life. Spread over 2 acres with 60+ units.",
       image: shreeShrushtiImage,

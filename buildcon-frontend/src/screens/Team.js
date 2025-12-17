@@ -1,284 +1,168 @@
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useEffect } from "react";
+import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
-// Import team member images
-import VishaPawarImg from "../assets/OurTeam/VishaPawarManagingDirector.jpg";
-import UmeshTapalImg from "../assets/OurTeam/UmeshTapalDirector.jpg";
-import ParagSalunkheImg from "../assets/OurTeam/ParagSalunkhe-SalesExecutiveDirector.jpg";
+// Import team member images from OurTeam folder
+import ParagSalunkheImg from "../assets/OurTeam/Parag Salunkhe Sales-Executive Director.jpeg";
+import SradhaImg from "../assets/OurTeam/Sradha Senior Architecture.jpeg";
+import RinkuImg from "../assets/OurTeam/Rinku Mam CFO.jpeg";
+import MandarImg from "../assets/OurTeam/Mandar Jadhav.jpeg";
+import UmeshShindeImg from "../assets/OurTeam/Umesh Shinde.jpeg";
 
-// Team members data in hierarchical order
+// Team members data - using same format as BoardOfDirectors
 const teamMembers = [
+  
   {
-    id: 1,
-    name: "Visha Pawar",
-    designation: "Managing Director",
-    image: VishaPawarImg,
-    level: 1, // Top level
+    name: "CA.Rinku Makhijani",
+    role: "CFO",
+    img: RinkuImg,
   },
   {
-    id: 2,
-    name: "Umesh Tapal",
-    designation: "Director",
-    image: UmeshTapalImg,
-    level: 2, // Second level
+    name: "Mr. Mandar Jadhav",
+    role: "CRM-Executive Director",
+    img: MandarImg,
   },
   {
-    id: 3,
-    name: "Parag Salunkhe",
-    designation: "Sales Executive Director",
-    image: ParagSalunkheImg,
-    level: 3, // Third level
+    name: "Mr.Umesh Shinde",
+    role: "Compliance-Executive Director",
+    img: UmeshShindeImg,
   },
+  {
+    name: "Mr. Parag Salunkhe",
+    role: "Sales Executive Director",
+    img: ParagSalunkheImg,
+  },
+  {
+    name: "Ms.Shraddha Nimbarte",
+    role: "Senior Architecture",
+    img: SradhaImg,
+  },
+  
 ];
 
-const Team = () => {
-  const [selectedMember, setSelectedMember] = useState(null);
+const fadeUp = {
+  hidden: { opacity: 0, y: 18 },
+  visible: (i = 1) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.06, duration: 0.55, ease: "easeOut" },
+  }),
+};
 
-  const closeModal = () => {
-    setSelectedMember(null);
-  };
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
+const Team = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, []);
 
   return (
-    <div className="w-full bg-[#0f0f0f] text-white font-light min-h-screen">
-      {/* ================= HERO SECTION ================= */}
-      <section className="relative w-full h-[60vh] overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#1a1a1a] to-[#0f0f0f]"></div>
+    <div className="w-full bg-black text-white min-h-screen pt-24">
+      {/* Header */}
+      <div className="max-w-7xl mx-auto px-6 md:px-20 pt-10 md:pt-14">
+        {/* Back Button */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2 }}
-          className="absolute inset-0 flex items-center justify-center text-center px-6"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mb-6 relative z-10"
         >
-          <div>
-            <motion.h1
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.2 }}
-              className="text-5xl md:text-6xl tracking-wide font-semibold mb-4"
-            >
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f9d891] to-[#d1a74f]">
-                Our Leadership Team
-              </span>
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.4 }}
-              className="text-[#f0d3a3] text-lg md:text-xl tracking-wide max-w-3xl mx-auto"
-            >
-              Meet the visionaries driving BuildCon's success
-            </motion.p>
-          </div>
-        </motion.div>
-      </section>
-
-      {/* ================= TEAM HIERARCHY SECTION ================= */}
-      <section className="max-w-7xl mx-auto px-6 py-24 bg-black">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center text-4xl md:text-5xl font-semibold mb-16 text-[#f7d69a]"
-        >
-          Leadership Hierarchy
-        </motion.h2>
-
-        {/* Hierarchical Layout */}
-        <div className="flex flex-col items-center gap-12">
-          {/* Level 1 - Managing Director (Top) */}
-          {teamMembers
-            .filter((member) => member.level === 1)
-            .map((member, index) => (
-              <motion.div
-                key={member.id}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.2, duration: 0.8 }}
-                whileHover={{ scale: 1.05, y: -10 }}
-                onClick={() => setSelectedMember(member)}
-                className="cursor-pointer group"
-              >
-                <div className="relative">
-                  {/* Hierarchy indicator line going down */}
-                  <div className="absolute left-1/2 top-full w-0.5 h-12 bg-gradient-to-b from-[#d1a74f] to-transparent"></div>
-                  
-                  <div className="bg-[#1a1a1a] rounded-2xl p-8 border-2 border-[#d1a75e]/30 hover:border-[#d1a74f] transition-all shadow-2xl shadow-[#d1a75e]/10">
-                    <div className="flex flex-col md:flex-row items-center gap-8">
-                      <div className="relative">
-                        <motion.img
-                          src={member.image}
-                          alt={member.name}
-                          className="w-48 h-48 md:w-56 md:h-56 rounded-full object-cover border-4 border-[#d1a74f] shadow-lg"
-                          whileHover={{ scale: 1.1 }}
-                          transition={{ duration: 0.3 }}
-                        />
-                        {/* Level badge */}
-                        <div className="absolute -top-2 -right-2 bg-gradient-to-r from-[#d1a74f] to-[#b8924b] text-white text-xs font-bold px-3 py-1 rounded-full">
-                          Level 1
-                        </div>
-                      </div>
-                      <div className="text-center md:text-left">
-                        <h3 className="text-3xl md:text-4xl font-semibold text-[#f7d69a] mb-2">
-                          {member.name}
-                        </h3>
-                        <p className="text-xl text-[#d1a74f] font-medium mb-4">
-                          {member.designation}
-                        </p>
-                        <div className="w-24 h-1 bg-gradient-to-r from-[#d1a74f] to-transparent mx-auto md:mx-0"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-
-          {/* Level 2 - Director (Middle) */}
-          <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12">
-            {teamMembers
-              .filter((member) => member.level === 2)
-              .map((member, index) => (
-                <motion.div
-                  key={member.id}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.2 + 0.3, duration: 0.8 }}
-                  whileHover={{ scale: 1.05, y: -10 }}
-                  onClick={() => setSelectedMember(member)}
-                  className="cursor-pointer group"
-                >
-                  <div className="relative">
-                    {/* Hierarchy indicator line going down */}
-                    <div className="absolute left-1/2 top-full w-0.5 h-12 bg-gradient-to-b from-[#d1a74f] to-transparent"></div>
-                    
-                    <div className="bg-[#1a1a1a] rounded-2xl p-6 border-2 border-[#d1a75e]/30 hover:border-[#d1a74f] transition-all shadow-2xl shadow-[#d1a75e]/10">
-                      <div className="flex flex-col items-center gap-6">
-                        <div className="relative">
-                          <motion.img
-                            src={member.image}
-                            alt={member.name}
-                            className="w-40 h-40 md:w-44 md:h-44 rounded-full object-cover border-4 border-[#d1a74f] shadow-lg"
-                            whileHover={{ scale: 1.1 }}
-                            transition={{ duration: 0.3 }}
-                          />
-                          {/* Level badge */}
-                          <div className="absolute -top-2 -right-2 bg-gradient-to-r from-[#d1a74f] to-[#b8924b] text-white text-xs font-bold px-3 py-1 rounded-full">
-                            Level 2
-                          </div>
-                        </div>
-                        <div className="text-center">
-                          <h3 className="text-2xl md:text-3xl font-semibold text-[#f7d69a] mb-2">
-                            {member.name}
-                          </h3>
-                          <p className="text-lg text-[#d1a74f] font-medium">
-                            {member.designation}
-                          </p>
-                          <div className="w-20 h-1 bg-gradient-to-r from-[#d1a74f] to-transparent mx-auto mt-2"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-          </div>
-
-          {/* Level 3 - Sales Executive Director (Bottom) */}
-          {teamMembers
-            .filter((member) => member.level === 3)
-            .map((member, index) => (
-              <motion.div
-                key={member.id}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.2 + 0.6, duration: 0.8 }}
-                whileHover={{ scale: 1.05, y: -10 }}
-                onClick={() => setSelectedMember(member)}
-                className="cursor-pointer group"
-              >
-                <div className="bg-[#1a1a1a] rounded-2xl p-6 border-2 border-[#d1a75e]/30 hover:border-[#d1a74f] transition-all shadow-2xl shadow-[#d1a75e]/10">
-                  <div className="flex flex-col md:flex-row items-center gap-8">
-                    <div className="relative">
-                      <motion.img
-                        src={member.image}
-                        alt={member.name}
-                        className="w-40 h-40 md:w-44 md:h-44 rounded-full object-cover border-4 border-[#d1a74f] shadow-lg"
-                        whileHover={{ scale: 1.1 }}
-                        transition={{ duration: 0.3 }}
-                      />
-                      {/* Level badge */}
-                      <div className="absolute -top-2 -right-2 bg-gradient-to-r from-[#d1a74f] to-[#b8924b] text-white text-xs font-bold px-3 py-1 rounded-full">
-                        Level 3
-                      </div>
-                    </div>
-                    <div className="text-center md:text-left">
-                      <h3 className="text-2xl md:text-3xl font-semibold text-[#f7d69a] mb-2">
-                        {member.name}
-                      </h3>
-                      <p className="text-lg text-[#d1a74f] font-medium">
-                        {member.designation}
-                      </p>
-                      <div className="w-20 h-1 bg-gradient-to-r from-[#d1a74f] to-transparent mx-auto md:mx-0 mt-2"></div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-        </div>
-      </section>
-
-      {/* ================= MODAL FOR MEMBER DETAILS ================= */}
-      <AnimatePresence>
-        {selectedMember && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={closeModal}
-            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
+          <Link to="/gallery" onClick={(e) => e.stopPropagation()}>
+            <motion.button
+              whileHover={{ scale: 1.05, x: -5 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center gap-2 text-[#d1a75e] hover:text-[#f9d891] transition-colors text-sm md:text-base relative z-10"
               onClick={(e) => e.stopPropagation()}
-              className="bg-[#1a1a1a] rounded-2xl border border-[#d1a75e]/30 max-w-2xl w-full p-8"
             >
-              <div className="flex justify-between items-start mb-6">
-                <div>
-                  <h2 className="text-3xl font-semibold text-[#f7d69a] mb-2">
-                    {selectedMember.name}
-                  </h2>
-                  <p className="text-[#d1a74f] text-lg">{selectedMember.designation}</p>
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+              Back to Gallery
+            </motion.button>
+          </Link>
+        </motion.div>
+
+        <motion.h1
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center text-3xl md:text-4xl font-semibold tracking-wide"
+        >
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f9d891] to-[#d1a74f]">
+            Leadership Team
+          </span>
+        </motion.h1>
+      </div>
+
+      {/* Grid */}
+      <div className="max-w-7xl mx-auto px-6 md:px-20 py-10 md:py-12">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-16 gap-y-16"
+        >
+          {teamMembers.map((member, i) => (
+            <motion.div
+              key={`${member.name}-${i}`}
+              custom={i + 1}
+              variants={fadeUp}
+              className="w-full"
+            >
+              {/* Image */}
+              <motion.div
+                className="w-full"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="w-full aspect-square bg-[#1a1a1a] rounded-lg border border-[#d1a75e]/20 hover:border-[#d1a75e]/50 transition-all shadow-lg shadow-[#d1a75e]/10 p-3 md:p-3 flex items-center justify-center">
+                  <motion.img
+                    src={member.img}
+                    alt={member.name}
+                    className="w-full h-full object-contain rounded-md"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.4 }}
+                    onError={(e) => {
+                      e.currentTarget.src = "";
+                    }}
+                  />
                 </div>
-                <button
-                  onClick={closeModal}
-                  className="text-[#d1a75e] hover:text-[#f9d891] text-3xl transition-colors"
+              </motion.div>
+
+              {/* Name + Role */}
+              <div className="mt-5">
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.06 + 0.3 }}
+                  className="text-[15px] md:text-[16px] font-medium text-[#f7d69a]"
                 >
-                  ×
-                </button>
-              </div>
-              <div className="flex flex-col md:flex-row gap-6">
-                <img
-                  src={selectedMember.image}
-                  alt={selectedMember.name}
-                  className="w-full md:w-48 h-48 rounded-lg object-cover border-2 border-[#d1a75e]/30"
-                />
-                <div className="flex-1">
-                  <p className="text-[#f0d3a3] leading-relaxed">
-                    {selectedMember.name} serves as {selectedMember.designation} at MaaPranaam Buildcon,
-                    bringing expertise and leadership to drive the company's vision forward.
-                  </p>
-                </div>
+                  {member.name}
+                </motion.p>
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.06 + 0.4 }}
+                  className="mt-1 text-[13px] md:text-[14px] text-[#d1a75e]"
+                >
+                  {member.role}
+                </motion.p>
               </div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          ))}
+        </motion.div>
+      </div>
     </div>
   );
 };
 
 export default Team;
-

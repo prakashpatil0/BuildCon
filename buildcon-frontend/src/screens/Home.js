@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
 // ===== HERO SLIDER IMAGES =====
 import saiDwarikaHero from "../assets/Sai Dwarika/Saidwarika Photo 1.webp";
@@ -25,27 +26,48 @@ import saiDwarikaPhoto1 from "../assets/Sai Dwarika/Saidwarika Photo 1.webp";
 import saiDwarikaPhoto2 from "../assets/Sai Dwarika/Saidwarika Photo 2.webp";
 import saiDwarikaVideo from "../assets/Sai Dwarika/Saidwarika Video.webm";
 
-// ===== SECTION 5 — SERVICES IMAGES =====
+// ===== VRINDAVAN & SHREE SADGURU IMAGES =====
+import vrindavanRegency1Project from "../assets/Vrindavan/Vrindavan Regency 1.webp";
+import shreeSadguruKrupa from "../assets/Shree Sadguru/Shree Sadguru Krupa.webp";
+
+// ===== SERVICE IMAGES =====
+import BuildingRemodulingImg from "../assets/Building-Remoduling.png";
+import InteriorDesignImg from "../assets/Interior-Design.png";
+import ExteriorDesignImg from "../assets/Exterior-Design.png";
+import SafetyManagementImg from "../assets/Safety-Management.png";
+import RenovationImg from "../assets/Renovations.png";
+
+// ===== SECTION 5 — SERVICES (matching Services.js) =====
 const services = [
   {
-    title: "Facility Management",
-    image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=1000",
+    title: "Home Construction",
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1000",
+    slug: "home-construction",
   },
   {
-    title: "Fit-Out Management",
-    image: "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=1000",
+    title: "Building Remodels",
+    image: BuildingRemodulingImg,
+    slug: "building-remodels",
   },
   {
-    title: "Project Management",
-    image: "https://images.unsplash.com/photo-1590650046871-92c887180603?w=1000",
+    title: "Interior Design",
+    image: InteriorDesignImg,
+    slug: "interior-design",
   },
   {
-    title: "Asset Maintenance",
-    image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1000",
+    title: "Exterior Design",
+    image: ExteriorDesignImg,
+    slug: "exterior-design",
   },
   {
-    title: "Security Services",
-    image: "https://images.unsplash.com/photo-1581091012184-5c1d34b37dac?w=1000",
+    title: "Renovation",
+    image: RenovationImg,
+    slug: "renovation",
+  },
+  {
+    title: "Safety Management",
+    image: SafetyManagementImg,
+    slug: "safety-management",
   },
 ];
 
@@ -66,12 +88,12 @@ const projectData = {
     {
       title: "Sadguru Krupa",
       location: "Katraj, Pune",
-      image: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?w=1000",
+      image: shreeSadguruKrupa,
     },
     {
       title: "Vrindavan Regency",
       location: "Katraj - Kondhwa Road, Yewalewadi, Pune",
-      image: "https://images.unsplash.com/photo-1501183638710-841dd1904471?w=1000",
+      image: vrindavanRegency1Project,
     },
     {
       title: "Sai Shraddha",
@@ -229,6 +251,7 @@ const dynamicSections = [
 ];
 
 const Home = () => {
+  const navigate = useNavigate();
   const [current, setCurrent] = useState(0);
   const [imagesAnimated, setImagesAnimated] = useState(false);
   const [activeTabAccordion, setActiveTabAccordion] = useState(3);
@@ -781,6 +804,10 @@ const Home = () => {
               transition={{ delay: (i % services.length) * 0.1 }}
               whileHover={{ scale: 1.05, y: -5 }}
               className="min-w-[360px] cursor-pointer"
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+                navigate(`/services/${srv.slug}`);
+              }}
             >
               <motion.img
                 src={srv.image}
