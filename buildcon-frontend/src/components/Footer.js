@@ -146,7 +146,7 @@ const Footer = () => {
 
             {/* COMPANY LINKS */}
             <motion.div variants={itemVariants}>
-              <h3 className="text-lg font-semibold mb-6 text-white">Company</h3>
+              <h3 className="text-lg font-semibold mb-6 text-[#d1a75e]">Company</h3>
               <ul className="space-y-3">
                 {footerLinks.company.map((link, index) => (
                   <motion.li
@@ -171,7 +171,7 @@ const Footer = () => {
 
             {/* PROJECTS LINKS */}
             <motion.div variants={itemVariants}>
-              <h3 className="text-lg font-semibold mb-6 text-white">Projects</h3>
+              <h3 className="text-lg font-semibold mb-6 text-[#d1a75e]">Projects</h3>
               <ul className="space-y-3">
                 {footerLinks.projects.map((link, index) => (
                   <motion.li
@@ -196,7 +196,7 @@ const Footer = () => {
 
             {/* RESOURCES LINKS */}
             <motion.div variants={itemVariants}>
-              <h3 className="text-lg font-semibold mb-6 text-white">
+              <h3 className="text-lg font-semibold mb-6 text-[#d1a75e]">
                 Resources
               </h3>
               <ul className="space-y-3">
@@ -249,13 +249,13 @@ const Footer = () => {
               <div className="flex items-center gap-6 text-sm">
                 <Link
                   to="/terms"
-                  className="text-slate-400 hover:text-white transition-colors duration-300"
+                  className="text-slate-400 hover:text-[#d1a75e] transition-colors duration-300"
                 >
                   Terms & Conditions
                 </Link>
                 <button
                   onClick={() => setShowPrivacyPolicy(true)}
-                  className="text-slate-400 hover:text-white transition-colors duration-300"
+                  className="text-slate-400 hover:text-[#d1a75e] transition-colors duration-300"
                 >
                   Privacy Policy
                 </button>
@@ -265,7 +265,7 @@ const Footer = () => {
         </div>
 
         {/* ✅ Scroll To Top Button */}
-        <AnimatePresence>
+        {/* <AnimatePresence>
           {showScrollTop && (
             <motion.button
               initial={{ opacity: 0, y: 20, scale: 0.9 }}
@@ -279,7 +279,7 @@ const Footer = () => {
               ↑
             </motion.button>
           )}
-        </AnimatePresence>
+        </AnimatePresence> */}
       </footer>
 
       {/* Privacy Policy Modal */}

@@ -375,7 +375,7 @@ Driven by a passion to elevate real estate standards in the region, we are commi
             </motion.div>
           ))}
         </div>
-      </section> */}
+      </section> 
 
       {/* ============================================================
           GLOBAL PRESENCE
@@ -406,7 +406,7 @@ Driven by a passion to elevate real estate standards in the region, we are commi
             transition={{ duration: 0.4 }}
           />
         </motion.div>
-      </section> */}
+      </section> 
 
       {/* ============================================================
           CLIENTS GRID

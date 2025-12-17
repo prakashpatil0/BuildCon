@@ -8,6 +8,8 @@ import SradhaImg from "../assets/OurTeam/Sradha Senior Architecture.jpeg";
 import RinkuImg from "../assets/OurTeam/Rinku Mam CFO.jpeg";
 import MandarImg from "../assets/OurTeam/Mandar Jadhav.jpeg";
 import UmeshShindeImg from "../assets/OurTeam/Umesh Shinde.jpeg";
+import BharatShindeImg from "../assets/OurTeam/Bharat Shinde.jpeg";
+import AmurtaGawadeImg from "../assets/OurTeam/Amurta Gawade.jpeg";
 
 // Team members data - using same format as BoardOfDirectors
 const teamMembers = [
@@ -23,14 +25,24 @@ const teamMembers = [
     img: MandarImg,
   },
   {
-    name: "Mr.Umesh Shinde",
-    role: "Compliance-Executive Director",
-    img: UmeshShindeImg,
+    name: "Mr. Bharat Shinde",
+    role: "Project Executive Director",
+    img: BharatShindeImg,
   },
   {
     name: "Mr. Parag Salunkhe",
     role: "Sales Executive Director",
     img: ParagSalunkheImg,
+  },
+  {
+    name: "Mr.Umesh Shinde",
+    role: "Compliance-Executive Director",
+    img: UmeshShindeImg,
+  },
+  {
+    name: "Ms.Amurta Gawade",
+    role: "Senior Architecture",
+    img: AmurtaGawadeImg,
   },
   {
     name: "Ms.Shraddha Nimbarte",
