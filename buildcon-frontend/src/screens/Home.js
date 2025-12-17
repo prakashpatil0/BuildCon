@@ -336,7 +336,7 @@ const Home = () => {
   const handleAccordionClick = (id) => {
     setActiveTabAccordion((prev) => (prev === id ? null : id));
   };
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
 
   return (

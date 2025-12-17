@@ -12,8 +12,13 @@ import worldMap from "../assets/picture6.webp";
 import logo1 from "../assets/logo1.png";
 import logo2 from "../assets/logo2.png";
 import logo3 from "../assets/logo3.png";
+import skl_logo from "../assets/skl_logo.png";
+import ms_logo from "../assets/ms_logo.png";
+import ksb_logo from "../assets/ksb_logo.png";
+import ksrl_logo from "../assets/ksrl_logo.png";
+import tre_logo from "../assets/tre_logo.png";
 
-const clients = [logo1, logo2, logo3, logo1, logo2];
+const clients = [skl_logo, ms_logo, ksb_logo, ksrl_logo, tre_logo];
 
 // Golden color palette
 const goldenColors = {
@@ -311,7 +316,7 @@ Driven by a passion to elevate real estate standards in the region, we are commi
       {/* ============================================================
           LEADERSHIP
       ============================================================ */}
-      <section className="max-w-6xl mx-auto px-6 py-24 bg-black">
+      {/* <section className="max-w-6xl mx-auto px-6 py-24 bg-black">
         <motion.h2
           variants={fadeUp}
           initial="hidden"
@@ -370,12 +375,12 @@ Driven by a passion to elevate real estate standards in the region, we are commi
             </motion.div>
           ))}
         </div>
-      </section>
+      </section> */}
 
       {/* ============================================================
           GLOBAL PRESENCE
       ============================================================ */}
-      <section className="bg-black py-24 px-6">
+      {/* <section className="bg-black py-24 px-6">
         <motion.h2
           variants={fadeUp}
           initial="hidden"
@@ -401,42 +406,87 @@ Driven by a passion to elevate real estate standards in the region, we are commi
             transition={{ duration: 0.4 }}
           />
         </motion.div>
-      </section>
+      </section> */}
 
       {/* ============================================================
           CLIENTS GRID
       ============================================================ */}
       <section ref={clientsRef} className="max-w-6xl mx-auto px-6 py-24 bg-black">
-        <motion.h2
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="text-center text-5xl mb-16 text-[#f7d79f]"
-        >
-          OUR CLIENTS
-        </motion.h2>
+  <motion.h2
+    variants={fadeUp}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true }}
+    className="text-center text-5xl mb-16 text-[#f7d79f]"
+  >
+    OUR VENTURES
+  </motion.h2>
 
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-10 place-items-center">
-          {clients.map((logo, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, scale: 0.5, y: 30 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1, duration: 0.6 }}
-              whileHover={{ scale: 1.2, y: -5 }}
-              className="filter brightness-0 invert opacity-70 hover:opacity-100 transition-all duration-300"
-            >
-              <motion.img
-                src={logo}
-                className="h-20 w-auto"
-                alt={`Client Logo ${idx + 1}`}
-              />
-            </motion.div>
-          ))}
+  <div className="grid grid-cols-2 md:grid-cols-5 gap-10 place-items-center">
+    {clients.map((logo, idx) => (
+      <motion.div
+        key={idx}
+        initial={{ opacity: 0, y: 28, scale: 0.92, filter: "blur(10px)" }}
+        whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+        viewport={{ once: true, amount: 0.25 }}
+        transition={{
+          delay: idx * 0.08,
+          duration: 0.9,
+          ease: [0.16, 1, 0.3, 1],
+        }}
+        whileHover={{
+          y: -10,
+          scale: 1.06,
+          rotate: -1,
+        }}
+        whileTap={{ scale: 0.98 }}
+        className="
+          group relative flex items-center justify-center
+          w-full
+        "
+      >
+        {/* Premium glass card */}
+        <div
+          className="
+            relative flex items-center justify-center
+            rounded-2xl
+            px-4 py-5
+            bg-white/5 border border-white/10
+            shadow-[0_18px_45px_rgba(0,0,0,0.7)]
+            transition-all duration-300
+            group-hover:border-[#e3c472]/40
+            group-hover:bg-white/8
+            overflow-hidden
+          "
+        >
+          {/* subtle glow on hover */}
+          <div
+            className="
+              absolute -inset-10 opacity-0 group-hover:opacity-100
+              transition-opacity duration-300
+              bg-[radial-gradient(circle,rgba(227,196,114,0.18)_0%,rgba(0,0,0,0)_60%)]
+            "
+          />
+
+          <motion.img
+            src={logo}
+            alt={`Client Logo ${idx + 1}`}
+            className="
+              relative z-10
+              h-32 md:h-36 w-auto object-contain
+              opacity-90 group-hover:opacity-100
+              drop-shadow-[0_10px_30px_rgba(0,0,0,0.55)]
+              transition-all duration-300
+            "
+            whileHover={{ scale: 1.03 }}
+            transition={{ duration: 0.25 }}
+          />
         </div>
-      </section>
+      </motion.div>
+    ))}
+  </div>
+</section>
+
 
       {/* ============================================================
           PARTNERSHIPS
