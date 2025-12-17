@@ -231,6 +231,7 @@ const dynamicSections = [
     text: `Our residential developments are crafted with precision, modern design,
     and comfort. Each project reflects quality, luxury, and thoughtful planning.`,
     stats: ["412 Homes Developed", "320 Homes Under Development"],
+    link: "/projects/sai-nagari",
   },
   {
     id: 2,
@@ -239,6 +240,7 @@ const dynamicSections = [
     heading: "OFFICE PARKS",
     text: `World-class office environments designed for global business excellence.`,
     stats: ["22.77M sq. ft. Developed", "32.1M sq. ft. Under Development"],
+    link: "/projects/office-parks", // ✅ add your route here
   },
   {
     id: 3,
@@ -247,8 +249,10 @@ const dynamicSections = [
     heading: "HOSPITALITY",
     text: `Our hospitality portfolio delivers global standards of design & service.`,
     stats: ["2178 Rooms Developed", "1476 Rooms Under Development"],
+    link: "/projects/maa-pranaam-hospitality",
   },
 ];
+
 
 const Home = () => {
   const navigate = useNavigate();
@@ -332,6 +336,8 @@ const Home = () => {
   const handleAccordionClick = (id) => {
     setActiveTabAccordion((prev) => (prev === id ? null : id));
   };
+  const navigate = useNavigate();
+
 
   return (
     <div className="w-full bg-black">
@@ -590,16 +596,20 @@ const Home = () => {
                     </motion.div>
 
                     <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.8 }}
-                      className="px-8 py-3 bg-gradient-to-r from-[#d1a74f] to-[#b8924b] text-white rounded font-semibold"
-                      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                    >
-                      Learn More
-                    </motion.button>
+  whileHover={{ scale: 1.05 }}
+  whileTap={{ scale: 0.95 }}
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0.8 }}
+  className="px-8 py-3 bg-gradient-to-r from-[#d1a74f] to-[#b8924b] text-white rounded font-semibold"
+  onClick={() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (s.link) navigate(s.link);
+  }}
+>
+  Learn More
+</motion.button>
+
                   </motion.div>
                 </motion.div>
               )}

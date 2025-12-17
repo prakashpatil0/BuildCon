@@ -301,38 +301,40 @@ const Navbar = () => {
 
           {/* OTHER MENU ITEMS */}
           {["Services", "Gallery", "Careers", "Contact"].map((item, index) => (
-            <motion.div
-              key={item}
-              custom={index + 3}
-              initial="hidden"
-              animate="visible"
-              variants={menuItemVariants}
-              whileHover={{ y: -2 }}
-            >
-              <NavLink
-                to={`/${item.toLowerCase()}`}
-                className={({ isActive }) =>
-                  `relative transition-colors duration-300 ${
-                    isActive
-                      ? isScrolled
-                        ? "text-slate-900"
-                        : "text-white"
-                      : isScrolled
-                      ? "text-slate-700 hover:text-slate-900"
-                      : "text-white/90 hover:text-white"
-                  }`
-                }
-              >
-                {item}
-                <motion.span
-                  className="absolute -bottom-1 left-0 right-0 h-0.5 bg-current"
-                  initial={{ scaleX: 0 }}
-                  whileHover={{ scaleX: 1 }}
-                  transition={{ duration: 0.3 }}
-                />
-              </NavLink>
-            </motion.div>
-          ))}
+  <motion.div
+    key={item}
+    custom={index + 3}
+    initial="hidden"
+    animate="visible"
+    variants={menuItemVariants}
+    whileHover={{ y: -2 }}
+  >
+    <NavLink
+      to={`/${item.toLowerCase()}`}
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      className={({ isActive }) =>
+        `relative transition-colors duration-300 ${
+          isActive
+            ? isScrolled
+              ? "text-slate-900"
+              : "text-white"
+            : isScrolled
+            ? "text-slate-700 hover:text-slate-900"
+            : "text-white/90 hover:text-white"
+        }`
+      }
+    >
+      {item}
+      <motion.span
+        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-current"
+        initial={{ scaleX: 0 }}
+        whileHover={{ scaleX: 1 }}
+        transition={{ duration: 0.3 }}
+      />
+    </NavLink>
+  </motion.div>
+))}
+
         </nav>
 
         {/* ACTION BUTTONS */}
