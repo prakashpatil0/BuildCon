@@ -233,7 +233,7 @@ const Services = () => {
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-2xl font-semibold text-gray-900 mb-2"
+                    className="text-2xl font-semibold text-white mb-2"
                   >
                     {service.title}
                   </motion.h3>

@@ -29,15 +29,20 @@ import saiDwarikaVideo from "../assets/Sai Dwarika/Saidwarika Video.webm";
 // ===== VRINDAVAN & SHREE SADGURU IMAGES =====
 import vrindavanRegency1Project from "../assets/Vrindavan/Vrindavan Regency 1.webp";
 import shreeSadguruKrupa from "../assets/Shree Sadguru/Shree Sadguru Krupa.webp";
-
+import shreeshrushti from "../assets/Sai Shrushti/shree shrushti image.webp";
+// ===== MAA PRANAAM MOTHER & CHILD CARE IMAGE =====
+import maaPranaamMotherAndChildCare from "../assets/Maa Pranaam Hospital/Mauli Regency Hospital Image.webp";
 // ===== SERVICE IMAGES =====
 import BuildingRemodulingImg from "../assets/Building-Remoduling.png";
 import InteriorDesignImg from "../assets/Interior-Design.png";
 import ExteriorDesignImg from "../assets/Exterior-Design.png";
 import SafetyManagementImg from "../assets/Safety-Management.png";
 import RenovationImg from "../assets/Renovations.png";
-
+// ===== M-24 PARK IMAGE =====
+import m24Park from "../assets/M-24.png";
 // ===== SECTION 5 — SERVICES (matching Services.js) =====
+// ===== PRIVILLEGE HILLS IMAGE =====
+import privilegeHillsImage from "../assets/Privilege Hills/Privillege Hills.png";
 const services = [
   {
     title: "Home Construction",
@@ -77,7 +82,7 @@ const projectData = {
     {
       title: "Shree Shrushti",
       location: "Kondhwa Budruk, Yewalewadi, Pune",
-      image: "https://images.unsplash.com/photo-1501183638710-841dd1904471?w=1000",
+      image: shreeshrushti,
     },
     {
       title: "Sai Dwarika",
@@ -96,27 +101,17 @@ const projectData = {
       image: vrindavanRegency1Project,
     },
     {
-      title: "Sai Shraddha",
-      location: "Kondhwa Budruk, Yewalewadi, Pune",
-      image: "https://images.unsplash.com/photo-1501183638710-841dd1904471?w=1000",
-    },
+      title: "Privillege Hills",
+      location: "Pune",
+      image: privilegeHillsImage,
+    }
   ],
 
   "Office Parks": [
     {
-      title: "Panchshil Business Park",
-      location: "Viman Nagar, Pune",
-      image: "https://images.unsplash.com/photo-1526402469434-c1c28a6f1574?w=1000",
-    },
-    {
-      title: "Tech Park One",
-      location: "Yerwada, Pune",
-      image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1000",
-    },
-    {
-      title: "World Trade Center",
-      location: "Kharadi, Pune",
-      image: "https://images.unsplash.com/photo-1479839684238-9280d0663c58?w=1000",
+      title: "M-24 Park",
+      location: "Pune",
+      image: m24Park,
     },
   ],
 
@@ -124,7 +119,7 @@ const projectData = {
     {
       title: "Maa Pranaam Mother & Child Care",
       location: "Chimbali Road, Alandi, Pune",
-      image: "https://images.unsplash.com/photo-1501117716987-c8e1ecb2101b?w=1000",
+      image: maaPranaamMotherAndChildCare,
     },
   ],
 };
@@ -379,7 +374,7 @@ const Home = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
-            className="mt-3 max-w-xl text-gray-800 text-xl font-medium"
+            className="mt-3 max-w-xl text-white text-xl font-medium"
           >
             {slides[current].subtitle}
           </motion.p>
@@ -734,7 +729,7 @@ const Home = () => {
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-xl font-semibold text-gray-900"
+                    className="text-xl font-semibold text-white"
                   >
                     {p.title}
                   </motion.h3>

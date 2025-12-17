@@ -44,6 +44,17 @@ import maaPranaamHospitalLayout from "../assets/Maa Pranaam Hospital/Mauli Regen
 import maaPranaamHospitalLayout2 from "../assets/Maa Pranaam Hospital/Mauli Regency Hospital Layout (2).webp";
 import maaPranaamHospitalLayout4 from "../assets/Maa Pranaam Hospital/Mauli Regency Hospital Layout (4).webp";
 
+// Import Privilege Hills images
+import privilegeHillsImage from "../assets/Privilege Hills/Privillege Hills.png";
+import privilegeHillsSummary from "../assets/Privilege Hills/Summary Of Privilege hills.png";
+import privilegeHillsLayout1BHK from "../assets/Privilege Hills/Privillege Hills Layout 1 bhk.jpg";
+import privilegeHillsLayout1BHKAlt from "../assets/Privilege Hills/Privillege Hills Layout 1 bhk (1).jpg";
+import privilegeHillsLayout2BHK from "../assets/Privilege Hills/Privillege Hills Layout 2 bhk.jpg";
+
+// Import Sai Galaxy images
+import saiGalaxy1 from "../assets/Sai Galaxy/Sai Galaxy1.jpg";
+import saiGalaxy2 from "../assets/Sai Galaxy/Sai Galaxy2.jpg";
+
 const projectData = {
   "sai-nagari": {
   name: "Sai Nagari",
@@ -299,6 +310,96 @@ const projectData = {
     projectArea: "Hospital Facility",
     totalUnits: "Multi-specialty Hospital",
     developer: "Maa Pranaam Buildcon",
+  },
+  "privilege-hills": {
+    name: "Privillege Hills",
+    location: "Balewadi, Pune",
+    mix: "Grade-A office park",
+    details: "Integrated office campus with High Street retail spine. A premium commercial development designed for modern businesses seeking excellence in workspace solutions.",
+    status: "Ongoing",
+    description: "Privillege Hills is a state-of-the-art Grade-A office park located in Balewadi, Pune. This integrated office campus features a High Street retail spine, creating a vibrant business district that combines premium office spaces with retail and dining options. Designed to meet the needs of modern businesses, Privillege Hills offers world-class infrastructure, sustainable design, and a strategic location that provides excellent connectivity to key business hubs in Pune.",
+    features: [
+      "Grade-A office spaces with modern infrastructure",
+      "High Street retail spine with premium brands",
+      "Strategic location in Balewadi with excellent connectivity",
+      "Sustainable design with green building practices",
+      "Premium amenities for businesses and employees",
+      "Integrated commercial and retail spaces",
+      "Modern architecture and world-class facilities",
+      "24/7 security and professional management",
+    ],
+    amenities: [
+      "Premium Office Spaces",
+      "High Street Retail",
+      "Parking Facilities",
+      "24/7 Security",
+      "Modern Elevators",
+      "Power Backup",
+      "Landscaped Areas",
+      "Conference Facilities",
+      "Food Court & Dining",
+      "Business Center",
+      "Reception & Concierge",
+      "Access Control Systems",
+    ],
+    heroImage: privilegeHillsImage,
+    galleryImages: [
+      { src: privilegeHillsImage, title: "Main Building" },
+      { src: privilegeHillsSummary, title: "Project Summary" },
+    ],
+    layouts: [
+      { src: privilegeHillsLayout1BHK, title: "1 BHK Layout", type: "1 BHK" },
+      { src: privilegeHillsLayout1BHKAlt, title: "1 BHK Layout (Alternate)", type: "1 BHK Alternate" },
+      { src: privilegeHillsLayout2BHK, title: "2 BHK Layout", type: "2 BHK" },
+    ],
+    projectArea: "Office Campus",
+    totalUnits: "Grade-A Office Park",
+    developer: "Maa Pranaam Buildcon",
+  },
+  "sai-galaxy": {
+    name: "Sai Galaxy",
+    location: "Dubai Islands",
+    mix: "3 & 4 BHK | ~180,000 sq. ft.",
+    details: "Luxury residential development in Dubai Islands offering premium 3 & 4 BHK residences with world-class amenities and stunning views.",
+    status: "Upcoming",
+    description: "Sai Galaxy is an upcoming luxury residential development located in the prestigious Dubai Islands. This premium project spans approximately 180,000 square feet and offers spacious 3 & 4 BHK residences designed for modern luxury living. With stunning views, world-class amenities, and a prime location in one of Dubai's most sought-after areas, Sai Galaxy represents the pinnacle of luxury real estate development. The project combines contemporary architecture with traditional elegance, creating homes that are both luxurious and functional.",
+    features: [
+      "Luxury 3 & 4 BHK residences in Dubai Islands",
+      "Premium location with stunning views",
+      "World-class amenities and facilities",
+      "Contemporary architecture with elegant design",
+      "Spacious layouts optimized for luxury living",
+      "Premium finishes and modern interiors",
+      "Strategic location with excellent connectivity",
+      "Investment opportunity in prime Dubai real estate",
+    ],
+    amenities: [
+      "Swimming Pool",
+      "Fitness Center",
+      "Landscaped Gardens",
+      "Children's Play Area",
+      "24/7 Security",
+      "Concierge Services",
+      "Parking Facilities",
+      "Retail & Dining",
+      "Recreation Areas",
+      "Community Spaces",
+      "Modern Elevators",
+      "Power Backup",
+    ],
+    heroImage: saiGalaxy1,
+    galleryImages: [
+      { src: saiGalaxy1, title: "Project View 1" },
+      { src: saiGalaxy2, title: "Project View 2" },
+    ],
+    layouts: [],
+    projectArea: "~180,000 sq. ft.",
+    totalUnits: "3 & 4 BHK Residences",
+    developer: "Maa Pranaam Buildcon",
+    flatSizes: {
+      "3 BHK": "Available",
+      "4 BHK": "Available",
+    },
   },
 };
 

@@ -20,6 +20,9 @@ import sadguruKrupaImage from "../assets/Shree Sadguru/Shree Sadguru Krupa.webp"
 import vrindavanRegency1 from "../assets/Vrindavan/Vrindavan Regency 1.webp";
 import saiNagari1 from "../assets/Sai Nagari/Sai Nagari 1.webp";
 import maaPranaamHospitalImage from "../assets/Maa Pranaam Hospital/Mauli Regency Hospital Image.webp";
+import privilegeHillsImage from "../assets/Privilege Hills/Privillege Hills.png";
+import saiGalaxy1 from "../assets/Sai Galaxy/Sai Galaxy1.jpg";
+import saiGalaxy2 from "../assets/Sai Galaxy/Sai Galaxy2.jpg";
 const projectData = {
   completed: [
     {
@@ -50,13 +53,13 @@ const projectData = {
       details: "Ready-to-move complex with 2 towers, 100+ units spread over 3 acres. A convenient choice for comfortable housing in South Pune.",
       image: vrindavanRegency1,  
     },
-    {
-      name: "Sai Shraddha Pune",
-      location: "Kondhwa Budruk, Yewalewadi, Pune",
-      mix: "3 & 4 BHK Residences",
-      details: "Affordable and high-quality living in a vibrant neighborhood.",
-      image: picture4,  
-    }
+    // {
+    //   name: "Sai Shraddha Pune",
+    //   location: "Kondhwa Budruk, Yewalewadi, Pune",
+    //   mix: "3 & 4 BHK Residences",
+    //   details: "Affordable and high-quality living in a vibrant neighborhood.",
+    //   image: picture4,   
+    // }
   ],
   ongoing: [
     {
@@ -78,13 +81,13 @@ const projectData = {
       location: "Balewadi, Pune",
       mix: "Grade-A office park",
       details: "Integrated office campus with High Street retail spine.",
-      image: picture5,
+      image: privilegeHillsImage,
     },
     {
       name: "Sadguru Residency",
-      location: "Yerwada, Pune",
-      mix: "1.2M sq. ft. IT Park",
-      details: "State-of-the-art technology hub with world-class amenities.",
+      location: "Pune",
+      mix: "1.2M sq. ft.",
+      details: "resedential project.",
       image: picture6,
     },
   ],
@@ -93,63 +96,54 @@ const projectData = {
       name: "Krushna Nagari",
       location: "Bandra West, Mumbai",
       mix: "3 & 4.5 BHK | ~65,800 sq. ft.",
-      price: "INR 20 Cr* onwards",
       image: picture1,
     },
     {
       name: "Sai Galaxy",
       location: "Dubai Islands",
       mix: "3 & 4 BHK | ~180,000 sq. ft.",
-      price: "4.2M AED* onwards",
-      image: picture2,
+      image: saiGalaxy1,
     },
     {
       name: "Parkland Homes II",
       location: "Worli, Mumbai",
       mix: "4 & 5 BHK | ~85,000 sq. ft.",
-      price: "INR 25 Cr* onwards",
       image: picture3,
     },
     {
       name: "Euphoric Blossoms",
       location: "pune",
       mix: "3 & 4 BHK Residences",
-      price: "INR 20 Cr* onwards",
       image: picture4,  
     },
     {
       name: "M24",
       location: "pune",
       mix: "3 & 4 BHK Residences",
-      price: "INR 20 Cr* onwards",
       image: picture4,
     },
     {
       name: "Sai Mantra",
       location: "pune",
       mix: "3 & 4 BHK Residences",
-      price: "INR 20 Cr* onwards",
       image: picture4,
     },
     {
       name: "Sai Shraddha Pune",
       location: "pune",
       mix: "3 & 4 BHK Residences",
-      price: "INR 20 Cr* onwards",
       image: picture4,
     },
     {
       name: "KBC Towers",
       location: "pune",
       mix: "3 & 4 BHK Residences",
-      price: "INR 20 Cr* onwards",
       image: picture4,
     },
     {
       name: "Sai Amrut",
       location: "pune",
       mix: "3 & 4 BHK Residences",
-      price: "INR 20 Cr* onwards",
       image: picture4,  
     }
   ],
@@ -227,6 +221,10 @@ function Projects() {
     navigate("/projects/sai-dwarika");
   } else if (projectName === "Maa Pranaam Hospitality") {
     navigate("/projects/maa-pranaam-hospitality");
+  } else if (projectName === "Privillege Hills") {
+    navigate("/projects/privilege-hills");
+  } else if (projectName === "Sai Galaxy") {
+    navigate("/projects/sai-galaxy");
   }
 
   // Navigate ke baad page ko top par le jaane ke liye
@@ -283,7 +281,7 @@ function Projects() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className="text-xl text-gray-800 max-w-3xl mx-auto font-medium"
+              className="text-xl text-[#f0d9a3] max-w-3xl mx-auto font-medium"
             >
               Premium locations in Pune, blending architecture,
               wellness, and hospitality partnerships.
@@ -311,7 +309,7 @@ function Projects() {
                   whileHover={{ scale: 1.1, color: "#f9d891" }}
                   whileTap={{ scale: 0.95 }}
                   className={`transition-colors duration-300 px-4 ${
-                    activeSection === item.value ? "text-gray-900 font-semibold" : ""
+                    activeSection === item.value ? "text-[#f9d891] font-semibold" : ""
                   }`}
                 >
                   {item.label}
@@ -381,7 +379,7 @@ function Projects() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-2xl font-semibold text-gray-900 mb-2"
+                    className="text-2xl font-semibold text-white mb-2"
                   >
                     {project.name}
                   </motion.h3>
@@ -390,7 +388,7 @@ function Projects() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.1 }}
-                    className="text-sm text-[#d1a75e]"
+                    className="text-sm text-[#f0d9a3]"
                   >
                     {project.location}
                   </motion.p>
@@ -431,7 +429,7 @@ function Projects() {
           >
             <motion.p
               variants={fadeUp}
-              className="text-sm tracking-[0.3em] uppercase text-[#d1a75e] mb-4"
+              className="text-sm tracking-[0.3em] uppercase text-[#f0d9a3] mb-4"
             >
               Ongoing Projects
             </motion.p>
@@ -471,7 +469,7 @@ function Projects() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
                   <div className="absolute top-4 right-4">
-                    <span className="px-3 py-1 bg-[#d1a75e]/30 backdrop-blur-sm border border-[#d1a75e]/50 rounded-full text-xs font-semibold text-gray-900">
+                    <span className="px-3 py-1 bg-[#d1a75e]/30 backdrop-blur-sm border border-[#d1a75e]/50 rounded-full text-xs font-semibold text-white">
                       ONGOING
                     </span>
                   </div>
@@ -480,7 +478,7 @@ function Projects() {
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
-                      className="text-2xl font-semibold text-gray-900 mb-2"
+                      className="text-2xl font-semibold text-white mb-2"
                     >
                       {project.name}
                     </motion.h3>
@@ -489,7 +487,7 @@ function Projects() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: 0.1 }}
-                      className="text-sm text-[#d1a75e]"
+                      className="text-sm text-[#f0d9a3]"
                     >
                       {project.location}
                     </motion.p>
@@ -579,7 +577,7 @@ function Projects() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-2xl font-semibold text-gray-900 mb-2"
+                    className="text-2xl font-semibold text-white mb-2"
                   >
                     {project.name}
                   </motion.h3>
@@ -588,7 +586,7 @@ function Projects() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.1 }}
-                    className="text-sm text-[#d1a75e]"
+                    className="text-sm text-[#f0d9a3]"
                   >
                     {project.location}
                   </motion.p>
@@ -606,15 +604,26 @@ function Projects() {
                     {project.price}
                   </motion.p>
                 )}
-                <Link to="/contact" onClick={() => window.scrollTo(0, 0)}>
-                <motion.button
-                  whileHover={{ scale: 1.05, x: 5 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-full px-6 py-3 bg-gradient-to-r from-[#d1a74f] to-[#b8924b] text-white font-semibold rounded-lg hover:from-[#b8924b] hover:to-[#d1a74f] transition-all"
-                >
-                  Enquire Now
-                </motion.button>
-                </Link>
+                {project.name === "Sai Galaxy" ? (
+                  <motion.button
+                    onClick={() => handleViewDetails(project.name)}
+                    whileHover={{ scale: 1.05, x: 5 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-full px-6 py-3 bg-gradient-to-r from-[#d1a74f] to-[#b8924b] text-white font-semibold rounded-lg hover:from-[#b8924b] hover:to-[#d1a74f] transition-all"
+                  >
+                    View Details
+                  </motion.button>
+                ) : (
+                  <Link to="/contact" onClick={() => window.scrollTo(0, 0)}>
+                    <motion.button
+                      whileHover={{ scale: 1.05, x: 5 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="w-full px-6 py-3 bg-gradient-to-r from-[#d1a74f] to-[#b8924b] text-white font-semibold rounded-lg hover:from-[#b8924b] hover:to-[#d1a74f] transition-all"
+                    >
+                      Enquire Now
+                    </motion.button>
+                  </Link>
+                )}
               </div>
             </motion.div>
           ))}
