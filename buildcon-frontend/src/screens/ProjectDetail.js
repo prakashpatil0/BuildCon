@@ -540,11 +540,11 @@ const ProjectDetail = () => {
                 viewport={{ once: true }}
                 className="mb-12"
               >
-                <h2 className="text-4xl font-semibold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#d1a74f] to-[#b8924b]">About the Project</h2>
+                <h2 className="text-4xl font-semibold mb-6 text-transparent bg-clip-text bg-gradient-to-r text-[#d8971f]">About the Project</h2>
                 <p className="text-gray-800 text-lg leading-relaxed mb-8">
                   {project.description}
                 </p>
-                <p className="text-[#d1a75e] text-base leading-relaxed mb-8">
+                <p className="text-[#d8971f] text-base leading-relaxed mb-8">
                   {project.details}
                 </p>
                 
@@ -611,7 +611,7 @@ const ProjectDetail = () => {
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
               >
-                <h2 className="text-3xl font-semibold mb-8 text-[#f7d69a]">Key Features</h2>
+                <h2 className="text-3xl font-semibold mb-8 text-[#d8971f]">Key Features</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {project.features.map((feature, index) => (
                     <motion.div
@@ -651,8 +651,8 @@ const ProjectDetail = () => {
                 viewport={{ once: true }}
                 className="mb-12"
               >
-                <h2 className="text-4xl font-semibold mb-6 text-[#f7d69a]">Flat Layouts</h2>
-                <p className="text-[#f0d3a3] text-lg leading-relaxed mb-8">
+                <h2 className="text-4xl font-semibold mb-6 text-[#d8971f]">Flat Layouts</h2>
+                <p className="text-[#d8971f] text-lg leading-relaxed mb-8">
                   Explore our thoughtfully designed residential layouts that maximize space and comfort.
                 </p>
               </motion.div>
@@ -702,8 +702,8 @@ const ProjectDetail = () => {
                 viewport={{ once: true }}
                 className="mb-12"
               >
-                <h2 className="text-4xl font-semibold mb-6 text-[#f7d69a]">Project Gallery</h2>
-                <p className="text-[#f0d3a3] text-lg leading-relaxed mb-8">
+                <h2 className="text-4xl font-semibold mb-6 text-[#d8971f]">Project Gallery</h2>
+                <p className="text-[#d8971f] text-lg leading-relaxed mb-8">
                   Take a visual journey through {project.name} and experience the beauty of our development.
                 </p>
               </motion.div>
@@ -753,8 +753,8 @@ const ProjectDetail = () => {
                 viewport={{ once: true }}
                 className="mb-12"
               >
-                <h2 className="text-4xl font-semibold mb-6 text-[#f7d69a]">Amenities</h2>
-                <p className="text-[#f0d3a3] text-lg leading-relaxed mb-8">
+                <h2 className="text-4xl font-semibold mb-6 text-[#d8971f]">Amenities</h2>
+                <p className="text-[#d8971f] text-lg leading-relaxed mb-8">
                   Experience luxury living with our world-class amenities designed to enhance your lifestyle.
                 </p>
               </motion.div>
@@ -787,10 +787,10 @@ const ProjectDetail = () => {
         </AnimatePresence>
         {activeTab === "compliance" && project?.hasCompliance && (
   <section id="compliance" className="mt-10">
-    <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
-      <h3 className="text-xl font-semibold text-[#f7d69a]">Compliance</h3>
+    <div className="bg-black/5 border border-black/10 rounded-2xl p-6">
+      <h3 className="text-xl font-semibold text-[#d8971f]">Compliance</h3>
 
-      <p className="mt-3 text-sm text-white/70 leading-relaxed">
+      <p className="mt-3 text-sm text-black/70 leading-relaxed">
         View the compliance document for this project.
       </p>
 
@@ -798,7 +798,7 @@ const ProjectDetail = () => {
         href={project?.compliance?.pdf?.file}
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-6 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-[#e3c472]/50 text-[#fefaf0] hover:bg-[#e3c472] hover:text-black transition-all duration-300"
+        className="mt-6 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-[#e3c472]/50 text-[#000] hover:bg-[#e3c472] hover:text-black transition-all duration-300"
       >
         {project?.compliance?.pdf?.label || "Open PDF"}
         <span className="text-lg">↗</span>
@@ -820,7 +820,7 @@ const ProjectDetail = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl font-semibold mb-6 text-[#f7d69a]"
+            className="text-3xl font-semibold mb-6 text-[#d8971f]"
           >
             Interested in {project.name}?
           </motion.h3>

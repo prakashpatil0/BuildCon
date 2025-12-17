@@ -122,101 +122,102 @@ const Gallery = () => {
       </section>
 
       {/* ================= TABS SECTION ================= */}
-      <section className="bg-gradient-to-br from-[#faf9f6] to-white py-24 px-6">
-        <div className="max-w-6xl mx-auto text-center">
+     <section className="bg-gradient-to-br from-[#faf9f6] to-white py-24 px-6">
+  <div className="max-w-6xl mx-auto text-center">
 
-          <motion.h1
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.4 }}
-            className="text-3xl md:text-4xl font-semibold mb-3"
-          >
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f9d891] to-[#d1a74f]">
-              WHO WE ARE
-            </span>
-          </motion.h1>
+    <motion.h1
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ delay: 0.4 }}
+      className="text-3xl md:text-4xl font-semibold mb-3"
+    >
+      <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f9d891] to-[#d1a74f]">
+        WHO WE ARE
+      </span>
+    </motion.h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-            className="text-gray-900 text-2xl sm:text-3xl max-w-2xl mx-auto mb-9 text-center font-semibold"
-          >
-            Guided by visionary leadership
-          </motion.p>
-
-
-          <div className="grid md:grid-cols-2 gap-12">
-            
-
-           {/* Card 1 */}
-<motion.div
-  initial={{ opacity: 0, y: 30 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.9 }}
-  className="bg-[#111111] shadow-[0_18px_45px_rgba(0,0,0,0.8)] p-14 border border-white/10 rounded-xl text-center hover:border-[#e3c472] hover:shadow-[0_24px_60px_rgba(0,0,0,0.9)] transition"
->
-  <h3 className="text-2xl  text-[#f8e9bf] mb-3">Board of Directors</h3>
-
-  <p className="text-gray-300 leading-relaxed mb-8">
-    Experienced industry leaders ensuring we grow our positive impact.
-  </p>
-
-  <button
-    onClick={() => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      navigate("/boardofdirectors");
-    }}
-    className="
-      px-10 py-2
-      text-[#fefaf0]
-      border border-[#e3c472]
-      rounded-md
-      hover:bg-[#e3c472] hover:text-black
-      transition-all duration-300
-    "
-  >
-    View
-  </button>
-</motion.div>
+    <motion.p
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.6 }}
+      className="text-gray-900 text-2xl sm:text-3xl max-w-2xl mx-auto mb-9 text-center font-semibold"
+    >
+      Guided by visionary leadership
+    </motion.p>
 
 
-            {/* Card 2 */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9 }}
-              className="bg-[#111111] shadow-[0_18px_45px_rgba(0,0,0,0.8)] p-14 border border-white/10 rounded-xl text-center hover:border-[#e3c472] hover:shadow-[0_24px_60px_rgba(0,0,0,0.9)] transition"
-            >
-              <h3 className="text-2xl  text-[#f8e9bf] mb-3">
-                Leadership Team
-              </h3>
-              <p className="text-gray-300 leading-relaxed mb-8">
-                A motivated and passionate team with a commitment to excellence.
-              </p>
+    <div className="grid md:grid-cols-2 gap-12">
 
-              <button
-                onClick={() => {
-                  window.scrollTo({ top: 0, behavior: "smooth" });
-                  navigate("/team");
-                }}
-                className="
-                       px-10 py-2 
-                       text-[#fefaf0] 
-                       border border-[#e3c472] 
-                       rounded-md 
-                       hover:bg-[#e3c472] hover:text-black 
-                       transition-all duration-300
-                     "
-              >
-                View
-              </button>
-            </motion.div>
 
-          </div>
+      {/* Card 1 */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.9 }}
+        className="bg-[#fbf6e8] shadow-none p-14 border border-[#ead9b3] rounded-none text-center hover:border-[#d1a74f] transition"
+      >
+        <h3 className="text-2xl  text-gray-900 mb-3">Board of Directors</h3>
 
-        </div>
-      </section>
+        <p className="text-gray-600 leading-relaxed mb-8">
+          Experienced industry leaders ensuring we grow our positive impact.
+        </p>
+
+        <button
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            navigate("/boardofdirectors");
+          }}
+          className="
+            px-12 py-2
+            text-[#b8924b]
+            border border-[#d1a74f]
+            rounded-none
+            hover:bg-[#d1a74f] hover:text-black
+            transition-all duration-300
+          "
+        >
+          View
+        </button>
+      </motion.div>
+
+
+      {/* Card 2 */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.9 }}
+        className="bg-[#fbf6e8] shadow-none p-14 border border-[#ead9b3] rounded-none text-center hover:border-[#d1a74f] transition"
+      >
+        <h3 className="text-2xl  text-gray-900 mb-3">
+          Leadership Team
+        </h3>
+        <p className="text-gray-600 leading-relaxed mb-8">
+          A motivated and passionate team with a commitment to excellence.
+        </p>
+
+        <button
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            navigate("/team");
+          }}
+          className="
+                 px-12 py-2 
+                 text-[#b8924b] 
+                 border border-[#d1a74f] 
+                 rounded-none 
+                 hover:bg-[#d1a74f] hover:text-black 
+                 transition-all duration-300
+               "
+        >
+          View
+        </button>
+      </motion.div>
+
+    </div>
+
+  </div>
+</section>
+
 
       {/* ================= NEWS DETAIL MODAL ================= */}
       <AnimatePresence>

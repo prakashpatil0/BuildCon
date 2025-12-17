@@ -33,7 +33,7 @@ const directors = [
     img: HemantPawar,
   },
   {
-    name: "Mr. Umesh Tapule",
+    name: "Mr. Umesh Tapal",
     role: "Director",  
     img: UmeshTapule,
   },
@@ -101,65 +101,67 @@ const BoardOfDirectors = () => {
       </div>
 
       {/* Grid */}
-      <div className="max-w-7xl mx-auto px-6 md:px-20 py-10 md:py-12">
+     <div className="max-w-7xl mx-auto px-6 md:px-20 py-10 md:py-12">
+  <motion.div
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true, amount: 0.2 }}
+    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-16 gap-y-16"
+  >
+    {directors.map((d, i) => (
+      <motion.div
+        key={`${d.name}-${i}`}
+        custom={i + 1}
+        variants={fadeUp}
+        className="w-full"
+      >
+        {/* Image */}
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-16 gap-y-16"
+          className="w-full"
+          whileHover={{ scale: 1.02 }}
+          transition={{ duration: 0.3 }}
         >
-          {directors.map((d, i) => (
-            <motion.div
-              key={`${d.name}-${i}`}
-              custom={i + 1}
-              variants={fadeUp}
-              className="w-full"
-            >
-              {/* Image */}
-              <motion.div
-                className="w-full"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-              >
-                <div className="w-full aspect-square bg-[#faf9f6] rounded-lg border border-[#d1a75e]/30 hover:border-[#d1a75e]/50 transition-all shadow-lg shadow-[#d1a75e]/10 p-3 md:p-1 flex items-center justify-center">
-                  <motion.img
-                    src={d.img}
-                    alt={d.name}
-                    className="w-full h-full object-contain rounded-md"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.4 }}
-                    onError={(e) => {
-                      e.currentTarget.src = placeholder;
-                    }}
-                  />
-                </div>
-              </motion.div>
-
-              {/* Name + Role */}
-              <div className="mt-5">
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.06 + 0.3 }}
-                  className="text-[15px] md:text-[16px] font-medium text-gray-900"
-                >
-                  {d.name}
-                </motion.p>
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.06 + 0.4 }}
-                  className="mt-1 text-[13px] md:text-[14px] text-[#d1a75e]"
-                >
-                  {d.role}
-                </motion.p>
-              </div>
-            </motion.div>
-          ))}
+          <div className="w-full bg-[#faf9f6] rounded-lg border border-[#d1a75e]/30 hover:border-[#d1a75e]/50 transition-all shadow-lg shadow-[#d1a75e]/10 overflow-hidden h-[20em]">
+            <motion.img
+              src={d.img}
+              alt={d.name}
+              className="w-full h-full object-cover object-center"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.4 }}
+              onError={(e) => {
+                e.currentTarget.src = placeholder;
+              }}
+            />
+          </div>
         </motion.div>
-      </div>
+
+        {/* Name + Role */}
+        <div className="mt-5">
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.06 + 0.3 }}
+            className="text-[15px] md:text-[16px] font-medium text-gray-900"
+          >
+            {d.name}
+          </motion.p>
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.06 + 0.4 }}
+            className="mt-1 text-[13px] md:text-[14px] text-[#d1a75e]"
+          >
+            {d.role}
+          </motion.p>
+        </div>
+      </motion.div>
+    ))}
+  </motion.div>
+</div>
+
+
     </div>
   );
 };
