@@ -382,7 +382,7 @@ function Contact() {
                 ENQUIRE NOW
               </motion.button>
 
-              <motion.button
+              {/* <motion.button
                 whileHover={{ scale: 1.1, y: -5 }}
                 whileTap={{ scale: 0.9 }}
                 type="button"
@@ -391,7 +391,7 @@ function Contact() {
                 aria-label="Scroll to top"
               >
                 ↑
-              </motion.button>
+              </motion.button> */}
             </motion.div>
           </motion.div>
         </div>
