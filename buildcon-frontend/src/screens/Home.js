@@ -338,7 +338,6 @@ const Home = () => {
   };
 
 
-
   return (
     <div className="w-full bg-white">
       {/* ================= HERO SECTION ================= */}

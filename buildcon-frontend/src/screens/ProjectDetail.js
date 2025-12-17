@@ -46,49 +46,76 @@ import maaPranaamHospitalLayout4 from "../assets/Maa Pranaam Hospital/Mauli Rege
 
 const projectData = {
   "sai-nagari": {
-    name: "Sai Nagari",
-    location: "Katraj, Pune",
-    mix: "6.75+ Million Sq. Ft. mixed-use",
-    details: "Transit-oriented district with office, retail, and residences.",
-    status: "Ongoing",
-    description: "Sai Nagari is a landmark mixed-use development spanning over 6.75 million square feet in Katraj, Pune. This transit-oriented district seamlessly integrates office spaces, retail outlets, and premium residences, creating a vibrant community hub. The project represents a new standard in urban living, combining modern architecture with sustainable design principles.",
-    features: [
-      "Transit-oriented development with excellent connectivity",
-      "Mixed-use community with office, retail, and residential spaces",
-      "Premium residences with world-class amenities",
-      "State-of-the-art office spaces for modern businesses",
-      "High Street retail spine with premium brands",
-      "Sustainable design with green building practices",
-      "24/7 security and concierge services",
-      "Landscaped gardens and recreational facilities",
+  name: "Sai Nagari",
+  location: "Katraj, Pune",
+  mix: "6.75+ Million Sq. Ft. mixed-use",
+  details: "Transit-oriented district with office, retail, and residences.",
+  status: "Ongoing",
+
+  hasCompliance: true, // ✅ ONLY here
+
+  compliance: {
+    pdf: {
+      label: "Compliance Document (PDF)",
+      file: "/compliance/sai-nagari/compliance.pdf",
+    },
+    approvals: [
+      { label: "RERA Certificate", file: "/compliance/sai-nagari/rera-certificate.pdf" },
+      { label: "Commencement Certificate (CC)", file: "/compliance/sai-nagari/cc.pdf" },
+      { label: "Occupation Certificate (OC)", file: "/compliance/sai-nagari/oc.pdf" },
+      { label: "Approved Layout / Plan", file: "/compliance/sai-nagari/approved-layout.pdf" },
     ],
-    amenities: [
-      "Clubhouse with fitness center",
-      "Swimming pool and spa",
-      "Landscaped gardens",
-      "Temple and meditation spaces",
-      "Children's play area",
-      "Sports facilities",
-      "Retail and dining options",
-      "Parking facilities",
-    ],
-    heroImage: saiNagari1,
-    galleryImages: [
-      { src: saiNagari1, title: "Main Building" },
-      { src: saiNagari2, title: "Exterior View" },
-      { src: saiNagari3, title: "Architecture" },
-      { src: saiNagari4, title: "Facade" },
-      { src: saiNagari5, title: "Development" },
-      { src: saiNagari6, title: "Project View" },
-      { src: saiNagariClubhouse, title: "Clubhouse" },
-      { src: saiNagariGarden, title: "Garden" },
-      { src: saiNagariTemple, title: "Temple" },
-    ],
-    layouts: [
-      { src: layout1BHK, title: "1 BHK Layout", type: "1 BHK" },
-      { src: layout2BHK, title: "2 BHK Layout", type: "2 BHK" },
+    downloads: [
+      { label: "Project Brochure", file: "/compliance/sai-nagari/brochure.pdf" },
+      { label: "Price Sheet", file: "/compliance/sai-nagari/price-sheet.pdf" },
     ],
   },
+
+  description:
+    "Sai Nagari is a landmark mixed-use development spanning over 6.75 million square feet in Katraj, Pune. This transit-oriented district seamlessly integrates office spaces, retail outlets, and premium residences, creating a vibrant community hub. The project represents a new standard in urban living, combining modern architecture with sustainable design principles.",
+
+  features: [
+    "Transit-oriented development with excellent connectivity",
+    "Mixed-use community with office, retail, and residential spaces",
+    "Premium residences with world-class amenities",
+    "State-of-the-art office spaces for modern businesses",
+    "High Street retail spine with premium brands",
+    "Sustainable design with green building practices",
+    "24/7 security and concierge services",
+    "Landscaped gardens and recreational facilities",
+  ],
+
+  amenities: [
+    "Clubhouse with fitness center",
+    "Swimming pool and spa",
+    "Landscaped gardens",
+    "Temple and meditation spaces",
+    "Children's play area",
+    "Sports facilities",
+    "Retail and dining options",
+    "Parking facilities",
+  ],
+
+  heroImage: saiNagari1,
+
+  galleryImages: [
+    { src: saiNagari1, title: "Main Building" },
+    { src: saiNagari2, title: "Exterior View" },
+    { src: saiNagari3, title: "Architecture" },
+    { src: saiNagari4, title: "Facade" },
+    { src: saiNagari5, title: "Development" },
+    { src: saiNagari6, title: "Project View" },
+    { src: saiNagariClubhouse, title: "Clubhouse" },
+    { src: saiNagariGarden, title: "Garden" },
+    { src: saiNagariTemple, title: "Temple" },
+  ],
+
+  layouts: [
+    { src: layout1BHK, title: "1 BHK Layout", type: "1 BHK" },
+    { src: layout2BHK, title: "2 BHK Layout", type: "2 BHK" },
+  ],
+},
+
   "shree-shrushti": {
     name: "Shree Shrushti",
     location: "Yewalewadi, Pune",
@@ -373,10 +400,11 @@ const ProjectDetail = () => {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex gap-8 overflow-x-auto">
             {[
-              { id: "overview", label: "Overview" },
-              { id: "layouts", label: "Layouts" },
-              { id: "gallery", label: "Gallery" },
-              { id: "amenities", label: "Amenities" },
+               { id: "overview", label: "Overview" },
+  { id: "layouts", label: "Layouts" },
+  { id: "gallery", label: "Gallery" },
+  { id: "amenities", label: "Amenities" },
+  ...(project?.hasCompliance ? [{ id: "compliance", label: "Compliance" }] : []),
             ].map((tab) => (
               <button
                 key={tab.id}
@@ -656,6 +684,28 @@ const ProjectDetail = () => {
             </motion.div>
           )}
         </AnimatePresence>
+        {activeTab === "compliance" && project?.hasCompliance && (
+  <section id="compliance" className="mt-10">
+    <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
+      <h3 className="text-xl font-semibold text-[#f7d69a]">Compliance</h3>
+
+      <p className="mt-3 text-sm text-white/70 leading-relaxed">
+        View the compliance document for this project.
+      </p>
+
+      <a
+        href={project?.compliance?.pdf?.file}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-6 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-[#e3c472]/50 text-[#fefaf0] hover:bg-[#e3c472] hover:text-black transition-all duration-300"
+      >
+        {project?.compliance?.pdf?.label || "Open PDF"}
+        <span className="text-lg">↗</span>
+      </a>
+    </div>
+  </section>
+)}
+
 
         {/* ================= CTA SECTION ================= */}
         <motion.div
