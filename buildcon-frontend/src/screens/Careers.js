@@ -409,7 +409,7 @@ const Careers = () => {
   };
 
   return (
-    <div className="w-full bg-black min-h-screen">
+    <div className="w-full bg-white min-h-screen">
       {/* ================= HERO SECTION ================= */}
       <section className="relative w-full h-[60vh] overflow-hidden">
         <motion.div
@@ -418,7 +418,7 @@ const Careers = () => {
           transition={{ duration: 1.5 }}
           className="absolute inset-0 bg-gradient-to-br from-[#1a1a1a] via-black to-[#0f0f0f]"
         />
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-black/40" />
 
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -440,7 +440,7 @@ const Careers = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
-            className="text-[#f0d3a3] text-xl max-w-2xl"
+            className="text-gray-800 text-xl max-w-2xl font-medium"
           >
             Join us in building the future of real estate
           </motion.p>
@@ -448,7 +448,7 @@ const Careers = () => {
       </section>
 
       {/* ================= WHY JOIN US ================= */}
-      <section className="max-w-6xl mx-auto px-6 py-24 bg-black">
+      <section className="max-w-6xl mx-auto px-6 py-24 bg-white">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -460,7 +460,7 @@ const Careers = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-semibold mb-6 text-[#f7d69a]"
+            className="text-4xl md:text-5xl font-semibold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#d1a74f] to-[#b8924b]"
           >
             Why Join BuildCon?
           </motion.h2>
@@ -469,7 +469,7 @@ const Careers = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-[#f0d3a3] text-lg leading-relaxed max-w-3xl mx-auto"
+            className="text-gray-800 text-lg leading-relaxed max-w-3xl mx-auto"
           >
             Be part of a dynamic team that's shaping the future of real estate. We offer opportunities to work on
             iconic projects, grow your career, and make a meaningful impact.
@@ -485,7 +485,7 @@ const Careers = () => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.6 }}
               whileHover={{ scale: 1.05, y: -5 }}
-              className="bg-[#1a1a1a] p-8 rounded-xl border border-[#d1a75e]/20 hover:border-[#d1a75e]/50 transition-all text-center"
+              className="bg-[#faf9f6] p-8 rounded-xl border border-[#d1a75e]/30 hover:border-[#d1a75e]/50 transition-all text-center"
             >
               <motion.div
                 initial={{ scale: 0 }}
@@ -501,7 +501,7 @@ const Careers = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 + 0.2 }}
-                className="text-xl font-semibold mb-3 text-[#f7d69a]"
+                className="text-xl font-semibold mb-3 text-gray-900"
               >
                 {benefit.title}
               </motion.h3>
@@ -520,7 +520,7 @@ const Careers = () => {
       </section>
 
       {/* ================= JOB OPENINGS ================= */}
-      <section className="max-w-7xl mx-auto px-6 py-24 bg-black">
+      <section className="max-w-7xl mx-auto px-6 py-24 bg-white">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -541,7 +541,7 @@ const Careers = () => {
               className={`px-6 py-2 rounded-lg font-medium transition-all duration-300 ${
                 filter === dept
                   ? "bg-gradient-to-r from-[#d1a74f] to-[#b8924b] text-white"
-                  : "bg-[#1a1a1a] text-[#d1a75e] hover:bg-[#2a2a2a] border border-[#d1a75e]/30"
+                  : "bg-[#faf9f6] text-[#d1a75e] hover:bg-[#f5f4f0] border border-[#d1a75e]/30"
               }`}
             >
               {dept.charAt(0).toUpperCase() + dept.slice(1).replace(/([A-Z])/g, " $1")}
@@ -560,11 +560,11 @@ const Careers = () => {
               transition={{ delay: index * 0.1, duration: 0.6 }}
               whileHover={{ scale: 1.02, y: -5 }}
               onClick={() => setSelectedJob(job)}
-              className="bg-[#1a1a1a] p-6 rounded-xl border border-[#d1a75e]/20 hover:border-[#d1a75e]/50 transition-all cursor-pointer"
+              className="bg-[#faf9f6] p-6 rounded-xl border border-[#d1a75e]/30 hover:border-[#d1a75e]/50 transition-all cursor-pointer"
             >
               <div className="flex justify-between items-start mb-4">
                 <div>
-                  <h3 className="text-xl font-semibold text-[#f7d69a] mb-2">{job.title}</h3>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">{job.title}</h3>
                   <p className="text-[#d1a74f] text-sm font-medium">{job.department}</p>
                 </div>
                 <span className="px-3 py-1 bg-[#d1a74f]/20 text-[#d1a74f] text-xs rounded-full">
@@ -575,7 +575,7 @@ const Careers = () => {
                 <span>📍 {job.location}</span>
                 <span>💼 {job.experience}</span>
               </div>
-              <p className="text-[#f0d3a3] text-sm line-clamp-2 mb-4">{job.description}</p>
+              <p className="text-gray-700 text-sm line-clamp-2 mb-4">{job.description}</p>
               <motion.button
                 onClick={(e) => {
                   e.stopPropagation();
@@ -603,7 +603,7 @@ const Careers = () => {
       </section>
 
       {/* ================= CTA SECTION ================= */}
-      <section className="bg-black py-24 px-6">
+      <section className="bg-gradient-to-br from-[#faf9f6] to-white py-24 px-6">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -615,7 +615,7 @@ const Careers = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-semibold mb-6 text-[#f7d69a]"
+            className="text-4xl md:text-5xl font-semibold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#d1a74f] to-[#b8924b]"
           >
             Don't See a Role That Fits?
           </motion.h2>
@@ -624,7 +624,7 @@ const Careers = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-[#f0d3a3] text-lg mb-8"
+            className="text-gray-800 text-lg mb-8"
           >
             We're always looking for talented individuals. Send us your resume and we'll keep you in mind for future
             opportunities.
@@ -656,16 +656,16 @@ const Careers = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={closeModal}
-            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
+            className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4"
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-[#1a1a1a] rounded-2xl border border-[#d1a75e]/30 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+              className="bg-white rounded-2xl border border-[#d1a75e]/30 max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl"
             >
-              <div className="sticky top-0 bg-[#1a1a1a] border-b border-[#d1a75e]/30 p-6 flex justify-between items-center">
+              <div className="sticky top-0 bg-white border-b border-[#d1a75e]/30 p-6 flex justify-between items-center">
                 <div>
                   <h2 className="text-2xl font-semibold text-[#f7d69a] mb-1">
                     Apply for {applicationJob.title}
@@ -693,7 +693,7 @@ const Careers = () => {
                       onChange={handleInputChange}
                       onBlur={() => setFieldTouched("name")}
                       required
-                      className="w-full px-4 py-3 bg-[#0f0f0f] border border-[#d1a75e]/30 rounded-lg text-[#f0d3a3] focus:outline-none focus:border-[#d1a74f] transition-colors"
+                      className="w-full px-4 py-3 bg-gray-50 border border-[#d1a75e]/30 rounded-lg text-gray-900 focus:outline-none focus:border-[#d1a74f] transition-colors"
                       placeholder="Enter your full name"
                     />
                     {fieldError("name") ? (
@@ -712,7 +712,7 @@ const Careers = () => {
                       onChange={handleInputChange}
                       onBlur={() => setFieldTouched("email")}
                       required
-                      className="w-full px-4 py-3 bg-[#0f0f0f] border border-[#d1a75e]/30 rounded-lg text-[#f0d3a3] focus:outline-none focus:border-[#d1a74f] transition-colors"
+                      className="w-full px-4 py-3 bg-gray-50 border border-[#d1a75e]/30 rounded-lg text-gray-900 focus:outline-none focus:border-[#d1a74f] transition-colors"
                       placeholder="your.email@example.com"
                     />
                     {fieldError("email") ? (
@@ -734,7 +734,7 @@ const Careers = () => {
                       pattern="\d{10}"
                       maxLength={10}
                       required
-                      className="w-full px-4 py-3 bg-[#0f0f0f] border border-[#d1a75e]/30 rounded-lg text-[#f0d3a3] focus:outline-none focus:border-[#d1a74f] transition-colors"
+                      className="w-full px-4 py-3 bg-gray-50 border border-[#d1a75e]/30 rounded-lg text-gray-900 focus:outline-none focus:border-[#d1a74f] transition-colors"
                       placeholder="Enter 10-digit mobile number"
                     />
                     {fieldError("phone") ? (
@@ -753,7 +753,7 @@ const Careers = () => {
                       onChange={handleInputChange}
                       onBlur={() => setFieldTouched("experience")}
                       required
-                      className="w-full px-4 py-3 bg-[#0f0f0f] border border-[#d1a75e]/30 rounded-lg text-[#f0d3a3] focus:outline-none focus:border-[#d1a74f] transition-colors"
+                      className="w-full px-4 py-3 bg-gray-50 border border-[#d1a75e]/30 rounded-lg text-gray-900 focus:outline-none focus:border-[#d1a74f] transition-colors"
                       placeholder="e.g., 5 or 5+ years"
                     />
                     {fieldError("experience") ? (
@@ -822,7 +822,7 @@ const Careers = () => {
                     onClick={closeModal}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="flex-1 px-6 py-3 bg-[#0f0f0f] border border-[#d1a75e]/50 text-[#f9d891] rounded-lg font-semibold hover:border-[#d1a75e] transition-colors"
+                    className="flex-1 px-6 py-3 bg-[#1a2332] border border-[#d1a75e]/50 text-[#f9d891] rounded-lg font-semibold hover:border-[#d1a75e] transition-colors"
                   >
                     Cancel
                   </motion.button>

@@ -83,7 +83,7 @@ const Gallery = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="w-full bg-black min-h-screen">
+    <div className="w-full bg-white min-h-screen">
       {/* ================= HERO SECTION ================= */}
       <section className="relative w-full h-[50vh] overflow-hidden">
         <motion.div
@@ -92,7 +92,7 @@ const Gallery = () => {
           transition={{ duration: 1.5 }}
           className="absolute inset-0 bg-gradient-to-br from-[#1a1a1a] via-black to-[#0f0f0f]"
         />
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-black/40" />
 
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -114,7 +114,7 @@ const Gallery = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
-            className="text-[#f0d3a3] text-xl max-w-2xl"
+            className="text-gray-800 text-xl max-w-2xl font-medium"
           >
             Explore our media coverage and meet our team
           </motion.p>
@@ -122,7 +122,7 @@ const Gallery = () => {
       </section>
 
       {/* ================= TABS SECTION ================= */}
-      <section className="bg-black py-24 px-6">
+      <section className="bg-gradient-to-br from-[#faf9f6] to-white py-24 px-6">
         <div className="max-w-6xl mx-auto text-center">
 
           <motion.h1
@@ -140,7 +140,7 @@ const Gallery = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
-            className="text-[#f0d3a3] text-2xl sm:text-3xl max-w-2xl mx-auto mb-9 text-center"
+            className="text-gray-900 text-2xl sm:text-3xl max-w-2xl mx-auto mb-9 text-center font-semibold"
           >
             Guided by visionary leadership
           </motion.p>
@@ -227,7 +227,7 @@ const Gallery = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedNews(null)}
-              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50"
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50"
             />
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 50 }}
@@ -236,12 +236,12 @@ const Gallery = () => {
               className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="relative bg-black border border-[#d1a75e]/30 rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+              <div className="relative bg-white border border-[#d1a75e]/30 rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
                 <motion.button
                   whileHover={{ scale: 1.1, rotate: 90 }}
                   whileTap={{ scale: 0.9 }}
                   onClick={() => setSelectedNews(null)}
-                  className="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center bg-[#d1a75e]/20 hover:bg-[#d1a75e]/30 rounded-full text-[#f9d891]"
+                  className="absolute top-4 right-4 z-10 w-10 h-10 flex items-center justify-center bg-[#d1a75e]/20 hover:bg-[#d1a75e]/30 rounded-full text-gray-900"
                 >
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -253,8 +253,8 @@ const Gallery = () => {
                 </div>
                 <div className="p-8">
                   <p className="text-[#d1a75e] text-sm mb-4">{selectedNews.source} • {selectedNews.date}</p>
-                  <h2 className="text-3xl font-semibold text-[#f7d69a] mb-4">{selectedNews.title}</h2>
-                  <p className="text-[#f0d3a3] text-lg leading-relaxed">{selectedNews.description}</p>
+                  <h2 className="text-3xl font-semibold text-gray-900 mb-4">{selectedNews.title}</h2>
+                  <p className="text-gray-800 text-lg leading-relaxed">{selectedNews.description}</p>
                 </div>
               </div>
             </motion.div>

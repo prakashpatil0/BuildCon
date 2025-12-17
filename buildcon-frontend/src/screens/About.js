@@ -100,7 +100,7 @@ const About = () => {
   };
 
   return (
-    <div className="w-full bg-[#0f0f0f] text-white font-light">
+    <div className="w-full bg-white text-gray-900 font-light">
 
       {/* ============================================================
           HERO SECTION
@@ -132,7 +132,7 @@ const About = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.4 }}
-            className="text-[#f0d3a3] text-lg tracking-wide"
+            className="text-gray-800 text-lg tracking-wide font-medium"
           >
             Shaping Skylines. Crafting Experiences.
           </motion.p>
@@ -175,14 +175,14 @@ const About = () => {
       ============================================================ */}
       <section
         ref={profileRef}
-        className="max-w-6xl mx-auto px-6 py-24 overflow-hidden bg-black"
+        className="max-w-6xl mx-auto px-6 py-24 overflow-hidden bg-white"
       >
         <motion.h2
           initial="hidden"
           whileInView="visible"
           variants={fadeUp}
           viewport={{ once: false }}
-          className="text-center text-5xl font-semibold mb-16 tracking-wide text-[#f8d99c]"
+          className="text-center text-5xl font-semibold mb-16 tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-[#d1a74f] to-[#b8924b]"
         >
           COMPANY PROFILE
         </motion.h2>
@@ -230,7 +230,7 @@ const About = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false }}
               transition={{ delay: 0.3 }}
-              className="text-[#f0d3a3] leading-relaxed mb-6 text-lg"
+              className="text-gray-800 leading-relaxed mb-6 text-lg"
             >
               At MAA PRANAAM GROUP, we don’t just build homes and offices — we create entire worlds that redefine the way people live, work, and play. Every project we undertake is shaped by thoughtful, modern design that captures the true essence of contemporary living.
 Driven by a passion to elevate real estate standards in the region, we are committed to delivering excellence across every development. Over the coming years, MAA PRANAAM GROUP aims to develop 1M+ sq. ft. of residential and commercial spaces in and around Pune, setting new benchmarks for quality, innovation, and customer satisfaction.
@@ -252,22 +252,22 @@ Driven by a passion to elevate real estate standards in the region, we are commi
       {/* ============================================================
           GROWTH CHRONICLES
       ============================================================ */}
-      <section ref={growthRef} className="bg-black py-24 px-6">
+      <section ref={growthRef} className="bg-gradient-to-br from-[#faf9f6] to-white py-24 px-6">
         <motion.h2
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="text-center text-5xl font-semibold mb-20 text-[#f7d69a]"
+          className="text-center text-5xl font-semibold mb-20 text-transparent bg-clip-text bg-gradient-to-r from-[#d1a74f] to-[#b8924b]"
         >
           GROWTH CHRONICLES
         </motion.h2>
 
         <div className="max-w-5xl mx-auto relative border-l-2 border-[#d1a75e]/50 pl-10">
           {[
-            { year: "2002", title: "Foundation", desc: "The beginning of a premium real-estate journey." },
-            { year: "2010", title: "National Expansion", desc: "Expanded into major metros & commercial hubs across India." },
-            { year: "2020", title: "Global Recognition", desc: "Achieved global excellence in engineering & design." },
+            { year: "2014", title: "Founding of Maa Pranaam Buildcon", desc: "The beginning of a premium real-estate journey." },
+            { year: "2018", title: "National Expansion", desc: "Expanded into major metros & commercial hubs across India." },
+            { year: "2022", title: "Global Recognition", desc: "Achieved global excellence in engineering & design." },
           ].map((item, index) => (
             <motion.div
               key={item.year}
@@ -290,7 +290,7 @@ Driven by a passion to elevate real estate standards in the region, we are commi
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2 + 0.2 }}
-                className="text-xl font-semibold mb-2 text-[#f0d3a3]"
+                className="text-xl font-semibold mb-2 text-gray-900"
               >
                 {item.year} — {item.title}
               </motion.h3>
@@ -311,13 +311,13 @@ Driven by a passion to elevate real estate standards in the region, we are commi
       {/* ============================================================
           LEADERSHIP
       ============================================================ */}
-      <section className="max-w-6xl mx-auto px-6 py-24 bg-black">
+      <section className="max-w-6xl mx-auto px-6 py-24 bg-white">
         <motion.h2
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="text-center text-5xl font-semibold mb-20 text-[#f7d69a]"
+          className="text-center text-5xl font-semibold mb-20 text-transparent bg-clip-text bg-gradient-to-r from-[#d1a74f] to-[#b8924b]"
         >
           LEADERSHIP
         </motion.h2>
@@ -375,7 +375,7 @@ Driven by a passion to elevate real estate standards in the region, we are commi
       {/* ============================================================
           GLOBAL PRESENCE
       ============================================================ */}
-      <section className="bg-black py-24 px-6">
+      <section className="bg-gradient-to-br from-[#faf9f6] to-white py-24 px-6">
         <motion.h2
           variants={fadeUp}
           initial="hidden"
@@ -406,7 +406,7 @@ Driven by a passion to elevate real estate standards in the region, we are commi
       {/* ============================================================
           CLIENTS GRID
       ============================================================ */}
-      <section ref={clientsRef} className="max-w-6xl mx-auto px-6 py-24 bg-black">
+      <section ref={clientsRef} className="max-w-6xl mx-auto px-6 py-24 bg-white">
         <motion.h2
           variants={fadeUp}
           initial="hidden"
@@ -441,7 +441,7 @@ Driven by a passion to elevate real estate standards in the region, we are commi
       {/* ============================================================
           PARTNERSHIPS
       ============================================================ */}
-      <section ref={partnersRef} className="bg-black py-20 px-6 text-center">
+      <section ref={partnersRef} className="bg-gradient-to-br from-[#faf9f6] to-white py-20 px-6 text-center">
         <motion.h2
           variants={fadeUp}
           initial="hidden"

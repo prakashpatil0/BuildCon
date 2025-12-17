@@ -238,7 +238,7 @@ function Projects() {
 
 
   return (
-    <div className="w-full bg-black min-h-screen">
+    <div className="w-full bg-white min-h-screen">
       {/* ================= HERO SECTION ================= */}
       <section className="relative w-full h-[70vh] overflow-hidden">
         <motion.div
@@ -252,7 +252,7 @@ function Projects() {
           />
         </motion.div>
 
-        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="absolute inset-0 bg-black/40"></div>
 
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -283,7 +283,7 @@ function Projects() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className="text-xl text-[#f0d3a3] max-w-3xl mx-auto"
+              className="text-xl text-gray-800 max-w-3xl mx-auto font-medium"
             >
               Premium locations in Pune, blending architecture,
               wellness, and hospitality partnerships.
@@ -311,7 +311,7 @@ function Projects() {
                   whileHover={{ scale: 1.1, color: "#f9d891" }}
                   whileTap={{ scale: 0.95 }}
                   className={`transition-colors duration-300 px-4 ${
-                    activeSection === item.value ? "text-[#f9d891]" : ""
+                    activeSection === item.value ? "text-gray-900 font-semibold" : ""
                   }`}
                 >
                   {item.label}
@@ -343,7 +343,7 @@ function Projects() {
           </motion.p>
           <motion.h2
             variants={fadeUp}
-            className="text-4xl md:text-5xl font-semibold text-[#f7d69a] mb-4"
+            className="text-4xl md:text-5xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#d1a74f] to-[#b8924b] mb-4"
           >
             Our Legacy
           </motion.h2>
@@ -365,7 +365,7 @@ function Projects() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.2, duration: 0.6 }}
               whileHover={{ y: -10 }}
-              className="group relative overflow-hidden rounded-2xl bg-black border border-[#d1a75e]/20"
+              className="group relative overflow-hidden rounded-2xl bg-[#faf9f6] border border-[#d1a75e]/30"
             >
               <div className="relative h-[300px] overflow-hidden">
                 <motion.img
@@ -381,7 +381,7 @@ function Projects() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-2xl font-semibold text-[#f7d69a] mb-2"
+                    className="text-2xl font-semibold text-gray-900 mb-2"
                   >
                     {project.name}
                   </motion.h3>
@@ -397,13 +397,13 @@ function Projects() {
                 </div>
               </div>
               <div className="p-6">
-                <p className="text-[#f0d3a3] font-medium mb-2">{project.mix}</p>
+                <p className="text-gray-800 font-medium mb-2">{project.mix}</p>
                 <p className="text-[#d1a75e] text-sm mb-4">{project.details}</p>
                 <motion.button
                   onClick={() => handleViewDetails(project.name)}
                   whileHover={{ scale: 1.05, x: 5 }}
                   whileTap={{ scale: 0.95 }}
-                  className="text-[#f8d99c] font-semibold text-sm hover:text-[#f9d891] transition-colors flex items-center gap-2"
+                  className="text-gray-900 font-semibold text-sm hover:text-[#d1a75e] transition-colors flex items-center gap-2"
                   
                 >
                   View Details
@@ -419,7 +419,7 @@ function Projects() {
       <section
         ref={ongoingRef}
         id="ongoing"
-        className="bg-black py-24 px-6"
+        className="bg-gradient-to-br from-[#faf9f6] to-white py-24 px-6"
       >
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -437,7 +437,7 @@ function Projects() {
             </motion.p>
             <motion.h2
               variants={fadeUp}
-              className="text-4xl md:text-5xl font-semibold text-[#f7d69a] mb-4"
+              className="text-4xl md:text-5xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#d1a74f] to-[#b8924b] mb-4"
             >
               In Development
             </motion.h2>
@@ -459,7 +459,7 @@ function Projects() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2, duration: 0.6 }}
                 whileHover={{ scale: 1.02, y: -5 }}
-                className="group relative overflow-hidden rounded-2xl bg-black border border-[#d1a75e]/20"
+                className="group relative overflow-hidden rounded-2xl bg-[#faf9f6] border border-[#d1a75e]/30"
               >
                 <div className="relative h-[300px] overflow-hidden">
                   <motion.img
@@ -471,7 +471,7 @@ function Projects() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent"></div>
                   <div className="absolute top-4 right-4">
-                    <span className="px-3 py-1 bg-[#d1a75e]/30 backdrop-blur-sm border border-[#d1a75e]/50 rounded-full text-xs font-semibold text-[#f8d99c]">
+                    <span className="px-3 py-1 bg-[#d1a75e]/30 backdrop-blur-sm border border-[#d1a75e]/50 rounded-full text-xs font-semibold text-gray-900">
                       ONGOING
                     </span>
                   </div>
@@ -480,7 +480,7 @@ function Projects() {
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
-                      className="text-2xl font-semibold text-[#f7d69a] mb-2"
+                      className="text-2xl font-semibold text-gray-900 mb-2"
                     >
                       {project.name}
                     </motion.h3>
@@ -496,13 +496,13 @@ function Projects() {
                   </div>
                 </div>
                 <div className="p-6">
-                  <p className="text-[#f0d3a3] font-medium mb-2">{project.mix}</p>
+                  <p className="text-gray-800 font-medium mb-2">{project.mix}</p>
                   <p className="text-[#d1a75e] text-sm mb-4">{project.details}</p>
                   <motion.button
                     onClick={() => handleViewDetails(project.name)}
                     whileHover={{ scale: 1.05, x: 5 }}
                     whileTap={{ scale: 0.95 }}
-                    className="text-[#f8d99c] font-semibold text-sm hover:text-[#f9d891] transition-colors flex items-center gap-2"
+                    className="text-gray-900 font-semibold text-sm hover:text-[#d1a75e] transition-colors flex items-center gap-2"
                     
                   >
                     View Details
@@ -536,7 +536,7 @@ function Projects() {
           </motion.p>
           <motion.h2
             variants={fadeUp}
-            className="text-4xl md:text-5xl font-semibold text-[#f7d69a] mb-4"
+            className="text-4xl md:text-5xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#d1a74f] to-[#b8924b] mb-4"
           >
             Coming Soon
           </motion.h2>
@@ -558,7 +558,7 @@ function Projects() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.2, duration: 0.6 }}
               whileHover={{ y: -10, scale: 1.02 }}
-              className="group relative overflow-hidden rounded-2xl bg-black border border-[#d1a75e]/20"
+              className="group relative overflow-hidden rounded-2xl bg-[#faf9f6] border border-[#d1a75e]/30"
             >
               <div className="relative h-[300px] overflow-hidden">
                 <motion.img
@@ -579,7 +579,7 @@ function Projects() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-2xl font-semibold text-[#f7d69a] mb-2"
+                    className="text-2xl font-semibold text-gray-900 mb-2"
                   >
                     {project.name}
                   </motion.h3>
@@ -595,13 +595,13 @@ function Projects() {
                 </div>
               </div>
               <div className="p-6">
-                <p className="text-[#f0d3a3] font-medium mb-2">{project.mix}</p>
+                <p className="text-gray-800 font-medium mb-2">{project.mix}</p>
                 {project.price && (
                   <motion.p
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
-                    className="text-[#f8d99c] font-semibold text-lg mb-4"
+                    className="text-gray-900 font-semibold text-lg mb-4"
                   >
                     {project.price}
                   </motion.p>

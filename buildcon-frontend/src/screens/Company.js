@@ -83,7 +83,7 @@ const Company = () => {
   ];
 
   return (
-    <div className="w-full bg-[#0f0f0f] text-white font-light">
+    <div className="w-full bg-white text-gray-900 font-light">
       {/* ================= HERO SECTION ================= */}
       <section ref={heroRef} className="relative w-full h-screen overflow-hidden">
         <motion.img
@@ -113,7 +113,7 @@ const Company = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.4 }}
-            className="text-[#f0d3a3] text-lg md:text-xl tracking-wide max-w-3xl"
+            className="text-gray-800 text-lg md:text-xl tracking-wide max-w-3xl font-medium"
           >
             Shape the future of real estate with BuildCon
           </motion.p>
@@ -121,7 +121,7 @@ const Company = () => {
       </section>
 
       {/* ================= INTRO SECTION ================= */}
-      <section className="max-w-6xl mx-auto px-6 py-24 bg-black">
+      <section className="max-w-6xl mx-auto px-6 py-24 bg-white">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -133,7 +133,7 @@ const Company = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-semibold mb-6 text-[#f7d69a]"
+            className="text-4xl md:text-5xl font-semibold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#d1a74f] to-[#b8924b]"
           >
             Building Legacies, Shaping Futures
           </motion.h2>
@@ -142,7 +142,7 @@ const Company = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-[#f0d3a3] text-lg leading-relaxed max-w-4xl mx-auto"
+            className="text-gray-800 text-lg leading-relaxed max-w-4xl mx-auto"
           >
             BuildCon has transformed the way we live and work with world-class developments
             across residential, commercial, and hospitality portfolio. We are shaping urban
@@ -189,7 +189,7 @@ const Company = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4 }}
-              className="text-[#f0d3a3] leading-relaxed mb-6 text-lg"
+              className="text-gray-800 leading-relaxed mb-6 text-lg"
             >
               With a team of talented professionals, we live by our Employee Value
               Proposition - <span className="text-[#d1a74f] font-semibold">Build the Best, Be the Best</span>.
@@ -209,7 +209,7 @@ const Company = () => {
       </section>
 
       {/* ================= VALUES SECTION ================= */}
-      <section className="bg-black py-24 px-6">
+      <section className="bg-gradient-to-br from-[#faf9f6] to-white py-24 px-6">
         <div className="max-w-6xl mx-auto">
           <motion.h2
             variants={fadeUp}
@@ -230,7 +230,7 @@ const Company = () => {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2, duration: 0.6 }}
                 whileHover={{ scale: 1.05, y: -5 }}
-                className="bg-[#1a1a1a] p-8 rounded-xl border border-[#d1a75e]/20 hover:border-[#d1a75e]/50 transition-all"
+                className="bg-[#faf9f6] p-8 rounded-xl border border-[#d1a75e]/30 hover:border-[#d1a75e]/50 transition-all"
               >
                 <motion.div
                   initial={{ scale: 0 }}
@@ -246,7 +246,7 @@ const Company = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.2 + 0.2 }}
-                  className="text-2xl font-semibold mb-4 text-[#f7d69a]"
+                  className="text-2xl font-semibold mb-4 text-gray-900"
                 >
                   {value.title}
                 </motion.h3>
@@ -266,7 +266,7 @@ const Company = () => {
       </section>
 
       {/* ================= WORK WITH THE BEST ================= */}
-      <section className="max-w-6xl mx-auto px-6 py-24 bg-black">
+      <section className="max-w-6xl mx-auto px-6 py-24 bg-white">
         <motion.h2
           variants={fadeUp}
           initial="hidden"
@@ -296,16 +296,16 @@ const Company = () => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.6 }}
               whileHover={{ scale: 1.1, y: -5 }}
-              className="text-center p-6 bg-[#1a1a1a] rounded-lg border border-[#d1a75e]/20 hover:border-[#d1a75e]/50 transition-all"
+              className="text-center p-6 bg-[#faf9f6] rounded-lg border border-[#d1a75e]/30 hover:border-[#d1a75e]/50 transition-all"
             >
-              <p className="text-[#f0d3a3] text-sm font-medium">{partner}</p>
+              <p className="text-gray-800 text-sm font-medium">{partner}</p>
             </motion.div>
           ))}
         </div>
       </section>
 
       {/* ================= ACHIEVEMENTS ================= */}
-      <section className="bg-black py-24 px-6">
+      <section className="bg-gradient-to-br from-[#faf9f6] to-white py-24 px-6">
         <motion.h2
           variants={fadeUp}
           initial="hidden"
@@ -370,7 +370,7 @@ const Company = () => {
       </section>
 
       {/* ================= CTA SECTION ================= */}
-      <section className="bg-black py-24 px-6">
+      <section className="bg-gradient-to-br from-[#faf9f6] to-white py-24 px-6">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -382,7 +382,7 @@ const Company = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-semibold mb-6 text-[#f7d69a]"
+            className="text-4xl md:text-5xl font-semibold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#d1a74f] to-[#b8924b]"
           >
             Explore Opportunities
           </motion.h2>

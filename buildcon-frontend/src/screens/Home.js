@@ -11,8 +11,8 @@ import vrindavanRegency3 from "../assets/Vrindavan/Vrindavan Regency 3.webp";
 
 // ===== SECTION 2 IMAGES =====
 import saiDwarikaSection2 from "../assets/Sai Dwarika/Saidwarika Photo 1.webp";
-import saiNagari2Section2 from "../assets/Sai Nagari/Sai Nagari 2.webp";
-import saiNagari3Section2 from "../assets/Sai Nagari/Sai Nagari 3.webp";
+import privilegeSection2 from "../assets/Privilege Hills/Privillege Hills.png";
+import saiGalaxySection2 from "../assets/Sai Galaxy/Sai Galaxy2.jpg";
 import vrindavanRegency1 from "../assets/Vrindavan/Vrindavan Regency 1.webp";
 import vrindavanRegency3Section2 from "../assets/Vrindavan/Vrindavan Regency 3.webp";
 
@@ -134,8 +134,8 @@ const tabs = ["Residential", "Office Parks", "Hospitality"];
 // SECTION 2 images
 const sectionImages = [
   saiDwarikaSection2,
-  // saiNagari2Section2,
-  // saiNagari3Section2,
+  saiGalaxySection2,
+  privilegeSection2,
   vrindavanRegency1,
   vrindavanRegency3Section2,
 ];
@@ -336,11 +336,11 @@ const Home = () => {
   const handleAccordionClick = (id) => {
     setActiveTabAccordion((prev) => (prev === id ? null : id));
   };
-  const navigate = useNavigate();
+
 
 
   return (
-    <div className="w-full bg-black">
+    <div className="w-full bg-white">
       {/* ================= HERO SECTION ================= */}
       <section className="relative w-full h-screen overflow-hidden">
         {slides.map((slide, index) => (
@@ -357,7 +357,7 @@ const Home = () => {
           />
         ))}
 
-        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="absolute inset-0 bg-black/40"></div>
 
         <motion.div
           key={current}
@@ -380,7 +380,7 @@ const Home = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
-            className="mt-3 max-w-xl text-[#f0d3a3] text-xl"
+            className="mt-3 max-w-xl text-gray-800 text-xl font-medium"
           >
             {slides[current].subtitle}
           </motion.p>
@@ -422,7 +422,7 @@ const Home = () => {
       </section>
 
       {/* ================= SECTION 2 ================= */}
-      <section className="w-full bg-black" ref={sectionRef}>
+      <section className="w-full bg-white" ref={sectionRef}>
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -442,7 +442,7 @@ const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: item.delay }}
-                className="text-3xl font-semibold text-[#f8d99c]"
+                className="text-3xl font-semibold text-gray-900"
               >
                 {item.text}
               </motion.p>
@@ -450,7 +450,7 @@ const Home = () => {
           </div>
         </motion.div>
 
-        <div className="bg-black text-white py-16">
+        <div className="bg-gradient-to-br from-[#faf9f6] to-white text-gray-900 py-16">
           <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-12 px-6">
             <motion.div
               initial="hidden"
@@ -471,7 +471,7 @@ const Home = () => {
                   className="absolute w-[45%] rounded shadow-xl shadow-[#d1a75e]/20"
                   style={{
                     left: `${i * 10}%`,
-                    bottom: `${i * 8}%`,
+                    bottom: `${i * 10}%`,
                     zIndex: i + 1,
                   }}
                 />
@@ -490,7 +490,7 @@ const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="text-5xl font-semibold mb-6 leading-snug text-[#f7d69a]"
+                className="text-5xl font-semibold mb-6 leading-snug text-transparent bg-clip-text bg-gradient-to-r from-[#d1a74f] to-[#b8924b]"
               >
                 Established in 2002, <br /> India's finest luxury developer
               </motion.h2>
@@ -499,7 +499,7 @@ const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4 }}
-                className="text-[#d1a75e] text-lg leading-relaxed"
+                className="text-gray-800 text-lg leading-relaxed font-medium"
               >
                 Delivering 35M+ sq. ft. with 43M+ sq. ft. under development,
                 known for quality, innovation & craftsmanship.
@@ -510,7 +510,7 @@ const Home = () => {
       </section>
 
       {/* ================= SECTION 3 — ACCORDION ================= */}
-      <div className="w-full bg-black py-12 px-6 md:px-20">
+      <div className="w-full bg-white py-12 px-6 md:px-20">
         {dynamicSections.map((s) => (
           <motion.div
             key={s.id}
@@ -523,7 +523,7 @@ const Home = () => {
             <motion.div
               onClick={() => handleAccordionClick(s.id)}
               whileHover={{ x: 10 }}
-              className="flex justify-between py-6 cursor-pointer text-xl text-[#f0d3a3]"
+              className="flex justify-between py-6 cursor-pointer text-xl text-gray-900 font-medium"
             >
               <span className="text-[#d1a75e]">{`0${s.id}`}</span>
               <span>{s.title}</span>
@@ -551,7 +551,7 @@ const Home = () => {
                     backgroundPosition: "center",
                   }}
                 >
-                  <div className="absolute inset-0 bg-black/60"></div>
+                  <div className="absolute inset-0 bg-black/50"></div>
 
                   <motion.div
                     initial={{ opacity: 0, y: 30, scale: 0.95 }}
@@ -564,7 +564,7 @@ const Home = () => {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.4 }}
-                      className="text-5xl font-semibold mb-6 text-[#f7d69a]"
+                      className="text-5xl font-semibold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#d1a74f] to-[#b8924b]"
                     >
                       {s.heading}
                     </motion.h2>
@@ -572,7 +572,7 @@ const Home = () => {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.5 }}
-                      className="text-lg mb-8 text-[#f0d3a3]"
+                      className="text-lg mb-8 text-gray-800 font-medium"
                     >
                       {s.text}
                     </motion.p>
@@ -619,7 +619,7 @@ const Home = () => {
       </div>
 
       {/* ================= SECTION 4 — PROJECTS ================= */}
-      <div className="w-full bg-black py-20">
+      <div className="w-full bg-white py-20">
         <motion.h3
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -633,7 +633,7 @@ const Home = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="text-center text-4xl font-semibold mb-10 text-[#f7d69a]"
+          className="text-center text-4xl font-semibold mb-10 text-transparent bg-clip-text bg-gradient-to-r from-[#d1a74f] to-[#b8924b]"
         >
           SHAPING SKYLINES BEYOND BORDERS
         </motion.h2>
@@ -653,8 +653,8 @@ const Home = () => {
               whileTap={{ scale: 0.95 }}
               className={`pb-2 transition-colors duration-300 ${
                 activeProjectTab === tab
-                  ? "text-[#f8d99c] border-b-2 border-[#d1a75e]"
-                  : "text-[#d1a75e] hover:text-[#f0d3a3]"
+                  ? "text-gray-900 border-b-2 border-[#d1a75e] font-semibold"
+                  : "text-[#d1a75e] hover:text-[#b8924b] font-medium"
               }`}
             >
               {tab}
@@ -735,7 +735,7 @@ const Home = () => {
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-xl font-semibold text-[#f7d69a]"
+                    className="text-xl font-semibold text-gray-900"
                   >
                     {p.title}
                   </motion.h3>
@@ -756,7 +756,7 @@ const Home = () => {
       </div>
 
       {/* ================= SECTION 5 — SERVICES (PREMIUM AUTO SLIDER) ================= */}
-      <div className="w-full bg-black py-20 relative">
+      <div className="w-full bg-[#0a1628] py-20 relative">
         <motion.h4
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -770,7 +770,7 @@ const Home = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="text-center text-4xl font-semibold mb-12 text-[#f7d69a]"
+          className="text-center text-4xl font-semibold mb-12 text-transparent bg-clip-text bg-gradient-to-r from-[#d1a74f] to-[#b8924b]"
         >
           OUR SERVICES
         </motion.h2>
@@ -780,7 +780,7 @@ const Home = () => {
           onClick={scrollLeft}
           whileHover={{ scale: 1.1, x: -5 }}
           whileTap={{ scale: 0.9 }}
-          className="absolute left-4 top-1/2 -translate-y-1/2 bg-[#d1a75e]/20 backdrop-blur-sm border border-[#d1a75e]/50 text-[#f8d99c] p-4 rounded-full z-10 hover:bg-[#d1a75e]/30 transition-colors"
+          className="absolute left-4 top-1/2 -translate-y-1/2 bg-[#d1a75e]/20 backdrop-blur-sm border border-[#d1a75e]/50 text-gray-900 p-4 rounded-full z-10 hover:bg-[#d1a75e]/30 transition-colors"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -792,7 +792,7 @@ const Home = () => {
           onClick={scrollRight}
           whileHover={{ scale: 1.1, x: 5 }}
           whileTap={{ scale: 0.9 }}
-          className="absolute right-4 top-1/2 -translate-y-1/2 bg-[#d1a75e]/20 backdrop-blur-sm border border-[#d1a75e]/50 text-[#f8d99c] p-4 rounded-full z-10 hover:bg-[#d1a75e]/30 transition-colors"
+          className="absolute right-4 top-1/2 -translate-y-1/2 bg-[#d1a75e]/20 backdrop-blur-sm border border-[#d1a75e]/50 text-gray-900 p-4 rounded-full z-10 hover:bg-[#d1a75e]/30 transition-colors"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -829,7 +829,7 @@ const Home = () => {
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                className="text-center mt-4 text-lg font-medium text-[#f0d3a3]"
+                className="text-center mt-4 text-lg font-medium text-gray-900"
               >
                 {srv.title}
               </motion.p>

@@ -284,9 +284,9 @@ const ProjectDetail = () => {
 
   if (!project) {
     return (
-      <div className="w-full bg-black min-h-screen flex items-center justify-center">
+      <div className="w-full bg-white min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-4xl font-semibold text-[#f7d69a] mb-4">Project Not Found</h1>
+          <h1 className="text-4xl font-semibold text-gray-900 mb-4">Project Not Found</h1>
           <Link to="/projects">
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -302,7 +302,7 @@ const ProjectDetail = () => {
   }
 
   return (
-    <div className="w-full bg-black min-h-screen">
+    <div className="w-full bg-white min-h-screen">
       {/* ================= HERO SECTION ================= */}
       <section className="relative w-full h-[70vh] overflow-hidden">
         <motion.img
@@ -312,7 +312,7 @@ const ProjectDetail = () => {
           transition={{ duration: 1.5 }}
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/60" />
+        <div className="absolute inset-0 bg-black/50" />
 
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -324,7 +324,7 @@ const ProjectDetail = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="px-4 py-2 bg-[#d1a75e]/30 backdrop-blur-sm border border-[#d1a75e]/50 rounded-full text-sm font-semibold text-[#f8d99c] mb-4"
+            className="px-4 py-2 bg-[#d1a75e]/30 backdrop-blur-sm border border-[#d1a75e]/50 rounded-full text-sm font-semibold text-gray-900 mb-4"
           >
             {project.status}
           </motion.span>
@@ -342,7 +342,7 @@ const ProjectDetail = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
-            className="text-[#f0d3a3] text-xl md:text-2xl mb-2"
+            className="text-gray-900 text-xl md:text-2xl mb-2 font-medium"
           >
             {project.location}
           </motion.p>
@@ -362,14 +362,14 @@ const ProjectDetail = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.5 }}
           onClick={() => navigate(-1)}
-          className="absolute top-8 left-8 px-6 py-3 bg-black/50 backdrop-blur-sm border border-[#d1a75e]/50 rounded-lg text-[#f9d891] font-semibold hover:bg-black/70 transition-all flex items-center gap-2"
+          className="absolute top-8 left-8 px-6 py-3 bg-white/90 backdrop-blur-sm border border-[#d1a75e]/50 rounded-lg text-[#d1a75e] font-semibold hover:bg-[#d1a75e] hover:text-white transition-all flex items-center gap-2"
         > 
           <span>←</span> Back
         </motion.button>
       </section>
 
       {/* ================= TABS SECTION ================= */}
-      <section className="sticky top-0 z-40 bg-black/95 backdrop-blur-sm border-b border-[#d1a75e]/20">
+      <section className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-[#d1a75e]/20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex gap-8 overflow-x-auto">
             {[
@@ -383,8 +383,8 @@ const ProjectDetail = () => {
                 onClick={() => setActiveTab(tab.id)}
                 className={`py-6 px-2 border-b-2 transition-colors whitespace-nowrap ${
                   activeTab === tab.id
-                    ? "border-[#d1a74f] text-[#f9d891]"
-                    : "border-transparent text-[#d1a75e] hover:text-[#f0d3a3]"
+                    ? "border-[#d1a74f] text-gray-900 font-semibold"
+                    : "border-transparent text-gray-700 hover:text-[#d1a75e] font-medium"
                 }`}
               >
                 {tab.label}
@@ -411,8 +411,8 @@ const ProjectDetail = () => {
                 viewport={{ once: true }}
                 className="mb-12"
               >
-                <h2 className="text-4xl font-semibold mb-6 text-[#f7d69a]">About the Project</h2>
-                <p className="text-[#f0d3a3] text-lg leading-relaxed mb-8">
+                <h2 className="text-4xl font-semibold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#d1a74f] to-[#b8924b]">About the Project</h2>
+                <p className="text-gray-800 text-lg leading-relaxed mb-8">
                   {project.description}
                 </p>
                 <p className="text-[#d1a75e] text-base leading-relaxed mb-8">
@@ -429,37 +429,37 @@ const ProjectDetail = () => {
                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"
                   >
                     {project.projectArea && (
-                      <div className="bg-[#1a1a1a] p-6 rounded-lg border border-[#d1a75e]/20">
+                      <div className="bg-[#faf9f6] p-6 rounded-lg border border-[#d1a75e]/30">
                         <p className="text-[#d1a75e] text-sm mb-2">Project Area</p>
-                        <p className="text-[#f7d69a] text-xl font-semibold">{project.projectArea}</p>
+                        <p className="text-gray-900 text-xl font-semibold">{project.projectArea}</p>
                       </div>
                     )}
                     {project.totalUnits && (
-                      <div className="bg-[#1a1a1a] p-6 rounded-lg border border-[#d1a75e]/20">
+                      <div className="bg-[#faf9f6] p-6 rounded-lg border border-[#d1a75e]/30">
                         <p className="text-[#d1a75e] text-sm mb-2">Total Units</p>
                         <p className="text-[#f7d69a] text-xl font-semibold">{project.totalUnits}</p>
                       </div>
                     )}
                     {project.structure && (
-                      <div className="bg-[#1a1a1a] p-6 rounded-lg border border-[#d1a75e]/20">
+                      <div className="bg-[#faf9f6] p-6 rounded-lg border border-[#d1a75e]/30">
                         <p className="text-[#d1a75e] text-sm mb-2">Structure</p>
                         <p className="text-[#f7d69a] text-xl font-semibold">{project.structure}</p>
                       </div>
                     )}
                     {project.developer && (
-                      <div className="bg-[#1a1a1a] p-6 rounded-lg border border-[#d1a75e]/20">
+                      <div className="bg-[#faf9f6] p-6 rounded-lg border border-[#d1a75e]/30">
                         <p className="text-[#d1a75e] text-sm mb-2">Developer</p>
                         <p className="text-[#f7d69a] text-lg font-semibold">{project.developer}</p>
                       </div>
                     )}
                     {project.reraId && (
-                      <div className="bg-[#1a1a1a] p-6 rounded-lg border border-[#d1a75e]/20">
+                      <div className="bg-[#faf9f6] p-6 rounded-lg border border-[#d1a75e]/30">
                         <p className="text-[#d1a75e] text-sm mb-2">RERA ID</p>
                         <p className="text-[#f7d69a] text-base font-semibold">{project.reraId}</p>
                       </div>
                     )}
                     {project.flatSizes && (
-                      <div className="bg-[#1a1a1a] p-6 rounded-lg border border-[#d1a75e]/20">
+                      <div className="bg-[#faf9f6] p-6 rounded-lg border border-[#d1a75e]/30">
                         <p className="text-[#d1a75e] text-sm mb-2">Flat Configurations</p>
                         {Object.entries(project.flatSizes).map(([key, value]) => (
                           <p key={key} className="text-[#f7d69a] text-lg">{key}: {value}</p>
@@ -467,7 +467,7 @@ const ProjectDetail = () => {
                       </div>
                     )}
                     {project.priceRange && (
-                      <div className="bg-[#1a1a1a] p-6 rounded-lg border border-[#d1a75e]/20">
+                      <div className="bg-[#faf9f6] p-6 rounded-lg border border-[#d1a75e]/30">
                         <p className="text-[#d1a75e] text-sm mb-2">Price Range</p>
                         <p className="text-[#f7d69a] text-xl font-semibold">{project.priceRange}</p>
                       </div>
@@ -491,7 +491,7 @@ const ProjectDetail = () => {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: 0.3 + index * 0.1 }}
-                      className="flex items-start gap-4 bg-[#1a1a1a] p-6 rounded-lg border border-[#d1a75e]/20"
+                      className="flex items-start gap-4 bg-[#faf9f6] p-6 rounded-lg border border-[#d1a75e]/30"
                     >
                       <motion.div
                         initial={{ scale: 0 }}
@@ -536,9 +536,9 @@ const ProjectDetail = () => {
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.2 }}
-                    className="bg-[#1a1a1a] rounded-2xl overflow-hidden border border-[#d1a75e]/20"
+                    className="bg-[#faf9f6] rounded-2xl overflow-hidden border border-[#d1a75e]/30"
                   >
-                    <div className="relative h-[500px] overflow-hidden bg-black">
+                    <div className="relative h-[500px] overflow-hidden bg-gray-100">
                       <motion.img
                         src={layout.src}
                         alt={layout.title}
@@ -589,7 +589,7 @@ const ProjectDetail = () => {
                     transition={{ delay: index * 0.1 }}
                     whileHover={{ scale: 1.02, y: -5 }}
                     onClick={() => setSelectedImage(image)}
-                    className="group relative overflow-hidden rounded-xl bg-[#1a1a1a] border border-[#d1a75e]/20 cursor-pointer"
+                    className="group relative overflow-hidden rounded-xl bg-[#faf9f6] border border-[#d1a75e]/30 cursor-pointer"
                   >
                     <div className="relative h-[300px] overflow-hidden">
                       <motion.img
@@ -638,7 +638,7 @@ const ProjectDetail = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.1 }}
-                    className="bg-[#1a1a1a] p-6 rounded-lg border border-[#d1a75e]/20 text-center"
+                    className="bg-[#1a2a3a] p-6 rounded-lg border border-[#d1a75e]/20 text-center"
                   >
                     <motion.div
                       initial={{ scale: 0 }}
@@ -687,7 +687,7 @@ const ProjectDetail = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 bg-[#1a1a1a] border border-[#d1a75e]/50 text-[#f9d891] rounded-lg font-semibold text-lg hover:border-[#d1a75e] transition-colors"
+                className="px-8 py-3 bg-[#1a2a3a] border border-[#d1a75e]/50 text-[#f9d891] rounded-lg font-semibold text-lg hover:border-[#d1a75e] transition-colors"
               >
                 View All Projects
               </motion.button>
@@ -704,7 +704,7 @@ const ProjectDetail = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedImage(null)}
-            className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4"
+            className="fixed inset-0 z-50 bg-[#0a1628]/95 flex items-center justify-center p-4"
           >
             <motion.img
               initial={{ scale: 0.8, opacity: 0 }}

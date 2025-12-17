@@ -116,7 +116,7 @@ const Footer = () => {
 
   return (
     <>
-      <footer className="relative bg-slate-900 text-white">
+      <footer className="relative bg-gradient-to-br from-[#faf9f6] to-white text-gray-900 border-t border-gray-200">
         <div className="mx-auto max-w-7xl px-6 py-16">
           <motion.div
             initial="hidden"
@@ -134,7 +134,7 @@ const Footer = () => {
                   className="h-14 w-auto"
                 />
               </Link>
-              <p className="text-slate-400 text-sm leading-relaxed mb-6">
+              <p className="text-gray-700 text-sm leading-relaxed mb-6">
                 Building excellence across office parks, hospitality, and luxury
                 residences. Creating spaces that inspire and transform
                 communities.
@@ -149,7 +149,7 @@ const Footer = () => {
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.2, y: -2 }}
                     whileTap={{ scale: 0.9 }}
-                    className="text-slate-400 hover:text-white transition-colors duration-300"
+                    className="text-gray-700 hover:text-[#d1a75e] transition-colors duration-300"
                     aria-label={social.name}
                   >
                     {social.icon}
@@ -174,7 +174,7 @@ const Footer = () => {
                   >
                     <Link
                       to={link.path}
-                      className="text-slate-400 hover:text-white transition-colors duration-300 text-sm flex items-center group"
+                      className="text-gray-700 hover:text-[#d1a75e] transition-colors duration-300 text-sm flex items-center group"
                     >
                       <span className="group-hover:translate-x-1 transition-transform duration-300 inline-block">
                         {link.name}
@@ -199,7 +199,7 @@ const Footer = () => {
                   >
                     <Link
                       to={link.path}
-                      className="text-slate-400 hover:text-white transition-colors duration-300 text-sm flex items-center group"
+                      className="text-gray-700 hover:text-[#d1a75e] transition-colors duration-300 text-sm flex items-center group"
                     >
                       <span className="group-hover:translate-x-1 transition-transform duration-300 inline-block">
                         {link.name}
@@ -226,7 +226,7 @@ const Footer = () => {
                     {link.isModal ? (
                       <button
                         onClick={() => setShowPrivacyPolicy(true)}
-                        className="text-slate-400 hover:text-white transition-colors duration-300 text-sm flex items-center group w-full text-left"
+                        className="text-gray-700 hover:text-[#d1a75e] transition-colors duration-300 text-sm flex items-center group w-full text-left"
                       >
                         <span className="group-hover:translate-x-1 transition-transform duration-300 inline-block">
                           {link.name}
@@ -235,7 +235,7 @@ const Footer = () => {
                     ) : (
                       <Link
                         to={link.path}
-                        className="text-slate-400 hover:text-white transition-colors duration-300 text-sm flex items-center group"
+                        className="text-gray-700 hover:text-[#d1a75e] transition-colors duration-300 text-sm flex items-center group"
                       >
                         <span className="group-hover:translate-x-1 transition-transform duration-300 inline-block">
                           {link.name}
@@ -257,7 +257,7 @@ const Footer = () => {
             className="mt-12 pt-8 border-t border-slate-800"
           >
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-              <p className="text-slate-400 text-sm">
+              <p className="text-gray-700 text-sm">
                 © {new Date().getFullYear()}  Designed & Developed by MaaPranaam Buildcon PVT. LTD. All Rights
                 Reserved.
               </p>

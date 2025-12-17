@@ -79,8 +79,9 @@ function Contact() {
   const topRef = useRef(null);
 
   const API_BASE = useMemo(() => {
-    return (process.env.REACT_APP_API_URL || "http://localhost:5000").replace(/\/$/, "");
+    return "http://www.maapranaam.co.in".replace(/\/$/, "");
   }, []);
+  
 
   const [form, setForm] = useState({
     firstName: "",
@@ -315,8 +316,8 @@ function Contact() {
   };
 
   return (
-    <div ref={topRef} className="bg-black">
-      <section className="-mt-20 bg-black px-6 pt-28 pb-16 text-white">
+    <div ref={topRef} className="bg-white">
+      <section className="-mt-20 bg-white px-6 pt-28 pb-16 text-gray-900">
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 lg:flex-row lg:items-center">
           <motion.div
             initial="hidden"
@@ -366,7 +367,7 @@ function Contact() {
               </span>
             </motion.h1>
 
-            <motion.p variants={fadeUp} className="text-base text-[#f0d3a3]">
+            <motion.p variants={fadeUp} className="text-base text-gray-800 font-medium">
               Renowned for its leadership and excellence in the real estate sector, BuildCon has delivered over 35
               million sq. ft. with another 43 million sq. ft. underway across multi-asset classes.
             </motion.p>
@@ -387,7 +388,7 @@ function Contact() {
                 whileTap={{ scale: 0.9 }}
                 type="button"
                 onClick={scrollToTop}
-                className="rounded-full border border-[#d1a75e]/50 bg-[#d1a75e]/20 backdrop-blur-sm px-5 py-2 text-sm font-semibold text-[#f8d99c] hover:bg-[#d1a75e]/30 transition-colors"
+                className="rounded-full border border-[#d1a75e]/50 bg-[#d1a75e]/20 backdrop-blur-sm px-5 py-2 text-sm font-semibold text-gray-900 hover:bg-[#d1a75e]/30 transition-colors"
                 aria-label="Scroll to top"
               >
                 ↑
@@ -397,7 +398,7 @@ function Contact() {
         </div>
       </section>
 
-      <section className="bg-black py-16">
+      <section className="bg-gradient-to-br from-[#faf9f6] to-white py-16">
         <div className="mx-auto w-full max-w-6xl px-6">
           <motion.div
             initial="hidden"
@@ -410,7 +411,7 @@ function Contact() {
               Our Offices
             </motion.p>
 
-            <motion.h2 variants={fadeUp} className="text-4xl font-semibold text-[#f7d69a]">
+            <motion.h2 variants={fadeUp} className="text-4xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#d1a74f] to-[#b8924b]">
               Get In Touch
             </motion.h2>
           </motion.div>
@@ -424,13 +425,13 @@ function Contact() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2, duration: 0.6 }}
                 whileHover={{ y: -10, scale: 1.02 }}
-                className="h-full rounded-3xl border border-[#d1a75e]/20 bg-black/90 p-6 shadow-lg shadow-[#d1a75e]/10"
+                className="h-full rounded-3xl border border-[#d1a75e]/30 bg-white p-6 shadow-lg shadow-[#d1a75e]/10"
               >
                 <motion.h3
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  className="text-lg font-semibold text-[#f7d69a] mb-4"
+                  className="text-lg font-semibold text-gray-900 mb-4"
                 >
                   {office.title}
                 </motion.h3>
@@ -450,7 +451,7 @@ function Contact() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.2 }}
-                  className="mt-5 text-sm font-semibold text-[#f0d3a3]"
+                  className="mt-5 text-sm font-semibold text-gray-800"
                 >
                   {office.phone}
                 </motion.p>
@@ -462,7 +463,7 @@ function Contact() {
                   viewport={{ once: true }}
                   transition={{ delay: 0.3 }}
                   whileHover={{ x: 5, color: "#f9d891" }}
-                  className="text-sm text-[#d1a75e] hover:text-[#f8d99c] transition-colors block mt-2"
+                  className="text-sm text-[#d1a75e] hover:text-[#b8924b] transition-colors block mt-2 font-medium"
                 >
                   {office.email}
                 </motion.a>
@@ -472,7 +473,7 @@ function Contact() {
         </div>
       </section>
 
-      <section className="bg-black py-16">
+      <section className="bg-gradient-to-br from-[#faf9f6] to-white py-16">
         <div className="mx-auto grid w-full max-w-6xl gap-10 px-6 lg:grid-cols-2">
           <motion.div
             initial="hidden"
@@ -486,7 +487,7 @@ function Contact() {
                 Send an Enquiry
               </motion.p>
 
-              <motion.h2 variants={fadeUp} className="mt-3 text-3xl font-semibold text-[#f7d69a]">
+              <motion.h2 variants={fadeUp} className="mt-3 text-3xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#d1a74f] to-[#b8924b]">
                 Connect with our concierge desk.
               </motion.h2>
 
@@ -498,7 +499,7 @@ function Contact() {
 
             <motion.div
               variants={scaleIn}
-              className="space-y-4 rounded-3xl border border-[#d1a75e]/20 bg-black/90 p-6 shadow-lg shadow-[#d1a75e]/10"
+              className="space-y-4 rounded-3xl border border-[#d1a75e]/30 bg-white p-6 shadow-lg shadow-[#d1a75e]/10"
             >
               {emailLinks.map((entry, index) => (
                 <motion.div
@@ -514,7 +515,7 @@ function Contact() {
                   <motion.a
                     href={`mailto:${entry.value}`}
                     whileHover={{ x: 5, color: "#f9d891" }}
-                    className="text-lg font-semibold text-[#f0d3a3] transition-colors"
+                    className="text-lg font-semibold text-gray-900 transition-colors"
                   >
                     {entry.value}
                   </motion.a>
@@ -529,7 +530,7 @@ function Contact() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={slideInRight}
-            className="rounded-3xl border border-[#d1a75e]/20 bg-black/90 p-6 shadow-lg shadow-[#d1a75e]/10"
+            className="rounded-3xl border border-[#d1a75e]/30 bg-white p-6 shadow-lg shadow-[#d1a75e]/10"
           >
             <form className="space-y-4" onSubmit={handleSubmit} noValidate>
               {status.error ? (
@@ -553,7 +554,7 @@ function Contact() {
                     value={form.firstName}
                     onChange={onChange("firstName")}
                     onBlur={() => setFieldTouched("firstName")}
-                    className="w-full rounded-2xl border border-[#d1a75e]/30 bg-black/50 px-4 py-3 text-sm text-[#f0d3a3] placeholder:text-[#d1a75e]/50 focus:border-[#d1a75e] focus:outline-none focus:ring-2 focus:ring-[#d1a75e]/20"
+                    className="w-full rounded-2xl border border-[#d1a75e]/30 bg-gray-50 px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-[#d1a75e] focus:outline-none focus:ring-2 focus:ring-[#d1a75e]/20"
                   />
                   {fieldError("firstName") ? (
                     <p className="mt-2 text-xs text-red-300">{fieldError("firstName")}</p>
@@ -568,7 +569,7 @@ function Contact() {
                     value={form.lastName}
                     onChange={onChange("lastName")}
                     onBlur={() => setFieldTouched("lastName")}
-                    className="w-full rounded-2xl border border-[#d1a75e]/30 bg-black/50 px-4 py-3 text-sm text-[#f0d3a3] placeholder:text-[#d1a75e]/50 focus:border-[#d1a75e] focus:outline-none focus:ring-2 focus:ring-[#d1a75e]/20"
+                    className="w-full rounded-2xl border border-[#d1a75e]/30 bg-gray-50 px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-[#d1a75e] focus:outline-none focus:ring-2 focus:ring-[#d1a75e]/20"
                   />
                   {fieldError("lastName") ? (
                     <p className="mt-2 text-xs text-red-300">{fieldError("lastName")}</p>
@@ -588,7 +589,7 @@ function Contact() {
                     inputMode="numeric"
                     maxLength={10}
                     pattern="\d{10}"
-                    className="w-full rounded-2xl border border-[#d1a75e]/30 bg-black/50 px-4 py-3 text-sm text-[#f0d3a3] placeholder:text-[#d1a75e]/50 focus:border-[#d1a75e] focus:outline-none focus:ring-2 focus:ring-[#d1a75e]/20"
+                    className="w-full rounded-2xl border border-[#d1a75e]/30 bg-gray-50 px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-[#d1a75e] focus:outline-none focus:ring-2 focus:ring-[#d1a75e]/20"
                   />
                   {fieldError("phone") ? (
                     <p className="mt-2 text-xs text-red-300">{fieldError("phone")}</p>
@@ -603,7 +604,7 @@ function Contact() {
                     value={form.email}
                     onChange={onChange("email")}
                     onBlur={() => setFieldTouched("email")}
-                    className="w-full rounded-2xl border border-[#d1a75e]/30 bg-black/50 px-4 py-3 text-sm text-[#f0d3a3] placeholder:text-[#d1a75e]/50 focus:border-[#d1a75e] focus:outline-none focus:ring-2 focus:ring-[#d1a75e]/20"
+                    className="w-full rounded-2xl border border-[#d1a75e]/30 bg-gray-50 px-4 py-3 text-sm text-gray-900 placeholder:text-gray-400 focus:border-[#d1a75e] focus:outline-none focus:ring-2 focus:ring-[#d1a75e]/20"
                   />
                   {fieldError("email") ? (
                     <p className="mt-2 text-xs text-red-300">{fieldError("email")}</p>
@@ -617,14 +618,14 @@ function Contact() {
                   value={form.property ? form.property : "default"}
                   onChange={onChange("property")}
                   onBlur={() => setFieldTouched("property")}
-                  className="w-full rounded-2xl border border-[#d1a75e]/30 bg-black/50 px-4 py-3 text-sm text-[#f0d3a3] focus:border-[#d1a75e] focus:outline-none focus:ring-2 focus:ring-[#d1a75e]/20"
+                  className="w-full rounded-2xl border border-[#d1a75e]/30 bg-gray-50 px-4 py-3 text-sm text-gray-900 focus:border-[#d1a75e] focus:outline-none focus:ring-2 focus:ring-[#d1a75e]/20"
                 >
-                  <option value="default" disabled className="bg-black text-[#d1a75e]">
+                  <option value="default" disabled className="bg-[#1a2332] text-[#d1a75e]">
                     Select Property
                   </option>
 
                   {propertyOptions.map((option) => (
-                    <option key={option} value={option} className="bg-black text-[#f0d3a3]">
+                    <option key={option} value={option} className="bg-gray-50 text-gray-900">
                       {option}
                     </option>
                   ))}
@@ -667,7 +668,7 @@ function Contact() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="rounded-3xl border border-[#d1a75e]/20 bg-black/90 p-4 shadow-lg shadow-[#d1a75e]/10"
+            className="rounded-3xl border border-[#d1a75e]/20 bg-[#1a2a3a]/90 p-4 shadow-lg shadow-[#d1a75e]/10"
           >
             <motion.div
               whileHover={{ scale: 1.02 }}

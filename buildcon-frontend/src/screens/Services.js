@@ -140,7 +140,7 @@ const Services = () => {
   };
 
   return (
-    <div className="w-full bg-black min-h-screen">
+    <div className="w-full bg-white min-h-screen">
       {/* ================= HERO SECTION ================= */}
       <section className="relative w-full h-[60vh] overflow-hidden">
         <motion.div
@@ -149,7 +149,7 @@ const Services = () => {
           transition={{ duration: 1.5 }}
           className="absolute inset-0 bg-gradient-to-br from-[#1a1a1a] via-black to-[#0f0f0f]"
         />
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-black/40" />
 
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -233,7 +233,7 @@ const Services = () => {
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-2xl font-semibold text-[#f7d69a] mb-2"
+                    className="text-2xl font-semibold text-gray-900 mb-2"
                   >
                     {service.title}
                   </motion.h3>

@@ -46,7 +46,7 @@ const Ourstory = () => {
   const parallaxY = useTransform(scrollYProgress, [0, 1], ["-60px", "60px"]);
 
   return (
-    <div className="w-full bg-[#0f0f0f] text-white font-light">
+    <div className="w-full bg-white text-gray-900 font-light">
 
       {/* ============================================================
           HERO SECTION
@@ -87,7 +87,7 @@ const Ourstory = () => {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            <h2 className="text-5xl font-semibold text-[#f8d99c] mb-6">
+            <h2 className="text-5xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#d1a74f] to-[#b8924b] mb-6">
               Where It All Began
             </h2>
 
@@ -139,7 +139,7 @@ const Ourstory = () => {
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
-          className="text-center text-5xl font-semibold text-[#f7d69a] mb-16"
+          className="text-center text-5xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#d1a74f] to-[#b8924b] mb-16"
         >
           Our Mission & Vision
         </motion.h2>
@@ -384,7 +384,7 @@ Our goal is to build spaces that inspire better living — today, tomorrow, and 
           variants={fadeUp}
           initial="hidden"
           whileInView="visible"
-          className="text-4xl font-semibold text-[#f8d99c] mb-6"
+          className="text-4xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#d1a74f] to-[#b8924b] mb-6"
         >
           Building Tomorrow, Today.
         </motion.h2>

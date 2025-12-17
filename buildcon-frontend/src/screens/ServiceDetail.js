@@ -114,9 +114,9 @@ const ServiceDetail = () => {
 
   if (!service) {
     return (
-      <div className="w-full bg-black min-h-screen flex items-center justify-center">
+      <div className="w-full bg-white min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-4xl font-semibold text-[#f7d69a] mb-4">Service Not Found</h1>
+          <h1 className="text-4xl font-semibold text-gray-900 mb-4">Service Not Found</h1>
           <Link to="/services">
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -132,7 +132,7 @@ const ServiceDetail = () => {
   }
 
   return (
-    <div className="w-full bg-black min-h-screen">
+    <div className="w-full bg-white min-h-screen">
       {/* ================= HERO SECTION ================= */}
       <section className="relative w-full h-[60vh] overflow-hidden">
         <motion.img
@@ -142,7 +142,7 @@ const ServiceDetail = () => {
           transition={{ duration: 1.5 }}
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/60" />
+        <div className="absolute inset-0 bg-black/50" />
 
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -164,7 +164,7 @@ const ServiceDetail = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
-            className="text-[#f0d3a3] text-xl max-w-2xl"
+            className="text-gray-900 text-xl max-w-2xl font-medium"
           >
             {service.shortDesc}
           </motion.p>
@@ -185,7 +185,7 @@ const ServiceDetail = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-[#f0d3a3] text-lg leading-relaxed mb-8"
+            className="text-gray-900 text-lg leading-relaxed mb-8"
           >
             {service.description}
           </motion.p>
@@ -201,7 +201,7 @@ const ServiceDetail = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl font-semibold mb-8 text-[#f7d69a]"
+            className="text-3xl font-semibold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-[#d1a74f] to-[#b8924b]"
           >
             Key Features
           </motion.h2>
@@ -214,7 +214,7 @@ const ServiceDetail = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4 + index * 0.1 }}
-                className="flex items-start gap-4 bg-[#1a1a1a] p-6 rounded-lg border border-[#d1a75e]/20"
+                className="flex items-start gap-4 bg-[#faf9f6] p-6 rounded-lg border border-[#d1a75e]/30"
               >
                 <motion.div
                   initial={{ scale: 0 }}
@@ -223,7 +223,7 @@ const ServiceDetail = () => {
                   transition={{ delay: 0.4 + index * 0.1, type: "spring" }}
                   className="mt-1 w-3 h-3 rounded-full bg-[#d1a74f] flex-shrink-0"
                 />
-                <span className="text-[#d1a75e] text-lg">{feature}</span>
+                <span className="text-gray-800 text-lg">{feature}</span>
               </motion.div>
             ))}
           </div>
@@ -241,7 +241,7 @@ const ServiceDetail = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-2xl font-semibold mb-6 text-[#f7d69a]"
+            className="text-2xl font-semibold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#d1a74f] to-[#b8924b]"
           >
             Interested in This Service?
           </motion.h3>
@@ -259,7 +259,7 @@ const ServiceDetail = () => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 bg-[#1a1a1a] border border-[#d1a75e]/50 text-[#f9d891] rounded-lg font-semibold text-lg hover:border-[#d1a75e] transition-colors"
+                className="px-8 py-3 bg-white border-2 border-[#d1a75e] text-[#d1a75e] rounded-lg font-semibold text-lg hover:bg-[#d1a75e] hover:text-white transition-colors"
               >
                 View All Services
               </motion.button>

@@ -63,7 +63,7 @@ const BoardOfDirectors = () => {
   }, []);
 
   return (
-    <div className="w-full bg-black text-white min-h-screen pt-24">
+    <div className="w-full bg-white text-gray-900 min-h-screen pt-24">
       {/* Header */}
       <div className="max-w-7xl mx-auto px-6 md:px-20 pt-10 md:pt-14">
         {/* Back Button */}
@@ -121,7 +121,7 @@ const BoardOfDirectors = () => {
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
               >
-                <div className="w-full aspect-square bg-[#1a1a1a] rounded-lg border border-[#d1a75e]/20 hover:border-[#d1a75e]/50 transition-all shadow-lg shadow-[#d1a75e]/10 p-3 md:p-1 flex items-center justify-center">
+                <div className="w-full aspect-square bg-[#faf9f6] rounded-lg border border-[#d1a75e]/30 hover:border-[#d1a75e]/50 transition-all shadow-lg shadow-[#d1a75e]/10 p-3 md:p-1 flex items-center justify-center">
                   <motion.img
                     src={d.img}
                     alt={d.name}
@@ -142,7 +142,7 @@ const BoardOfDirectors = () => {
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.06 + 0.3 }}
-                  className="text-[15px] md:text-[16px] font-medium text-[#f7d69a]"
+                  className="text-[15px] md:text-[16px] font-medium text-gray-900"
                 >
                   {d.name}
                 </motion.p>

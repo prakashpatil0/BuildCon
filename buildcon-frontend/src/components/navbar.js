@@ -95,8 +95,8 @@ const Navbar = () => {
         transition-all duration-500 ease-in-out
         ${
           isScrolled
-            ? "bg-white/95 backdrop-blur-xl shadow-lg text-slate-900"
-            : "bg-transparent text-white"
+            ? "bg-white/95 backdrop-blur-xl shadow-lg text-gray-900"
+            : "bg-black/20 backdrop-blur-md text-white"
         }
       `}
     >
@@ -132,10 +132,10 @@ const Navbar = () => {
                 `relative transition-colors duration-300 ${
                   isActive
                     ? isScrolled
-                      ? "text-slate-900"
+                      ? "text-gray-900 font-medium"
                       : "text-white"
                     : isScrolled
-                    ? "text-slate-700 hover:text-slate-900"
+                    ? "text-gray-900 hover:text-[#d1a75e] font-medium"
                     : "text-white/90 hover:text-white"
                 }`
               }
@@ -163,8 +163,8 @@ const Navbar = () => {
             <button
               className={`inline-flex items-center gap-1 transition-colors duration-300 ${
                 isScrolled
-                  ? "text-slate-700 hover:text-slate-900"
-                  : "text-white/90 hover:text-white"
+                  ? "text-gray-900 hover:text-[#d1a75e] font-medium"
+                  : "text-white hover:text-[#f9d891] font-medium"
               }`}
             >
               <span>Company</span>
@@ -200,24 +200,24 @@ const Navbar = () => {
                   <Link
                     to="/company"
                     onClick={closeMobileMenu}
-                    className="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 transition-colors"
-                    onClick={() => window.scrollTo(0, 0)}
+                    className="block px-4 py-3 text-sm text-gray-900 hover:bg-[#faf9f6] hover:text-[#d1a75e] transition-colors font-medium"
+                    // onClick={() => window.scrollTo(0, 0)}
                   >
                     Company
                   </Link>
                   <Link
                     to="/about"
                     onClick={closeMobileMenu}
-                    className="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 transition-colors"
-                    onClick={() => window.scrollTo(0, 0)}
+                    className="block px-4 py-3 text-sm text-gray-900 hover:bg-[#faf9f6] hover:text-[#d1a75e] transition-colors font-medium"
+                    // onClick={() => window.scrollTo(0, 0)} // scroll to top/
                   >
                     About Us
                   </Link>
                   <Link
                     to="/ourstory"
                     onClick={closeMobileMenu}
-                    className="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 transition-colors"
-                    onClick={() => window.scrollTo(0, 0)}
+                    className="block px-4 py-3 text-sm text-gray-900 hover:bg-[#faf9f6] hover:text-[#d1a75e] transition-colors font-medium"
+                    // onClick={() => window.scrollTo(0, 0)}
                   >
                     Our Story
                   </Link>
@@ -239,8 +239,8 @@ const Navbar = () => {
             <button
               className={`inline-flex items-center gap-1 transition-colors duration-300 ${
                 isScrolled
-                  ? "text-slate-700 hover:text-slate-900"
-                  : "text-white/90 hover:text-white"
+                  ? "text-gray-900 hover:text-[#d1a75e] font-medium"
+                  : "text-white hover:text-[#f9d891] font-medium"
               }`}
             >
               <span>Projects</span>
@@ -276,21 +276,21 @@ const Navbar = () => {
                   <Link
                     to="/projects#completed"
                     onClick={closeMobileMenu}
-                    className="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 transition-colors"
+                    className="block px-4 py-3 text-sm text-gray-900 hover:bg-[#faf9f6] hover:text-[#d1a75e] transition-colors font-medium"
                   >
                     Completed
                   </Link>
                   <Link
                     to="/projects#ongoing"
                     onClick={closeMobileMenu}
-                    className="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 transition-colors"
+                    className="block px-4 py-3 text-sm text-gray-900 hover:bg-[#faf9f6] hover:text-[#d1a75e] transition-colors font-medium"
                   >
                     Ongoing
                   </Link>
                   <Link
                     to="/projects#upcoming"
                     onClick={closeMobileMenu}
-                    className="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 transition-colors"
+                    className="block px-4 py-3 text-sm text-gray-900 hover:bg-[#faf9f6] hover:text-[#d1a75e] transition-colors font-medium"
                   >
                     Upcoming
                   </Link>
@@ -313,14 +313,14 @@ const Navbar = () => {
       to={`/${item.toLowerCase()}`}
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       className={({ isActive }) =>
-        `relative transition-colors duration-300 ${
+        `relative transition-colors duration-300         ${
           isActive
             ? isScrolled
-              ? "text-slate-900"
-              : "text-white"
+              ? "text-gray-900 font-semibold"
+              : "text-white font-semibold"
             : isScrolled
-            ? "text-slate-700 hover:text-slate-900"
-            : "text-white/90 hover:text-white"
+            ? "text-gray-900 hover:text-[#d1a75e] font-medium"
+            : "text-white hover:text-[#f9d891] font-medium"
         }`
       }
     >
@@ -346,7 +346,7 @@ const Navbar = () => {
               px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300
               ${
                 isScrolled
-                  ? "bg-slate-900 text-white hover:bg-slate-800"
+                  ? "bg-[#faf9f6] text-gray-900 hover:bg-[#f5f4f0]"
                   : "bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm"
               }
             `}
@@ -363,7 +363,7 @@ const Navbar = () => {
           onClick={toggleMobileMenu}
           className={`
             lg:hidden flex flex-col gap-1.5 p-2
-            ${isScrolled ? "text-slate-900" : "text-white"}
+            ${isScrolled ? "text-gray-900" : "text-white"}
           `}
           aria-label="Toggle menu"
           type="button"
@@ -402,7 +402,7 @@ const Navbar = () => {
             transition={{ duration: 0.3 }}
             className={`
               lg:hidden overflow-hidden
-              ${isScrolled ? "bg-white" : "bg-slate-900/95 backdrop-blur-xl"}
+              ${isScrolled ? "bg-white shadow-lg" : "bg-black/30 backdrop-blur-md"}
             `}
           >
             <nav className="flex flex-col px-6 py-4 gap-4">
@@ -410,7 +410,7 @@ const Navbar = () => {
                 to="/"
                 onClick={closeMobileMenu}
                 className={`py-2 text-lg font-medium transition-colors ${
-                  isScrolled ? "text-slate-900" : "text-white"
+                  isScrolled ? "text-gray-900" : "text-white"
                 }`}
               >
                 Home
@@ -424,7 +424,7 @@ const Navbar = () => {
                     )
                   }
                   className={`w-full flex items-center justify-between py-2 text-lg font-medium ${
-                    isScrolled ? "text-slate-900" : "text-white"
+                    isScrolled ? "text-gray-900" : "text-white"
                   }`}
                   type="button"
                 >
@@ -443,7 +443,7 @@ const Navbar = () => {
                       to="/company"
                       onClick={closeMobileMenu}
                       className={`block py-2 text-base transition-colors ${
-                        isScrolled ? "text-slate-700" : "text-white/80"
+                        isScrolled ? "text-gray-700" : "text-white/90 hover:text-[#f9d891]"
                       }`}
                     >
                       Company
@@ -452,7 +452,7 @@ const Navbar = () => {
                       to="/about"
                       onClick={closeMobileMenu}
                       className={`block py-2 text-base transition-colors ${
-                        isScrolled ? "text-slate-700" : "text-white/80"
+                        isScrolled ? "text-gray-700" : "text-white/90 hover:text-[#f9d891]"
                       }`}
                     >
                       About Us
@@ -461,7 +461,7 @@ const Navbar = () => {
                       to="/ourstory"
                       onClick={closeMobileMenu}
                       className={`block py-2 text-base transition-colors ${
-                        isScrolled ? "text-slate-700" : "text-white/80"
+                        isScrolled ? "text-gray-700" : "text-white/90 hover:text-[#f9d891]"
                       }`}
                     >
                       Our Story
@@ -478,7 +478,7 @@ const Navbar = () => {
                     )
                   }
                   className={`w-full flex items-center justify-between py-2 text-lg font-medium ${
-                    isScrolled ? "text-slate-900" : "text-white"
+                    isScrolled ? "text-gray-900" : "text-white"
                   }`}
                   type="button"
                 >
@@ -497,7 +497,7 @@ const Navbar = () => {
                       to="/projects#completed"
                       onClick={closeMobileMenu}
                       className={`block py-2 text-base transition-colors ${
-                        isScrolled ? "text-slate-700" : "text-white/80"
+                        isScrolled ? "text-gray-700" : "text-white/90 hover:text-[#f9d891]"
                       }`}
                     >
                       Completed
@@ -506,7 +506,7 @@ const Navbar = () => {
                       to="/projects#ongoing"
                       onClick={closeMobileMenu}
                       className={`block py-2 text-base transition-colors ${
-                        isScrolled ? "text-slate-700" : "text-white/80"
+                        isScrolled ? "text-gray-700" : "text-white/90 hover:text-[#f9d891]"
                       }`}
                     >
                       Ongoing
@@ -515,7 +515,7 @@ const Navbar = () => {
                       to="/projects#upcoming"
                       onClick={closeMobileMenu}
                       className={`block py-2 text-base transition-colors ${
-                        isScrolled ? "text-slate-700" : "text-white/80"
+                        isScrolled ? "text-gray-700" : "text-white/90 hover:text-[#f9d891]"
                       }`}
                     >
                       Upcoming
@@ -541,7 +541,7 @@ const Navbar = () => {
                 whileTap={{ scale: 0.95 }}
                 className={`mt-4 px-4 py-2 rounded-lg font-medium transition-colors ${
                   isScrolled
-                    ? "bg-slate-900 text-white"
+                    ? "bg-[#faf9f6] text-gray-900"
                     : "bg-white/20 text-white backdrop-blur-sm hover:bg-white/30"
                 }`}
                 onClick={scrollToForm}
