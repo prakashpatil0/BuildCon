@@ -16,11 +16,6 @@ import saiGalaxySection2 from "../assets/Sai Galaxy/Sai Galaxy2.jpg";
 import vrindavanRegency1 from "../assets/Vrindavan/Vrindavan Regency 1.webp";
 import vrindavanRegency3Section2 from "../assets/Vrindavan/Vrindavan Regency 3.webp";
 
-// ===== SECTION 3 IMAGES =====
-import residentialImg from "../assets/logo1.png";
-import officeImg from "../assets/logo2.png";
-import hospitalityImg from "../assets/logo3.png";
-
 // ===== SAI DWARIKA ASSETS =====
 import saiDwarikaPhoto1 from "../assets/Sai Dwarika/Saidwarika Photo 1.webp";
 import saiDwarikaPhoto2 from "../assets/Sai Dwarika/Saidwarika Photo 2.webp";
@@ -216,35 +211,78 @@ const slides = [
   },
 ];
 
-// ACCORDION SECTION
+// ACCORDION SECTION – REAL PROJECT DATA
 const dynamicSections = [
   {
     id: 1,
     title: "Residential",
-    image: residentialImg,
-    heading: "RESIDENTIAL",
-    text: `Our residential developments are crafted with precision, modern design,
-    and comfort. Each project reflects quality, luxury, and thoughtful planning.`,
-    stats: ["412 Homes Developed", "320 Homes Under Development"],
-    link: "/projects/sai-nagari",
+    image: vrindavanRegency3, // real residential project image
+    heading: "RESIDENTIAL PROJECTS",
+    text:
+      "Discover our Pune residential communities – Sai Dwarika, Shree Shrushti, Vrindavan Regency and Sadguru Krupa – thoughtfully planned homes in South Pune.",
+    stats: ["Ready-to-move & ongoing homes", "1, 2 & 3 BHK residences"],
+    link: "/projects/sai-dwarika",
+    projects: [
+      {
+        id: "sai-dwarika",
+        name: "Sai Dwarika",
+        location: "Yewalewadi / Kondhwa Budruk, Pune",
+        status: "Completed",
+      },
+      {
+        id: "shree-shrushti",
+        name: "Shree Shrushti",
+        location: "Yewalewadi, Pune",
+        status: "Completed",
+      },
+      {
+        id: "vrindavan-regency",
+        name: "Vrindavan Regency",
+        location: "Katraj - Kondhwa Road, Yewalewadi, Pune",
+        status: "Completed",
+      },
+    ],
   },
   {
     id: 2,
     title: "Office Parks",
-    image: officeImg,
-    heading: "OFFICE PARKS",
-    text: `World-class office environments designed for global business excellence.`,
-    stats: ["22.77M sq. ft. Developed", "32.1M sq. ft. Under Development"],
-    link: "/projects/office-parks", // ✅ add your route here
+    image: privilegeHillsImage, // real office park image
+    heading: "OFFICE & COMMERCIAL",
+    text:
+      "Grade-A office park and commercial developments designed for modern businesses, with integrated High Street retail and premium amenities.",
+    stats: ["Grade-A office park in Balewadi", "Integrated High Street retail"],
+    link: "/projects/privilege-hills",
+    projects: [
+      {
+        id: "privilege-hills",
+        name: "Privillege Hills",
+        location: "Balewadi, Pune",
+        status: "Ongoing",
+      },
+      {
+        name: "M-24 Park",
+        location: "Pune",
+        status: "Upcoming Commercial Development",
+      },
+    ],
   },
   {
     id: 3,
     title: "Hospitality",
-    image: hospitalityImg,
-    heading: "HOSPITALITY",
-    text: `Our hospitality portfolio delivers global standards of design & service.`,
-    stats: ["2178 Rooms Developed", "1476 Rooms Under Development"],
+    image: maaPranaamMotherAndChildCare, // real hospitality project image
+    heading: "HOSPITALITY & HEALTHCARE",
+    text:
+      "Our hospitality portfolio includes Maa Pranaam Hospitality, bringing together premium healthcare infrastructure and hospitality services.",
+    stats: ["Multi-specialty hospital facility", "Integrated hospitality services"],
     link: "/projects/maa-pranaam-hospitality",
+    projects: [
+      {
+        id: "maa-pranaam-hospitality",
+        name: "Maa Pranaam Hospitality",
+        location: "Pune",
+        status: "Ongoing",
+      },
+    ],
   },
 ];
 
@@ -538,21 +576,14 @@ const Home = () => {
                   animate={{ opacity: 1, height: "auto" }}
                   exit={{ opacity: 0, height: 0 }}
                   transition={{ duration: 0.5 }}
-                  className="relative w-full h-[650px] flex items-center justify-center text-white overflow-hidden"
-                  style={{
-                    backgroundImage: `url(${s.image})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                  }}
+                  className="relative w-full bg-white text-gray-900 overflow-hidden rounded-3xl border border-[#d1a75e]/30 px-6 py-12 md:px-10 md:py-14 shadow-lg shadow-[#d1a75e]/10"
                 >
-                  <div className="absolute inset-0 bg-black/50"></div>
-
                   <motion.div
                     initial={{ opacity: 0, y: 30, scale: 0.95 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 20, scale: 0.98 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
-                    className="relative max-w-3xl text-center"
+                    className="relative max-w-5xl mx-auto text-center"
                   >
                     <motion.h2
                       initial={{ opacity: 0, y: 20 }}
@@ -575,7 +606,7 @@ const Home = () => {
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.6 }}
-                      className="flex justify-center gap-12 mb-10 text-lg text-[#d1a75e]"
+                      className="flex justify-center gap-12 mb-6 text-lg text-[#d1a75e]"
                     >
                       {s.stats.map((t, i) => (
                         <motion.p
@@ -589,20 +620,54 @@ const Home = () => {
                       ))}
                     </motion.div>
 
+                    {s.projects && s.projects.length > 0 && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.7 }}
+                        className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10"
+                      >
+                        {s.projects.map((proj, index) => (
+                          <motion.button
+                            key={`${proj.name}-${index}`}
+                            type="button"
+                            whileHover={proj.id ? { y: -4, scale: 1.02 } : {}}
+                            whileTap={proj.id ? { scale: 0.97 } : {}}
+                            onClick={() => {
+                              if (!proj.id) return;
+                              window.scrollTo({ top: 0, behavior: "smooth" });
+                              navigate(`/projects/${proj.id}`);
+                            }}
+                            className={`text-left bg-[#faf9f6] border border-[#d1a75e]/40 rounded-xl p-4 transition-colors ${
+                              proj.id ? "cursor-pointer hover:bg-white" : "cursor-default"
+                            }`}
+                          >
+                            <p className="text-gray-900 font-semibold text-lg">{proj.name}</p>
+                            <p className="text-[#d1a75e] text-sm mt-1">{proj.location}</p>
+                            {proj.status && (
+                              <p className="text-[#b8924b] text-xs uppercase tracking-[0.2em] mt-3">
+                                {proj.status}
+                              </p>
+                            )}
+                          </motion.button>
+                        ))}
+                      </motion.div>
+                    )}
+
                     <motion.button
-  whileHover={{ scale: 1.05 }}
-  whileTap={{ scale: 0.95 }}
-  initial={{ opacity: 0, y: 20 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ delay: 0.8 }}
-  className="px-8 py-3 bg-gradient-to-r from-[#d1a74f] to-[#b8924b] text-white rounded font-semibold"
-  onClick={() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    if (s.link) navigate(s.link);
-  }}
->
-  Learn More
-</motion.button>
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.8 }}
+                      className="px-8 py-3 bg-gradient-to-r from-[#d1a74f] to-[#b8924b] text-white rounded font-semibold"
+                      onClick={() => {
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                        if (s.link) navigate(s.link);
+                      }}
+                    >
+                      Learn More
+                    </motion.button>
 
                   </motion.div>
                 </motion.div>
@@ -738,7 +803,7 @@ const Home = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.1 }}
-                    className="text-sm text-[#d1a75e] mt-1"
+                    className="text-sm text-[#f0d9a3] mt-1"
                   >
                     {p.location}
                   </motion.p>
@@ -823,7 +888,7 @@ const Home = () => {
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                className="text-center mt-4 text-lg font-medium text-gray-900"
+                className="text-center mt-4 text-lg font-medium text-white"
               >
                 {srv.title}
               </motion.p>

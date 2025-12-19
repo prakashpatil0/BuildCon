@@ -113,7 +113,7 @@ const Company = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.4 }}
-            className="text-gray-800 text-lg md:text-xl tracking-wide max-w-3xl font-medium"
+            className="text-white text-lg md:text-xl tracking-wide max-w-3xl font-medium"
           >
             Shape the future of real estate with BuildCon
           </motion.p>
@@ -266,7 +266,7 @@ const Company = () => {
       </section>
 
       {/* ================= WORK WITH THE BEST ================= */}
-      <section className="max-w-6xl mx-auto px-6 py-24 bg-white">
+      {/* <section className="max-w-6xl mx-auto px-6 py-24 bg-white">
         <motion.h2
           variants={fadeUp}
           initial="hidden"
@@ -302,10 +302,10 @@ const Company = () => {
             </motion.div>
           ))}
         </div>
-      </section>
+      </section> */}
 
       {/* ================= ACHIEVEMENTS ================= */}
-      <section className="bg-gradient-to-br from-[#faf9f6] to-white py-24 px-6">
+      {/* <section className="bg-gradient-to-br from-[#faf9f6] to-white py-24 px-6">
         <motion.h2
           variants={fadeUp}
           initial="hidden"
@@ -367,7 +367,7 @@ const Company = () => {
             </motion.div>
           ))}
         </div>
-      </section>
+      </section> */}
 
       {/* ================= CTA SECTION ================= */}
       <section className="bg-gradient-to-br from-[#faf9f6] to-white py-24 px-6">

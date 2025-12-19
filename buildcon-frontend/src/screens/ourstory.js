@@ -91,14 +91,14 @@ const Ourstory = () => {
               Where It All Began
             </h2>
 
-            <p className="text-gray-300 leading-relaxed text-lg mb-6">
+            <p className="text-[#d1a74f] leading-relaxed text-lg mb-6">
               Built on a foundation of integrity and vision, our journey began
               with a belief — that spaces should not just exist, they should
               inspire. Every brick we lay is shaped with craftsmanship,
               innovation, and trust.
             </p>
 
-            <p className="text-gray-300 leading-relaxed text-lg">
+            <p className="text-[#d1a74f] leading-relaxed text-lg">
               From humble beginnings to becoming a symbol of premium living
               & commercial excellence, our story is woven through years of
               commitment and authenticity.
@@ -147,16 +147,16 @@ const Ourstory = () => {
         <div className="grid md:grid-cols-2 gap-16">
 
           <motion.div variants={fadeLeft} initial="hidden" whileInView="visible">
-            <h3 className="text-3xl mb-4 text-[#f3dfb4]">Our Mission</h3>
-            <p className="text-gray-300 leading-relaxed text-lg">
+            <h3 className="text-3xl mb-4 text-[#d1a74f]">Our Mission</h3>
+            <p className="text-[#d1a74f] leading-relaxed text-lg">
             To deliver budget-friendly, high-quality, and thoughtfully planned real estate projects built on the principles of honesty, professionalism, and a customer-first approach.
             We strive to contribute to community growth by developing value-driven residential and commercial spaces rooted in transparency, ethical practices, and long-term trust.
             </p>
           </motion.div>
 
           <motion.div variants={fadeRight} initial="hidden" whileInView="visible">
-            <h3 className="text-3xl mb-4 text-[#f3dfb4]">Our Vision</h3>
-            <p className="text-gray-300 leading-relaxed text-lg">
+            <h3 className="text-3xl mb-4 text-[#d1a74f]">Our Vision</h3>
+            <p className="text-[#d1a74f] leading-relaxed text-lg">
             To transform lives by creating over 25,000 affordable, high-quality, and sustainable homes that nurture comfort, dignity, and a true sense of community.
 We envision empowering families, fostering inclusive growth, and contributing meaningfully to India’s mission of sustainable urban development.
 Our goal is to build spaces that inspire better living — today, tomorrow, and for generations to come.
@@ -207,7 +207,7 @@ Our goal is to build spaces that inspire better living — today, tomorrow, and 
                 <h3 className="text-4xl md:text-5xl font-serif text-[#e0c474]">
                   2,000+
                 </h3>
-                <p className="text-sm text-[#d6b86a] leading-tight">
+                <p className="text-sm text-[#e0c474] leading-tight">
                   Homes<br />delivered^
                 </p>
               </motion.div>
@@ -222,7 +222,7 @@ Our goal is to build spaces that inspire better living — today, tomorrow, and 
                 <p className="text-xs tracking-[2px] text-[#d6b86a] mb-3">
                   PRESENCE IN
                 </p>
-                <p className="text-sm leading-relaxed text-gray-200">
+                <p className="text-sm leading-relaxed text-[#e0c474]">
                   Pune<br />
                   Maharashtra<br />
                 </p>
@@ -248,7 +248,7 @@ Our goal is to build spaces that inspire better living — today, tomorrow, and 
                 <h3 className="text-4xl md:text-5xl font-serif text-[#e0c474]">
                   18
                 </h3>
-                <p className="text-sm leading-tight text-gray-200">
+                <p className="text-sm leading-tight text-[#e0c474]">
                   Year legacy of<br />shaping real estate
                 </p>
               </motion.div>
@@ -263,7 +263,7 @@ Our goal is to build spaces that inspire better living — today, tomorrow, and 
                 <h3 className="text-4xl md:text-5xl font-serif text-[#e0c474]">
                   15+
                 </h3>
-                <p className="text-sm leading-tight text-gray-200">
+                <p className="text-sm leading-tight text-[#e0c474]">
                   operating<br />projects*
                 </p>
               </motion.div>
@@ -278,7 +278,7 @@ Our goal is to build spaces that inspire better living — today, tomorrow, and 
                 <h3 className="text-4xl md:text-5xl font-serif text-[#e0c474]">
                   2.50 lakh+
                 </h3>
-                <p className="text-sm leading-tight text-gray-200">
+                <p className="text-sm leading-tight text-[#e0c474]">
                   sq. ft. area<br />delivered
                 </p>
               </motion.div>

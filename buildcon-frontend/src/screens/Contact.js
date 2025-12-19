@@ -1,40 +1,30 @@
 import React, { useMemo, useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import contactUsImage from "../assets/Contact-us.png";
 
 const offices = [
   {
     title: "Corporate Office",
-    address: "Tech Park One, Tower E, 191 Yerwada, Pune - 411 006, India",
-    phone: "+91 20 6647 3200",
-    email: "sales@buildcon.com",
-  },
-  {
-    title: "Mumbai Office",
-    address: "Express Towers, 20th Floor, Nariman Point, Mumbai - 400 021, India",
-    phone: "+91 22 6686 3939",
-    email: "info@buildcon.com",
-  },
-  {
-    title: "Sales Enquiry",
-    address: "Dedicated advisory desk · Global investors & NRIs",
-    phone: "+91 8970 007700",
-    email: "sales@buildcon.com",
+    address: "A Wing, KPCT Mall, Fatima Nagar, Wanowrie, Pune, Maharashtra",
+    phone: "+91 897 576 6634",
+    email: "info@maapranaam.in",
   },
 ];
 
 const emailLinks = [
-  { label: "Sales Enquiry", value: "sales@buildcon.com" },
-  { label: "Job Opportunities", value: "careers@buildcon.com" },
-  { label: "Leasing Enquiry", value: "info@buildcon.com" },
+  { label: "Sales Enquiry", value: "enquire@maapranaam.in" },
+  { label: "Job Opportunities", value: "hr@maapranaam.in" },
+  { label: "Leasing Enquiry", value: "info@maapranaam.in" },
 ];
 
 const propertyOptions = [
-  "Business Bay",
-  "Trump Towers Pune",
-  "YOO Villas",
-  "BuildCon Towers",
-  "Omnia Residences",
-  "42 East Residences",
+  "Sai Dwarika",
+  "Sai Nagari",
+  "Shree Shrushti",
+  "Sadguru Krupa",
+  "Vrindavan Regency",
+  "Privillege Hills",
+  "Maa Pranaam Mother & Child Care",
 ];
 
 // Animation variants
@@ -79,7 +69,7 @@ function Contact() {
   const topRef = useRef(null);
 
   const API_BASE = useMemo(() => {
-    return "http://www.maapranaam.co.in".replace(/\/$/, "");
+    return "https://maapranaam.co.in/".replace(/\/$/, "");
   }, []);
   
 
@@ -357,9 +347,9 @@ function Contact() {
             variants={slideInRight}
             className="flex-1 space-y-6"
           >
-            <motion.p variants={fadeUp} className="text-xs uppercase tracking-[0.35em] text-[#d1a75e]">
+            {/* <motion.p variants={fadeUp} className="text-xs uppercase tracking-[0.35em] text-[#d1a75e]">
               Established in 2002
-            </motion.p>
+            </motion.p> */}
 
             <motion.h1 variants={fadeUp} className="text-4xl font-semibold leading-tight">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#f9d891] to-[#d1a74f]">
@@ -383,16 +373,6 @@ function Contact() {
                 ENQUIRE NOW
               </motion.button>
 
-              {/* <motion.button
-                whileHover={{ scale: 1.1, y: -5 }}
-                whileTap={{ scale: 0.9 }}
-                type="button"
-                onClick={scrollToTop}
-                className="rounded-full border border-[#d1a75e]/50 bg-[#d1a75e]/20 backdrop-blur-sm px-5 py-2 text-sm font-semibold text-gray-900 hover:bg-[#d1a75e]/30 transition-colors"
-                aria-label="Scroll to top"
-              >
-                ↑
-              </motion.button> */}
             </motion.div>
           </motion.div>
         </div>
@@ -620,7 +600,7 @@ function Contact() {
                   onBlur={() => setFieldTouched("property")}
                   className="w-full rounded-2xl border border-[#d1a75e]/30 bg-gray-50 px-4 py-3 text-sm text-gray-900 focus:border-[#d1a75e] focus:outline-none focus:ring-2 focus:ring-[#d1a75e]/20"
                 >
-                  <option value="default" disabled className="bg-[#1a2332] text-[#d1a75e]">
+                  <option value="default" disabled className="text-gray-900">
                     Select Property
                   </option>
 
@@ -642,7 +622,7 @@ function Contact() {
                 value={form.message}
                 onChange={onChange("message")}
                 onBlur={() => setFieldTouched("message")}
-                className="w-full rounded-2xl border border-[#d1a75e]/30 bg-black/50 px-4 py-3 text-sm text-[#f0d3a3] placeholder:text-[#d1a75e]/50 focus:border-[#d1a75e] focus:outline-none focus:ring-2 focus:ring-[#d1a75e]/20 resize-none"
+                className="w-full rounded-2xl border border-[#d1a75e]/30 text-gray-900 px-4 py-3 text-sm placeholder:text-[#d1a75e]/50 focus:border-[#d1a75e] focus:outline-none focus:ring-2 focus:ring-[#d1a75e]/20 resize-none"
               />
 
               <motion.button
@@ -675,8 +655,7 @@ function Contact() {
               transition={{ duration: 0.3 }}
               className="aspect-[16/8] w-full rounded-2xl bg-cover bg-center overflow-hidden"
               style={{
-                backgroundImage:
-                  "url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80')",
+                backgroundImage: `url(${contactUsImage})`,
               }}
             />
           </motion.div>

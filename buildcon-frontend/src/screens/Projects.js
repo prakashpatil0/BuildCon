@@ -23,6 +23,8 @@ import maaPranaamHospitalImage from "../assets/Maa Pranaam Hospital/Mauli Regenc
 import privilegeHillsImage from "../assets/Privilege Hills/Privillege Hills.png";
 import saiGalaxy1 from "../assets/Sai Galaxy/Sai Galaxy1.jpg";
 import saiGalaxy2 from "../assets/Sai Galaxy/Sai Galaxy2.jpg";
+import m24Park from "../assets/M-24.png";
+import KBC from "../assets/KBC/KBC.jpg";
 const projectData = {
   completed: [
     {
@@ -90,37 +92,31 @@ const projectData = {
       details: "resedential project.",
       image: picture6,
     },
+    {
+      name: "KBC Towers",
+      location: "pune",
+      mix: "Office Space",
+      image: KBC,
+    },
   ],
   upcoming: [
-    {
-      name: "Krushna Nagari",
-      location: "Bandra West, Mumbai",
-      mix: "3 & 4.5 BHK | ~65,800 sq. ft.",
-      image: picture1,
-    },
+    // {
+    //   name: "Krushna Nagari",
+    //   location: "Bandra West, Mumbai",
+    //   mix: "3 & 4.5 BHK | ~65,800 sq. ft.",
+    //   image: picture1,
+    // },
     {
       name: "Sai Galaxy",
-      location: "Dubai Islands",
+      location: "Pune",
       mix: "3 & 4 BHK | ~180,000 sq. ft.",
       image: saiGalaxy1,
-    },
-    {
-      name: "Parkland Homes II",
-      location: "Worli, Mumbai",
-      mix: "4 & 5 BHK | ~85,000 sq. ft.",
-      image: picture3,
-    },
-    {
-      name: "Euphoric Blossoms",
-      location: "pune",
-      mix: "3 & 4 BHK Residences",
-      image: picture4,  
     },
     {
       name: "M24",
       location: "pune",
       mix: "3 & 4 BHK Residences",
-      image: picture4,
+      image: m24Park,
     },
     {
       name: "Sai Mantra",
@@ -128,24 +124,18 @@ const projectData = {
       mix: "3 & 4 BHK Residences",
       image: picture4,
     },
-    {
-      name: "Sai Shraddha Pune",
-      location: "pune",
-      mix: "3 & 4 BHK Residences",
-      image: picture4,
-    },
-    {
-      name: "KBC Towers",
-      location: "pune",
-      mix: "3 & 4 BHK Residences",
-      image: picture4,
-    },
-    {
-      name: "Sai Amrut",
-      location: "pune",
-      mix: "3 & 4 BHK Residences",
-      image: picture4,  
-    }
+    // {
+    //   name: "Sai Shraddha Pune",
+    //   location: "pune",
+    //   mix: "3 & 4 BHK Residences",
+    //   image: picture4,
+    // },
+    // {
+    //   name: "Sai Amrut",
+    //   location: "pune",
+    //   mix: "3 & 4 BHK Residences",
+    //   image: picture4,  
+    // }
   ],
 };
 

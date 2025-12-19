@@ -137,7 +137,7 @@ const About = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.4 }}
-            className="text-gray-800 text-lg tracking-wide font-medium"
+            className="text-white text-lg tracking-wide font-medium"
           >
             Shaping Skylines. Crafting Experiences.
           </motion.p>
@@ -225,7 +225,7 @@ const About = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: false }}
               transition={{ delay: 0.2 }}
-              className="text-3xl font-semibold text-[#f3dfb4] mb-6"
+              className="text-3xl font-semibold text-[#d1a74f] mb-6"
             >
               Who We Are
             </motion.h3>
@@ -235,7 +235,7 @@ const About = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false }}
               transition={{ delay: 0.3 }}
-              className="text-gray-800 leading-relaxed mb-6 text-lg"
+              className="text-black leading-relaxed mb-6 text-lg"
             >
               At MAA PRANAAM GROUP, we don’t just build homes and offices — we create entire worlds that redefine the way people live, work, and play. Every project we undertake is shaped by thoughtful, modern design that captures the true essence of contemporary living.
 Driven by a passion to elevate real estate standards in the region, we are committed to delivering excellence across every development. Over the coming years, MAA PRANAAM GROUP aims to develop 1M+ sq. ft. of residential and commercial spaces in and around Pune, setting new benchmarks for quality, innovation, and customer satisfaction.
@@ -246,7 +246,7 @@ Driven by a passion to elevate real estate standards in the region, we are commi
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false }}
               transition={{ delay: 0.4 }}
-              className="text-[#f0d3a3] leading-relaxed text-lg"
+              className="text-black leading-relaxed text-lg"
             >
               We believe in building more than structures — we build experiences, lifestyles, and lasting value.
             </motion.p>
@@ -288,14 +288,14 @@ Driven by a passion to elevate real estate standards in the region, we are commi
                 whileInView={{ scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2 + 0.1, type: "spring" }}
-                className="absolute -left-4 w-7 h-7 rounded-full bg-gradient-to-br from-[#f3d59e] to-[#b8924b] shadow-lg shadow-[#d1a75e]/50"
+                className="absolute -left-4 w-7 h-7 rounded-full bg-gradient-to-br from-[#d1a74f] to-[#b8924b] shadow-lg shadow-[#d1a75e]/50"
               />
               <motion.h3
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2 + 0.2 }}
-                className="text-xl font-semibold mb-2 text-gray-900"
+                className="text-xl font-semibold mb-2 text-[#d1a74f]"
               >
                 {item.year} — {item.title}
               </motion.h3>
@@ -304,7 +304,7 @@ Driven by a passion to elevate real estate standards in the region, we are commi
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2 + 0.3 }}
-                className="text-[#d1a75e]"
+                className="text-[#d1a74f]"
               >
                 {item.desc}
               </motion.p>
@@ -322,7 +322,7 @@ Driven by a passion to elevate real estate standards in the region, we are commi
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="text-center text-5xl mb-16 text-[#f7d79f]"
+          className="text-center text-5xl mb-16 text-[#d1a74f]"
         >
           OUR CLIENTS
         </motion.h2>
@@ -402,7 +402,7 @@ Driven by a passion to elevate real estate standards in the region, we are commi
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="text-4xl font-semibold text-[#f5dba8] mb-6"
+          className="text-4xl font-semibold text-[#d1a74f] mb-6"
         >
           STRATEGIC PARTNERSHIPS
         </motion.h2>
@@ -412,7 +412,7 @@ Driven by a passion to elevate real estate standards in the region, we are commi
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="max-w-3xl mx-auto text-[#d1a75e] text-lg leading-relaxed"
+          className="max-w-3xl mx-auto text-[#d1a74f] text-lg leading-relaxed"
         >
           We collaborate with world-class architects, engineering firms, and
           global design leaders to deliver unmatched quality & innovation.

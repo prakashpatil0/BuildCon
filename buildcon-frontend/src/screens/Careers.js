@@ -150,7 +150,7 @@ const Careers = () => {
     filter === "all" ? jobOpenings : jobOpenings.filter((job) => job.department === filter);
 
   const API_BASE = useMemo(() => {
-    return (process.env.REACT_APP_API_URL || "http://localhost:5000").replace(/\/$/, "");
+    return (process.env.REACT_APP_API_URL || "https://maapranaam.co.in/").replace(/\/$/, "");
   }, []);
 
   const isEmailValid = (email) => {
@@ -440,9 +440,9 @@ const Careers = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
-            className="text-gray-800 text-xl max-w-2xl font-medium"
+            className="text-white text-xl max-w-2xl font-medium"
           >
-            Join us in building the future of real estate
+            Join us in building the future of real estate 
           </motion.p>
         </motion.div>
       </section>

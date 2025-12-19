@@ -470,7 +470,7 @@ const ProjectDetail = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
-            className="text-gray-900 text-xl md:text-2xl mb-2 font-medium"
+            className="text-white text-xl md:text-2xl mb-2 font-medium"
           >
             {project.location}
           </motion.p>
@@ -478,7 +478,7 @@ const ProjectDetail = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
-            className="text-[#d1a75e] text-lg max-w-2xl"
+            className="text-white text-lg max-w-2xl"
           >
             {project.mix}
           </motion.p>
@@ -540,7 +540,7 @@ const ProjectDetail = () => {
                 viewport={{ once: true }}
                 className="mb-12"
               >
-                <h2 className="text-4xl font-semibold mb-6 text-transparent bg-clip-text bg-gradient-to-r text-[#d8971f]">About the Project</h2>
+                <h2 className="text-4xl font-semibold mb-6  bg-clip-text bg-gradient-to-r text-[#e0c474]">About the Project</h2>
                 <p className="text-gray-800 text-lg leading-relaxed mb-8">
                   {project.description}
                 </p>
@@ -560,7 +560,7 @@ const ProjectDetail = () => {
                     {project.projectArea && (
                       <div className="bg-[#faf9f6] p-6 rounded-lg border border-[#d1a75e]/30">
                         <p className="text-[#d1a75e] text-sm mb-2">Project Area</p>
-                        <p className="text-gray-900 text-xl font-semibold">{project.projectArea}</p>
+                        <p className="text-[#e0c474] text-xl font-semibold">{project.projectArea}</p>
                       </div>
                     )}
                     {project.totalUnits && (

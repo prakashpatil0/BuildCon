@@ -134,11 +134,11 @@ const Team = () => {
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
               >
-                <div className="w-full aspect-square bg-[#faf9f6] rounded-lg border border-[#d1a75e]/30 hover:border-[#d1a75e]/50 transition-all shadow-lg shadow-[#d1a75e]/10 p-3 md:p-3 flex items-center justify-center">
+                <div className="w-full bg-[#faf9f6] rounded-lg border border-[#d1a75e]/30 hover:border-[#d1a75e]/50 transition-all shadow-lg shadow-[#d1a75e]/10 overflow-hidden h-[20em]">
                   <motion.img
                     src={member.img}
                     alt={member.name}
-                    className="w-full h-full object-contain rounded-md"
+                    className="w-full h-full object-cover object-center"
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.4 }}
                     onError={(e) => {
